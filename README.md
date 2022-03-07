@@ -1,70 +1,16 @@
-# Getting Started with Create React App
+# Projet IHM 
+## Setup
+- run `npm i` pour installer tout les modules
+- Lancer le serveur en faisant `npm start` dans le dossier principale
+- si vous voulez voire le site compilé via le serveur vous devez faire `npm run build` dans `./client`
+- sinon, pour faire tourner le site en mode dev il faut run `npm start` dans `./client` (ceci va ouvrir la version dev du site react sur `localhost:3000`)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+$\to$ Le serveur doit tourner même si vous lancer le site react en mode dev.
+## Organisation
+- Front end react dans le dossier `./client`
+  - `./client/build` contient la version compilé du site react qui est retourné par le serveur si vous visitez `localhost`
+  - `./client/public` contient les fichiers utilisé comme base pour les fichiers compilé (donc on trouve le favicon, la base du fichier index.html,...)
+- Back end express dans le dossier principale
+  - `./api` contient les routes utilisé par l'api, et est divisé en deux dossiers `GET` et `POST` qui contiennent les fichiers correspondant à chaque type de requêtes.
+  - `./api/api_router.js` est le router de l'api (toute les routes de ce router sont préfixé par `/api/`), c'est donc la dedans que vous allez ajouter les fonctions qui gère les requêtes pour un certain endpoint (`./api/GET/hello_world.js` est un exemple d'une fonction qui gère les requêtes pour `/api/`).
