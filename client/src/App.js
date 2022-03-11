@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
-  let [apiText, setApiText] = useState("");
+  let [apiText, setApiText] = useState([]);
   useEffect(() => {
     fetch("/api/")
       .then((res) => res.json())
@@ -16,7 +16,8 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>LINFO1311 interface homme machine</p>
-        <p>Api: '{apiText}'</p>
+        <p>Api:</p>
+        {apiText.map((user) => <p>{user.username}</p>)}
       </header>
     </div>
   );
