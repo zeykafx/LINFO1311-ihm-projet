@@ -16,7 +16,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>LINFO1311 interface homme machine</p>
-        <p>Api message: '{apiText}'</p>
+        <p>Api: '{apiText}'</p>
       </header>
     </div>
   );
