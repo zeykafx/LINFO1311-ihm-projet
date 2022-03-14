@@ -22,7 +22,7 @@ function CCheckBox({
     }
 
     return (
-        <div className="CCheckBoxContainer">
+        <button className="CCheckBoxContainer" type="button" onClick={() => updateLocalValue()}>
             <div className="CCheckBox-TextElements">
                 <label className="CCheckBoxLabel">{label}</label>
             </div>
@@ -32,7 +32,7 @@ function CCheckBox({
                 checked={localValue}
                 onChange={(event) => updateLocalValue(event)}
             ></input>
-        </div>
+        </button>
     )
 
 }

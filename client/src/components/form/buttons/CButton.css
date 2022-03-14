@@ -33,6 +33,7 @@
 .CButton.disabled{
     background: rgb(179, 179, 179);
     cursor: not-allowed;
+    pointer-events: none;
 }
 .CButton.disabled:hover{
     background: rgb(179, 179, 179);

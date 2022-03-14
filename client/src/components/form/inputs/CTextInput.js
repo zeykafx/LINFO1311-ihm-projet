@@ -8,7 +8,8 @@ function CTextInput({
     value, 
     feedback,
     maxSize=0,
-    hidden=false
+    hidden=false,
+    disabled=false
 }) {
 
     const [localValue, setLocalValue] = useState(value);
@@ -33,7 +34,7 @@ function CTextInput({
     }
 
     return (
-        <div className="CTextInputContainer">
+        <div className={"CTextInputContainer " + (disabled ? "disabled" : "")}>
             <div className="CTextInput-TextElements">
                 <label className="CTextInputLabel">{label}</label>
                 {errorMessage &&

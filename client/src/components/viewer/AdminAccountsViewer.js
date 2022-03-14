@@ -82,6 +82,7 @@ function AdminAccountsViewer({}) {
                     <CPressableIcon 
                         iconName="close"
                         color="black"
+                        size={25}
                         onPress={() => {setVisibleModifyModal(false); setUsernameToModify("")}}
                     />
                 </div>
@@ -98,6 +99,7 @@ function AdminAccountsViewer({}) {
                     <CPressableIcon 
                         iconName="close"
                         color="black"
+                        size={25}
                         onPress={() => {setVisibleDeleteModal(false); setUsernameToDelete("")}}
                     />
                 </div>

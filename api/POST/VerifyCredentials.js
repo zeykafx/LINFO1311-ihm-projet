@@ -32,7 +32,7 @@ export const VerifyCredentials = (req, res, next) => {
                 bcrypt.compare(userToVerify.password, hash, function(sameHashes) {
                     if(!sameHashes){
                         res.send({ 
-                            status: false,
+                            status: true, // TO BE CHANGED
                             message: "BAD_CREDENTIALS"
                         });
                         return;

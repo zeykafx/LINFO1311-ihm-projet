@@ -31,7 +31,7 @@ function AdminLoginForm({
         };
 
         if (customHandler){
-            feedback(data)
+            feedback(data);
             return;
         }
 

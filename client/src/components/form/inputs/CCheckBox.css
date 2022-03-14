@@ -3,6 +3,7 @@
     flex-direction: row;
     margin: 15px;
     align-items: center;
+    width: calc(100% - 30px);
     
     border: solid 1px rgb(202, 202, 202);
     padding: 15px;

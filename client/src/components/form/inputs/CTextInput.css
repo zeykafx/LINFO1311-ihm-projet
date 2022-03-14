@@ -3,6 +3,10 @@
     flex-direction: column;
     margin: 15px;
 }
+.CTextInputContainer.disabled{
+    opacity: 0.4;
+    pointer-events: none;
+}
 .CTextInput-TextElements{
     display: flex;
     flex-direction: row;
