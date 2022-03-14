@@ -1,0 +1,48 @@
+.AAV-container{
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin: 15px;
+    border: solid 1px rgb(202, 202, 202);
+    background: white;
+    -webkit-box-shadow: 0px 5px 15px -2px rgba(0,0,0,0.10); 
+    box-shadow: 0px 5px 15px -2px rgba(0,0,0,0.10);
+    max-height: 250px;
+}
+.smallAccountViewer{
+    display: flex;
+    flex-direction: row;
+    padding: 15px;
+    align-items: center;
+    border-bottom: solid 1px rgb(223, 223, 223);
+    cursor: pointer;
+}
+.smallAccountViewer:hover{
+    background-color: #eee;
+}
+.smallAccountViewer h2{
+    margin: 0px;
+    flex: 1;
+    text-align: left;
+    font-size: 18px;
+    font-weight: 400;
+}
+.smallAccountViewer h3{
+    margin: 0px;
+    flex: 1;
+    text-align: left;
+    font-size: 15px;
+    font-weight: 400;
+    color: rgb(112, 112, 112);
+}
+.smallAccountViewer-buttonsContainer{
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    border-left: solid 1px rgb(223, 223, 223);
+}
+.smallAccountViewer-textContainer{
+    flex: 1;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}

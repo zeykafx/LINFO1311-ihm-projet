@@ -1,0 +1,40 @@
+.CButton{
+    display: flex;
+    margin: 15px;
+    border: 0;
+    padding: 12px 25px;
+    border-radius: 4px;
+    background: rgb(94, 94, 94);
+    -webkit-box-shadow: 0px 5px 15px -2px rgba(0,0,0,0.10); 
+    box-shadow: 0px 5px 15px -2px rgba(0,0,0,0.10);
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    color: white;
+}
+.CButton:hover{
+    background: black;
+}
+
+.CButton.negative{
+    background: #e84118;
+}
+.CButton.negative:hover{
+    background: #af3112;
+}
+
+.CButton.submit{
+    background: green;
+}
+.CButton.submit:hover{
+    background: rgb(0, 110, 0);
+}
+
+.CButton.disabled{
+    background: rgb(179, 179, 179);
+    cursor: not-allowed;
+}
+.CButton.disabled:hover{
+    background: rgb(179, 179, 179);
+    cursor: not-allowed;
+}

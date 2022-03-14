@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/zeykafx/LINFO1311-ihm-projet#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "body": "^5.1.0",
     "cors": "^2.8.5",
     "express": "^4.17.3",
