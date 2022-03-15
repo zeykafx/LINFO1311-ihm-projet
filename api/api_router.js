@@ -6,6 +6,7 @@ import { Login } from "./POST/login.js";
 import { VerifyCredentials } from "./POST/VerifyCredentials.js";
 import { CreateAccount } from "./POST/CreateAccount.js";
 import { ModifyAccount } from "./POST/ModifyAccount.js";
+import { DeleteAccount } from "./POST/DeleteAccount.js";
 import { getAccounts } from "./GET/getAccounts.js";
 import { getAccountDataByUsername } from "./POST/getAccountDataByUsername.js";
 
@@ -19,5 +20,6 @@ apiRouter.post("/account/login", Login);
 apiRouter.post("/account/verify", VerifyCredentials);
 apiRouter.post("/account/create", CreateAccount);
 apiRouter.post("/account/modify", ModifyAccount);
+apiRouter.post("/account/delete", DeleteAccount);
 apiRouter.get("/account/get", getAccounts);
 apiRouter.post("/account/getAccountDataByUsername", getAccountDataByUsername);

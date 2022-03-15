@@ -3,8 +3,9 @@ import React, { useState, useEffect } from 'react';
 import CButton from '../form/buttons/CButton';
 import CPressableIcon from '../form/buttons/CPressableIcon';
 
-import AdminLoginForm from '../form/AdminLoginForm';
 import AdminModifyAccountForm from '../form/AdminModifyAccountForm';
+import AdminDeleteAccountForm from '../form/AdminDeleteAccountForm';
+
 
 import { accountTypes } from '../../Constants/account.js';
 
@@ -104,13 +105,7 @@ function AdminAccountsViewer({}) {
                     />
                 </div>
                 <div className="modal-content">
-                    <p className="modal-text">Please enter an admin account username and password to proceed with the deletion of the account "{usernameToDelete}".</p>
-                    <AdminLoginForm 
-                        customHandler={true}
-                        feedback={(credentials) => handleCredentialsVerification(credentials)}
-                        customResponse={responseVerification}
-                        submitButtonText="Verify"
-                    />
+                    <AdminDeleteAccountForm accountUsername={usernameToDelete}/>
                 </div>
             </div>
             }
