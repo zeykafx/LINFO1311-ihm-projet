@@ -6,11 +6,12 @@ function CButton({
     disabled=false,
     text,
     type="",
-    onPress=()=>{}
+    onPress=()=>{},
+    buttonType="submit"
 }) {
 
     return (
-        <button className={`CButton ${type} ${disabled ? "disabled" : ""}`} onClick={onPress} type="submit">
+        <button className={`CButton ${type} ${disabled ? "disabled" : ""}`} onClick={onPress} type={buttonType}>
             {text}
         </button>
     )

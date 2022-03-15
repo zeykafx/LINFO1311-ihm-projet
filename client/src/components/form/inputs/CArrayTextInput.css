@@ -1,0 +1,69 @@
+.CArrayTextInputContainer{
+    display: flex;
+    flex-direction: column;
+}
+.CArrayTextInput-inputContainer{
+    display: flex;
+    flex-direction: row;
+}
+.CArrayTextInput-ValuesContainer{
+    max-height: 250px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 15px;
+    padding: 6px;
+    border: solid 1px rgb(202, 202, 202);
+    background: white;
+    box-shadow: 0px 5px 15px -2px rgb(0 0 0 / 10%);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.CArrayTextInput-Value{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: solid 1px rgb(202, 202, 202);
+    background: white;
+    box-shadow: 0px 5px 15px -2px rgb(0 0 0 / 10%);
+    margin: 8px;
+    padding: 8px 16px;
+    padding-right: 8px;
+    border-radius: 8px;
+}
+.CArrayTextInput-Value:hover{
+    background-color: #eee;
+}
+.CArrayTextInput-Value h3{
+    font-weight: 400;
+    flex: 1;
+    margin: 0;
+    font-size: 16px;
+}
+.CArrayTextInput-Value button{
+    margin-left: 4px;
+}
+.CArrayTextInput-inputContainer-buttonContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 28px;
+}
+.CArrayTextInput-noValue{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 25px;
+    width: 100%;
+}
+.CArrayTextInput-noValue h2{
+    margin: 20px 0;
+    font-weight: 400;
+}
+.CArrayTextInput-noValue p{
+    margin: 20px 0;
+    margin-top: 8px;
+    font-weight: 400;
+    color: rgb(78, 78, 78);
+}

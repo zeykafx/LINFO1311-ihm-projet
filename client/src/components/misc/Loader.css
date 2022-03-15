@@ -7,6 +7,10 @@
     padding: 0 25px;
     aspect-ratio: 1;
 }
+.loaderContainer.noAspectRatio{
+    aspect-ratio: unset;
+    padding: 100px 0;
+}
 .loaderContainer h4{
     font-size: 15px;
     color: rgb(94, 94, 94);

@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import "./CTextInput.css";
+import "./CLongTextInput.css";
 import "../commonStyle.css";
 
-function CTextInput({
+function CLongTextInput({
     label,
     placeholder, 
     value, 
     feedback,
     maxSize=0,
-    hidden=false,
     disabled=false,
     inheritedErrorMessageExistence=false,
     inheritedErrorMessage=""
@@ -28,7 +27,7 @@ function CTextInput({
             if(toBeSetValue.length > maxSize) {
                 toBeSetValue = toBeSetValue.slice(0, maxSize);
 
-                setErrorMessage(`The inputted text can't be longer than ${maxSize} caracters`);
+                setErrorMessage(`The username can't be longer than ${maxSize} caracters`);
             }
         }
         setLocalValue(toBeSetValue);
@@ -36,9 +35,9 @@ function CTextInput({
     }
 
     return (
-        <div className={"CTextInputContainer " + (disabled ? "disabled" : "")}>
-            <div className="CTextInput-TextElements">
-                <label className="CTextInputLabel">{label}</label>
+        <div className={"CLongTextInputContainer " + (disabled ? "disabled" : "")}>
+            <div className="CLongTextInput-TextElements">
+                <label className="CLongTextInputLabel">{label}</label>
                 {(inheritedErrorMessageExistence && inheritedErrorMessage!=="") &&
                 <h3 className="InputErrorMessage">{inheritedErrorMessage}</h3>
                 }
@@ -46,15 +45,18 @@ function CTextInput({
                 <h3 className="InputErrorMessage">{errorMessage}</h3>
                 }
             </div>
-            <input
-                className={errorMessage ? "CTextInput error" : "CTextInput"}
-                type={hidden ? "password" : "text"}
+            <textarea
+                className={errorMessage ? "CLongTextInput error" : "CTextInput"}
                 placeholder={placeholder}
                 value={localValue}
                 onChange={updateLocalValue}
+                maxlength={maxSize}
             />
+            <span className="letterCounter">
+                {localValue.length + "/" + maxSize}
+            </span>
         </div>
     )
 
 }
-export default CTextInput;
+export default CLongTextInput;

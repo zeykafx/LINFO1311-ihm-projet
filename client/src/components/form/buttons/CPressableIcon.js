@@ -2,13 +2,14 @@ import React from 'react';
 import "./CPressableIcon.css";
 import "../commonStyle.css";
 
-import { FaTimes, FaCheck } from 'react-icons/fa';
+import { FaTimes, FaCheck, FaTrash } from 'react-icons/fa';
 
 function CPressableIcon({
     iconName,
     color="black",
     onPress=()=>{},
-    size=18
+    size=18,
+    buttonType="button"
 }) {
 
     const getIcon = (iconName) => {
@@ -19,6 +20,8 @@ function CPressableIcon({
                 return <FaCheck color={color} size={size}/>
             case "error":
                 return <FaTimes color={color} size={size}/>
+            case "delete":
+                return <FaTrash color={color} size={size}/>
             default:
                 return <></>
         }
@@ -32,7 +35,7 @@ function CPressableIcon({
     }
 
     return (
-        <button className={`CPressableIcon`} style={getStyle()} onClick={onPress}>
+        <button className={`CPressableIcon`} style={getStyle()} onClick={onPress} type={buttonType}>
             <h3>{getIcon(iconName)}</h3>
         </button>
     )

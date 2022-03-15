@@ -8,11 +8,12 @@ import "./Loader.css";
 function Loader({
     color,
     size,
-    label=""
+    label="",
+    noAspectRatio=false
 }) {
 
     return (
-        <div className="loaderContainer">
+        <div className={"loaderContainer " + (noAspectRatio ? "noAspectRatio" : "")}>
             <TailSpin color={color} height={size} width={size} />
             { label!=="" &&
                 <h4>{label}</h4>

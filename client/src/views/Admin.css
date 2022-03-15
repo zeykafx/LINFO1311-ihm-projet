@@ -1,0 +1,27 @@
+.adminQuickRender{
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  overflow: hidden;
+}
+.simulatedNavigationBar{
+  width: 400px;
+  height: 100vh;
+  background-color: lightblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.simulatedNavigationBar h1{
+  margin: 0;
+  font-weight: bold;
+  font-size: 25px;
+  opacity: .5;
+}
+.simulatedContainer{
+  flex: 1;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}

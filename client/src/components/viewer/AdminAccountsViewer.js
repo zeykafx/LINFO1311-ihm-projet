@@ -11,6 +11,7 @@ import { accountTypes } from '../../Constants/account.js';
 
 import "./AdminAccountsViewer.css";
 import "../modal.css";
+import Loader from '../misc/Loader';
 
 function AdminAccountsViewer({}) {
 
@@ -22,19 +23,28 @@ function AdminAccountsViewer({}) {
     const [visibleModifyModal, setVisibleModifyModal] = useState(false);
     const [visibleDeleteModal, setVisibleDeleteModal] = useState(false);
 
+    const [loading, setLoading] = useState(true);
+
     const [responseVerification, setResponseVerification] = useState("");
 
     useEffect(() => {
-      fetch("/api/account/get")
-        .then((res) => res.json())
-        .then((response) => {
-            if(response.status){
-                setAccountList(response["message"]);
-            } else {
-                // show error?
-                setAccountList([]);
-            }
-        });
+        setLoading(true);
+
+        setTimeout(() => {
+            fetch("/api/account/get")
+            .then((res) => res.json())
+            .then((response) => {
+                if(response.status){
+                    setAccountList(response["message"]);
+                } else {
+                    // show error?
+                    setAccountList([]);
+                }
+
+                setLoading(false);
+            });
+        }, 1000); // Le timeout est pas obligatoire, c'est juste plus beau qu'un flash sur la page
+
     }, []);
 
     const transformAccountTypeKeyIntoAccountLabel = (key) => {
@@ -45,30 +55,6 @@ function AdminAccountsViewer({}) {
             }   
         }
         return "N/A"
-    }
-    
-    const handleCredentialsVerification = (credentials) => {
-
-        credentials.accountType = "admin";
-
-        setResponseVerification("");
-
-        fetch("/api/account/verify", {
-            method: "POST",
-            headers: {'Content-Type': 'application/json'}, 
-            body: JSON.stringify(credentials)
-        }).then(res => res.json().then((response) => {
-
-            if (response.status){
-                // Verification successful
-                console.log("Verification successful");
-            } else {
-                // Error while trying
-                setResponseVerification(response.message)
-            }
-
-        }));
-
     }
 
     return (
@@ -113,6 +99,10 @@ function AdminAccountsViewer({}) {
         }
         
         <div className="AAV-container">
+            { loading 
+            ? <Loader color="rgb(94, 94, 94)" size={30} noAspectRatio={true} label="Fetching the accounts..."/>
+            :
+            <>
             {accountList.map((account) =>
                 <div className="smallAccountViewer" key={account.username}>
                     <div className="smallAccountViewer-textContainer">
@@ -132,6 +122,8 @@ function AdminAccountsViewer({}) {
                     </div>
                 </div>
             )}
+            </>
+            }
         </div>
         </>
     )

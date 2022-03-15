@@ -1,18 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 
-import AdminLoginForm from './components/form/AdminLoginForm';
-import AdminCreateAccountForm from './components/form/AdminCreateAccountForm';
-import AdminAccountsViewer from './components/viewer/AdminAccountsViewer';
+import App from './App';
+import Admin from './views/Admin';
 
 ReactDOM.render(
   <React.StrictMode>
+    
     <App />
-    <AdminLoginForm />
-    <AdminCreateAccountForm />
-    <AdminAccountsViewer />
+
+    <Admin />
+
   </React.StrictMode>,
   document.getElementById('root')
 );

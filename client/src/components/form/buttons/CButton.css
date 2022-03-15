@@ -30,6 +30,13 @@
     background: rgb(0, 110, 0);
 }
 
+.CButton.positive{
+    background: green;
+}
+.CButton.positive:hover{
+    background: rgb(0, 110, 0);
+}
+
 .CButton.disabled{
     background: rgb(179, 179, 179);
     cursor: not-allowed;
