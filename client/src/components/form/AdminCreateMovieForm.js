@@ -22,22 +22,39 @@ function AdminCreateMovieForm({}) {
 
     const [response, setResponse] = useState("");
 
+    const isFormComplete = () => {
+        return  name!=="" &&
+                director !== "" &&
+                releaseDate !== null &&
+                description !== "" &&
+                actorRole !== "";
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         setResponse("");
 
-        const data = {
+        if(!isFormComplete()) return;
 
+        const data = {
+            name: name,
+            director: director,
+            coActors: coActors,
+            releaseDate: releaseDate,
+            languages: languages,
+            description: description,
+            ticketLinks: ticketLinks,
+            actorRole: actorRole
         };
 
-        fetch("/api/account/create", {
+        fetch("/api/movies/create", {
             method: "POST",
             headers: {'Content-Type': 'application/json'}, 
             body: JSON.stringify(data)
         }).then(res => res.json().then((response) => {
             
             if (response.status){
-                // Account creation successful
+                // Movue creation successful
             } else {
                 // Error while trying
                 setResponse(response.message)
@@ -122,7 +139,7 @@ function AdminCreateMovieForm({}) {
             />
 
             <CButton 
-                disabled={false}
+                disabled={!isFormComplete()}
                 text="Create"
                 type="submit"
             />
