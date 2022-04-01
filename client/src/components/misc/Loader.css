@@ -1,0 +1,19 @@
+.loaderContainer{
+    width: calc(100% - 50px);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0 25px;
+    aspect-ratio: 1;
+}
+.loaderContainer.noAspectRatio{
+    aspect-ratio: unset;
+    padding: 100px 0;
+}
+.loaderContainer h4{
+    font-size: 15px;
+    color: rgb(94, 94, 94);
+    font-weight: 400;
+    margin: 0 20px;
+}
