@@ -1,0 +1,97 @@
+.AMV-container{
+    display: flex;
+    flex-direction: column;
+    background-color: #FBFBFB;
+}
+.movieSmallViewer{
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: solid 1px #dedede;
+    box-shadow: 0px 5px 15px -2px rgb(0 0 0 / 10%);
+}
+.movieButtonsContainer {
+    display: flex;
+    flex-direction: row;
+    background: #eee;
+    border-top: solid 1px #dedede;
+    border-bottom: solid 1px #dedede;
+}
+.movieInfosContainer{
+    display: flex;
+    flex-direction: row;
+}
+.movieImageContainer{
+    min-width: 100px;
+    max-width: 250px;
+}
+.moviePoster{
+    width: calc(100% - 30px);
+    overflow: hidden;
+    margin: 15px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0px 5px 15px 5px rgba(0,0,0,0.2); 
+    box-shadow: 0px 5px 15px 5px rgba(0,0,0,0.2); 
+    display: flex;
+}
+.moviePoster img{
+    width: 100%;
+}
+.movieTextContainer{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+}
+.movieTextContainer .twoInfosContainer{
+    display: flex;
+    flex-direction: row;
+}
+.movieTextContainer .twoInfosContainer h3{
+    height: fit-content;
+    flex: 1;
+    font-weight: 400;
+    font-size: 13px;
+    margin: 3px;
+    padding: 10px;
+    color: #3a3a3a;
+    border: solid 1px rgb(229, 229, 229);
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 5px 15px -2px rgba(0,0,0,0.10); 
+    box-shadow: 0px 5px 15px -2px rgba(0,0,0,0.10);
+}
+.movieTextContainer h1{
+    font-weight: 500;
+    font-size: 35px;
+    margin: 0;
+}
+.movieTextContainer h2{
+    font-weight: 600;
+    font-size: 14px;
+    margin: 8px 0;
+}
+.movieTextContainer h3 .actorBubble{
+    font-weight: 500; 
+    color: black;
+}
+.movieTextContainer .languagesContainer, .movieTextContainer .ticketLinksContainer{
+    display: flex;
+    flex-direction: row;
+}
+.movieTextContainer .languagesContainer .languageBubble, .movieTextContainer .ticketLinksContainer .ticketBubble{
+    padding: 4px 8px;
+    background: rgb(68, 68, 68);
+    border-radius: 5px;
+    margin-right: 5px;
+    font-size: 13px;
+    font-weight: 500;
+    color: white;
+}
+.movieTextContainer p{
+    font-weight: 500;
+    font-size: 14px;
+    margin: 0;
+    color: rgb(123, 123, 123);
+}

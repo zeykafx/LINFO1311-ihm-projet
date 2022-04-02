@@ -10,8 +10,8 @@ import AdminDeleteAccountForm from '../form/AdminDeleteAccountForm';
 import { accountTypes } from '../../Constants/account.js';
 
 import "./AdminAccountsViewer.css";
-import "../modal.css";
 import Loader from '../misc/Loader';
+import ModalWrapper from '../misc/ModalWrapper';
 
 function AdminAccountsViewer({}) {
 
@@ -63,37 +63,21 @@ function AdminAccountsViewer({}) {
         { (visibleModifyModal || visibleDeleteModal) &&
         <div className="modal-container">
             { visibleModifyModal &&
-            <div className="modal">
-                <div className="modal-title">
-                    <h2>Modify account - {usernameToModify}</h2>
-                    <CPressableIcon 
-                        iconName="close"
-                        color="black"
-                        size={25}
-                        onPress={() => {setVisibleModifyModal(false); setUsernameToModify("")}}
-                    />
-                </div>
-                <div className="modal-content">
-                    <AdminModifyAccountForm accountUsername={usernameToModify}/>
-                </div>
-            </div>
+            <ModalWrapper
+                title={"Modify account - " + usernameToModify}
+                onPressClose={() => {setVisibleModifyModal(false); setUsernameToModify("")}}
+            >
+                <AdminModifyAccountForm accountUsername={usernameToModify}/>
+            </ModalWrapper>
             }
 
             { visibleDeleteModal &&
-            <div className="modal">
-                <div className="modal-title">
-                    <h2>Delete account - {usernameToDelete}</h2>
-                    <CPressableIcon 
-                        iconName="close"
-                        color="black"
-                        size={25}
-                        onPress={() => {setVisibleDeleteModal(false); setUsernameToDelete("")}}
-                    />
-                </div>
-                <div className="modal-content">
-                    <AdminDeleteAccountForm accountUsername={usernameToDelete}/>
-                </div>
-            </div>
+            <ModalWrapper
+            title={"Delete account - " + usernameToDelete}
+            onPressClose={() => {setVisibleDeleteModal(false); setUsernameToDelete("")}}
+            >
+                <AdminDeleteAccountForm accountUsername={usernameToDelete}/>
+            </ModalWrapper>
             }
         </div>
         }

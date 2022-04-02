@@ -14,6 +14,9 @@ import { getAccountDataByUsername } from "./POST/getAccountDataByUsername.js";
 
 // Movies imports
 import { CreateMovie } from "./POST/Movies/CreateMovie.js";
+import { ModifyMovie } from "./POST/Movies/ModifyMovie.js";
+import { DeleteMovie } from "./POST/Movies/DeleteMovie.js";
+import { getMovies } from "./GET/Movies/getMovies.js";
 
 export const apiRouter = express.Router();
 
@@ -31,3 +34,6 @@ apiRouter.post("/account/getAccountDataByUsername", getAccountDataByUsername);
 
 // Movies system
 apiRouter.post("/movies/create", CreateMovie);
+apiRouter.post("/movies/modify", ModifyMovie);
+apiRouter.post("/movies/delete", DeleteMovie);
+apiRouter.get("/movies/get", getMovies);

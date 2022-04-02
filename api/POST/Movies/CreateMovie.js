@@ -4,14 +4,14 @@ export const CreateMovie = (req, res, next) => {
 
     if( req &&
         req.body &&
-        req.body.name && 
-        req.body.director &&
-        req.body.coActors &&
-        req.body.releaseDate &&
-        req.body.languages &&
-        req.body.description &&
-        req.body.ticketLinks &&
-        req.body.actorRole
+        req.body.hasOwnProperty("name") &&
+        req.body.hasOwnProperty("director") && 
+        req.body.hasOwnProperty("coActors") && 
+        req.body.hasOwnProperty("releaseDate") &&
+        req.body.hasOwnProperty("languages") &&
+        req.body.hasOwnProperty("description") &&
+        req.body.hasOwnProperty("ticketLinks") &&
+        req.body.hasOwnProperty("actorRole")
         ){
 
         pool.query('INSERT INTO public.movies(name, director, "coActors", "releaseDate", languages, description, "ticketLinks", "actorRole") VALUES ($1, $2, $3, $4, $5, $6, $7, $8)', 
