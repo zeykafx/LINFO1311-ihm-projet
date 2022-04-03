@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 import CButton from '../form/buttons/CButton';
-import CPressableIcon from '../form/buttons/CPressableIcon';
 
 import "./AdminMoviesViewer.css";
 import Loader from '../misc/Loader';
