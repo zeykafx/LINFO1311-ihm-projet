@@ -9,6 +9,7 @@ import AdminMoviesViewer from "../components/viewer/AdminMoviesViewer";
 
 import CButton from '../components/form/buttons/CButton';
 import AdminCreateTVShowForm from "../components/form/TVShows/AdminCreateTVShowForm";
+import AdminTVShowsViewer from "../components/viewer/TVShows/AdminTVShowsViewer";
 
 function Admin() {
 
@@ -27,12 +28,14 @@ function Admin() {
             case 4:
                 return <AdminLoginForm />
             case 5:
+                return <AdminTVShowsViewer />
+            case 6:
                 return <AdminCreateTVShowForm />
         }
     }
     
     const updateIndex = () => {
-        if (index == 5){
+        if (index == 6){
             setIndex(0);
         } else {
             setIndex(index + 1);

@@ -10,18 +10,19 @@ import CArrayTextInput from '../inputs/CArrayTextInput.js';
 import CDateInput from '../inputs/CDateInput.js';
 import CLongTextInput from '../inputs/CLongTextInput.js';
 
-function AdminModifyMovieForm({
-    movieData
+function AdminModifyTVShowForm({
+    TVShowData
 }) {
 
-    const [name, setName] = useState(movieData.name);
-    const [director, setDirector] = useState(movieData.director);
-    const [coActors, setCoActors] = useState(movieData.coActors);
-    const [releaseDate, setReleaseDate] = useState(movieData.releaseDate);
-    const [languages, setLanguages] = useState(movieData.languages);
-    const [description, setDescription] = useState(movieData.description);
-    const [ticketLinks, setTicketLinks] = useState(movieData.ticketLinks);
-    const [actorRole, setActorRole] = useState(movieData.actorRole);
+    const [name, setName] = useState(TVShowData.name);
+    const [director, setDirector] = useState(TVShowData.director);
+    const [coActors, setCoActors] = useState(TVShowData.coActors);
+    const [releaseDate, setReleaseDate] = useState(TVShowData.releaseDate);
+    const [languages, setLanguages] = useState(TVShowData.languages);
+    const [description, setDescription] = useState(TVShowData.description);
+    const [tvChannels, setTvChannels] = useState(TVShowData.tv_channels);
+    const [streamingServices, setStreamingServices] = useState(TVShowData.streaming_services);
+    const [actorRole, setActorRole] = useState(TVShowData.actorRole);
 
     const [responseType, setResponseType] = useState("");
     const [response, setResponse] = useState("");
@@ -37,27 +38,28 @@ function AdminModifyMovieForm({
         setResponse("");
 
         const data = {
-            id: movieData.id,
+            id: TVShowData.id,
             name: name,
             director: director,
             coActors: coActors,
             releaseDate: releaseDate,
             languages: languages,
             description: description,
-            ticketLinks: ticketLinks,
+            tvChannels: tvChannels,
+            streamingServices: streamingServices,
             actorRole: actorRole
         };
 
-        fetch("/api/movies/modify", {
+        fetch("/api/tvshows/modify", {
             method: "POST",
             headers: {'Content-Type': 'application/json'}, 
             body: JSON.stringify(data)
         }).then(res => res.json().then((response) => {
 
             if (response.status){
-                // Movie modification successful
+                // TV Show modification successful
                 setResponseType("success");
-                setResponse("This movie has succesfully been modified")
+                setResponse("This TV Show has succesfully been modified")
             } else {
                 // Error while trying
                 setResponseType("error");
@@ -142,10 +144,18 @@ function AdminModifyMovieForm({
                     />
 
                     <CArrayTextInput 
-                        label="Ticket links"
-                        placeholder="Please enter a ticket link"
-                        values={ticketLinks}
-                        feedback={(value) => setTicketLinks(value)}
+                        label="TV Channels"
+                        placeholder="Please enter a TV Channel"
+                        values={tvChannels}
+                        feedback={(value) => setTvChannels(value)}
+                    />
+
+
+                    <CArrayTextInput 
+                        label="Streaming services"
+                        placeholder="Please enter a streaming service"
+                        values={streamingServices}
+                        feedback={(value) => setStreamingServices(value)}
                     />
                     
                     <hr />
@@ -172,4 +182,4 @@ function AdminModifyMovieForm({
     )
 
 }
-export default AdminModifyMovieForm;
+export default AdminModifyTVShowForm;
