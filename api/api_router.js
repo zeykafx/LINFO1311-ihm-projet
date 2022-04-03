@@ -20,6 +20,10 @@ import { DeleteMovie } from "./POST/Movies/DeleteMovie.js";
 import { client_getMovies } from "./POST/Movies/Client/client_getMovies.js";
 import { getMovies } from "./GET/Movies/getMovies.js";
 
+// TV Shows imports
+import { CreateTVShow } from "./POST/TVShows/CreateTVShow.js";
+
+
 export const apiRouter = express.Router();
 
 // API ROUTES
@@ -41,3 +45,6 @@ apiRouter.post("/movies/delete", DeleteMovie);
 
 apiRouter.post("/movies/client/get", client_getMovies);
 apiRouter.get("/movies/get", getMovies);
+
+// TV Show system
+apiRouter.post("/tvshows/create", CreateTVShow);
