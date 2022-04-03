@@ -8,28 +8,34 @@ import AdminCreateMovieForm from '../components/form/AdminCreateMovieForm';
 import AdminMoviesViewer from "../components/viewer/AdminMoviesViewer";
 
 import CButton from '../components/form/buttons/CButton';
+import AdminCreateTVShowForm from "../components/form/TVShows/AdminCreateTVShowForm";
+import AdminTVShowsViewer from "../components/viewer/TVShows/AdminTVShowsViewer";
 
 function Admin() {
 
-    const [index, setIndex] = useState(0);
+    const [index, setIndex] = useState(5);
 
     const getAdminPanel = () => {
         switch(index){
             case 0:
                 return <AdminMoviesViewer />
             case 1:
-                return <AdminCreateAccountForm />
+                return <AdminCreateMovieForm />
             case 2:
                 return <AdminAccountsViewer />
             case 3:
-                return <AdminCreateMovieForm />
+                return <AdminCreateAccountForm />
             case 4:
                 return <AdminLoginForm />
+            case 5:
+                return <AdminTVShowsViewer />
+            case 6:
+                return <AdminCreateTVShowForm />
         }
     }
     
     const updateIndex = () => {
-        if (index == 4){
+        if (index == 6){
             setIndex(0);
         } else {
             setIndex(index + 1);

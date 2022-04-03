@@ -1,0 +1,9 @@
+.centerButton{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.description-text{
+    margin: 15px;
+    text-align: center;
+}
