@@ -25,6 +25,7 @@ import { CreateTVShow } from "./POST/TVShows/CreateTVShow.js";
 import { ModifyTVShow } from "./POST/TVShows/ModifyTVShow.js";
 import { DeleteTVShow } from "./POST/TVShows/DeleteTVShow.js";
 
+import { client_getTVShows } from "./POST/TVShows/Client/client_getTVShows.js";
 import { getTVShows } from "./GET/TVShows/getTVShows.js";
 
 export const apiRouter = express.Router();
@@ -54,4 +55,5 @@ apiRouter.post("/tvshows/create", CreateTVShow);
 apiRouter.post("/tvshows/modify", ModifyTVShow);
 apiRouter.post("/tvshows/delete", DeleteTVShow);
 
+apiRouter.post("/tvshows/client/get", client_getTVShows);
 apiRouter.get("/tvshows/get", getTVShows);
