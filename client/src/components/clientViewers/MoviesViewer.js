@@ -62,7 +62,7 @@ function MoviesViewer({
         return coActors.map((actor, index) => {
             let separator = "";
             if(index != (coActors.length - 1)){
-                separator = index==(coActors.length - 2) ? " and " : ", ";
+                separator = index==(coActors.length - 2) ? ", and " : ", ";
             }
             return <b className="actorBubble">{actor}{separator}</b>
         })
@@ -124,7 +124,7 @@ function MoviesViewer({
                             <div className="moviePosterContainer">
                                 <div className="moviePosterContainerEffect">
                                     <div className="clickToKnowMore">
-                                        <h3>Know more</h3>
+                                        <h3>Click to know more</h3>
                                     </div>
                                     <img src="https://images.immediate.co.uk/remote/m.media-amazon.com/images/M/MV5BNWE3Mzc2YzUtZDAyYS00MmQ4LWFhZmItYTA5MTYyYjgxMTQ4XkEyXkFqcGdeQXVyNDgxMDU4NTU@._V1_.jpg?quality=90&webp=true&resize=650,911"/>
                                 </div>
@@ -147,6 +147,7 @@ function MoviesViewer({
                 ref={scrollbar}
                 className="MovieInfoBox"
                 smoothScrolling={true}
+                stopScrollPropagation={true}
                 horizontal={false}
                 >
                     <div className="MIB-TopBar">

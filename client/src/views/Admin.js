@@ -31,11 +31,13 @@ function Admin() {
                 return <AdminTVShowsViewer />
             case 6:
                 return <AdminCreateTVShowForm />
+            default:
+              return <AdminMoviesViewer />
         }
     }
     
     const updateIndex = () => {
-        if (index == 6){
+        if (index === 6){
             setIndex(0);
         } else {
             setIndex(index + 1);
@@ -45,10 +47,38 @@ function Admin() {
   return (
     <div className="adminQuickRender">
       <div className="simulatedNavigationBar">
-        <h1>Navigation bar preview</h1>
-        <CButton 
+        {/* <h1>Navigation bar preview</h1> */}
+        {/* <CButton 
           text="Change panel"
           onPress={() => updateIndex()}
+        /> */}
+        <CButton 
+          text="Movie viewer"
+          onPress={() => setIndex(0)}
+        />
+        <CButton 
+          text="Create movie"
+          onPress={() => setIndex(1)}
+        />
+        <CButton 
+          text="Account viewer"
+          onPress={() => setIndex(2)}
+        />
+        <CButton 
+          text="Create Account"
+          onPress={() => setIndex(3)}
+        />
+        <CButton 
+          text="Login form"
+          onPress={() => setIndex(4)}
+        />
+        <CButton 
+          text="TV show viewer"
+          onPress={() => setIndex(5)}
+        />
+        <CButton 
+          text="Create TV show"
+          onPress={() => setIndex(6)}
         />
       </div>
       <div className="simulatedContainer">

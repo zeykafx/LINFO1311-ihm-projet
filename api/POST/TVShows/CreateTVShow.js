@@ -12,10 +12,11 @@ export const CreateTVShow = (req, res, next) => {
         req.body.hasOwnProperty("description") &&
         req.body.hasOwnProperty("tvChannels") &&
         req.body.hasOwnProperty("streamingServices") &&
-        req.body.hasOwnProperty("actorRole")
+        req.body.hasOwnProperty("actorRole") &&
+        req.body.hasOwnProperty("filename")
         ){
 
-        pool.query('INSERT INTO public.tvshows(name, director, "coActors", "releaseDate", languages, description, "tv_channels", "streaming_services", "actorRole") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)', 
+        pool.query('INSERT INTO public.tvshows(name, director, "coActors", "releaseDate", languages, description, "tv_channels", "streaming_services", "actorRole", "filename") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)', 
         [
             req.body.name,
             req.body.director,
@@ -25,7 +26,8 @@ export const CreateTVShow = (req, res, next) => {
             req.body.description,
             req.body.tvChannels,
             req.body.streamingServices,
-            req.body.actorRole
+            req.body.actorRole,
+            req.body.filename
         ], (error, results) => {
 
             if (error){

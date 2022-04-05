@@ -1,4 +1,5 @@
-import express from 'express';
+import express from "express";
+import multer from "multer";
 
 // import des fonctions qui gère des endpoints
 import { HelloWorld } from "./GET/hello_world.js";
@@ -27,11 +28,29 @@ import { DeleteTVShow } from "./POST/TVShows/DeleteTVShow.js";
 
 import { client_getTVShows } from "./POST/TVShows/Client/client_getTVShows.js";
 import { getTVShows } from "./GET/TVShows/getTVShows.js";
+import { UploadImage } from "./POST/upload.js"
 
 export const apiRouter = express.Router();
 
+// multer setup
+export const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "./");
+  },
+  filename: (req, file, cb) => {
+    const ext = file.mimetype.split("/")[1];
+    cb(null, `photos/${file.originalname}.${ext}`);
+  },
+});
+export const upload = multer({
+  storage: storage,
+});
+
 // API ROUTES
 apiRouter.get("/", HelloWorld);
+
+apiRouter.post("/upload", upload.single("image"), UploadImage);
+
 
 // Account system
 apiRouter.post("/account/login", Login);

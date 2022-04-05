@@ -50,7 +50,7 @@ function CLongTextInput({
                 placeholder={placeholder}
                 value={localValue}
                 onChange={updateLocalValue}
-                maxlength={maxSize}
+                maxLength={maxSize}
             />
             <span className="letterCounter">
                 {localValue.length + "/" + maxSize}

@@ -13,6 +13,8 @@ const port = process.env.PORT || 80;
 // sert les fichiers du site react compilé
 let __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 app.use(express.static(path.join(__dirname, "client/build")));
+app.use("/photos", express.static(path.join(__dirname, "photos")));
+
 
 app.use(bodyParser.json());
 app.use(logger("dev"));

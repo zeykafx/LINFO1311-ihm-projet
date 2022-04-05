@@ -34,10 +34,11 @@ function CArrayTextInput({
             setErrorMessage(`There is a maximum of ${maxValues} values for this input.`);
             return;
         }
-
-        setErrorMessage("");
-        changeStateValues([...localValues, newValue]);
-        setNewValue("");
+        if (newValue != "") {
+            setErrorMessage("");
+            changeStateValues([...localValues, newValue]);
+            setNewValue("");
+        }
 
     }
 
@@ -62,6 +63,7 @@ function CArrayTextInput({
                     feedback={(value) => setNewValue(value)}
                     inheritedErrorMessageExistence={true}
                     inheritedErrorMessage={errorMessage}
+                    onSubmit={appendNewValue}
                 />
                 <div className="CArrayTextInput-inputContainer-buttonContainer">
                     <CButton 

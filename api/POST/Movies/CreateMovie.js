@@ -11,10 +11,11 @@ export const CreateMovie = (req, res, next) => {
         req.body.hasOwnProperty("languages") &&
         req.body.hasOwnProperty("description") &&
         req.body.hasOwnProperty("ticketLinks") &&
-        req.body.hasOwnProperty("actorRole")
+        req.body.hasOwnProperty("actorRole") &&
+        req.body.hasOwnProperty("filename")
         ){
 
-        pool.query('INSERT INTO public.movies(name, director, "coActors", "releaseDate", languages, description, "ticketLinks", "actorRole") VALUES ($1, $2, $3, $4, $5, $6, $7, $8)', 
+        pool.query('INSERT INTO public.movies(name, director, "coActors", "releaseDate", languages, description, "ticketLinks", "actorRole", "filename") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)', 
         [
             req.body.name,
             req.body.director,
@@ -23,7 +24,8 @@ export const CreateMovie = (req, res, next) => {
             req.body.languages,
             req.body.description,
             req.body.ticketLinks,
-            req.body.actorRole
+            req.body.actorRole,
+            req.body.filename
         ], (error, results) => {
 
             if (error){

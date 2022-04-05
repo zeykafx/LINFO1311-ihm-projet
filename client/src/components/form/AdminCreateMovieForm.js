@@ -8,6 +8,7 @@ import CDateInput from './inputs/CDateInput.js';
 import "./commonStyle.css";
 import CArrayTextInput from './inputs/CArrayTextInput.js';
 import CLongTextInput from './inputs/CLongTextInput';
+import PhotoUploader from './inputs/PhotoUploader';
 
 function AdminCreateMovieForm({}) {
 
@@ -19,6 +20,7 @@ function AdminCreateMovieForm({}) {
     const [description, setDescription] = useState("");
     const [ticketLinks, setTicketLinks] = useState([]);
     const [actorRole, setActorRole] = useState("");
+    const [filename, setFilename] = useState("");
 
     const [response, setResponse] = useState("");
 
@@ -27,7 +29,7 @@ function AdminCreateMovieForm({}) {
                 director !== "" &&
                 releaseDate !== null &&
                 description !== "" &&
-                actorRole !== "";
+                actorRole !== "" && filename != "";
     }
 
     const handleSubmit = (e) => {
@@ -44,7 +46,8 @@ function AdminCreateMovieForm({}) {
             languages: languages,
             description: description,
             ticketLinks: ticketLinks,
-            actorRole: actorRole
+            actorRole: actorRole,
+            filename: filename
         };
 
         fetch("/api/movies/create", {
@@ -94,6 +97,13 @@ function AdminCreateMovieForm({}) {
                 placeholder="Please enter a co-actor's name"
                 values={coActors}
                 feedback={(value) => setCoActors(value)}
+            />
+            
+            <PhotoUploader 
+              label="Image"
+              disabled = {false}
+              inheritedErrorMessageExistence = {false}
+              filenameFunction={(filename)=>setFilename(filename)}
             />
 
             <hr />

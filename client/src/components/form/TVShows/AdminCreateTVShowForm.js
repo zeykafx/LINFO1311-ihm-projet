@@ -8,6 +8,7 @@ import CDateInput from '../inputs/CDateInput.js';
 import "../commonStyle.css";
 import CArrayTextInput from '../inputs/CArrayTextInput.js';
 import CLongTextInput from '../inputs/CLongTextInput';
+import PhotoUploader from "../inputs/PhotoUploader.js"
 
 function AdminCreateTVShowForm({}) {
 
@@ -20,6 +21,7 @@ function AdminCreateTVShowForm({}) {
     const [tvChannels, setTvChannels] = useState([]);
     const [streamingServices, setStreamingServices] = useState([]);
     const [actorRole, setActorRole] = useState("");
+    const [filename, setFilename] = useState("");
 
     const [response, setResponse] = useState("");
 
@@ -28,7 +30,7 @@ function AdminCreateTVShowForm({}) {
                 director !== "" &&
                 releaseDate !== null &&
                 description !== "" &&
-                actorRole !== "";
+                actorRole !== "" && filename != "";
     }
 
     const handleSubmit = (e) => {
@@ -46,7 +48,8 @@ function AdminCreateTVShowForm({}) {
             description: description,
             tvChannels: tvChannels,
             streamingServices: streamingServices,
-            actorRole: actorRole
+            actorRole: actorRole,
+            filename: filename
         };
 
         fetch("/api/tvshows/create", {
@@ -111,6 +114,13 @@ function AdminCreateTVShowForm({}) {
                 placeholder="Please enter a language"
                 values={languages}
                 feedback={(value) => setLanguages(value)}
+            />
+
+            <PhotoUploader 
+              label="Image"
+              disabled = {false}
+              inheritedErrorMessageExistence = {false}
+              filenameFunction={(filename)=>setFilename(filename)}
             />
 
             <hr />

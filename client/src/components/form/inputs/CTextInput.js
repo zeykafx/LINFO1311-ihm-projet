@@ -11,7 +11,8 @@ function CTextInput({
     hidden=false,
     disabled=false,
     inheritedErrorMessageExistence=false,
-    inheritedErrorMessage=""
+    inheritedErrorMessage="",
+    onSubmit=(e)=>{}
 }) {
 
     const [localValue, setLocalValue] = useState(value);
@@ -35,6 +36,14 @@ function CTextInput({
         feedback(toBeSetValue);
     }
 
+    const onKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            event.stopPropagation();
+            onSubmit();
+        }
+    }
+
     return (
         <div className={"CTextInputContainer " + (disabled ? "disabled" : "")}>
             <div className="CTextInput-TextElements">
@@ -52,6 +61,7 @@ function CTextInput({
                 placeholder={placeholder}
                 value={localValue}
                 onChange={updateLocalValue}
+                onKeyDown={onKeyDown}
             />
         </div>
     )
