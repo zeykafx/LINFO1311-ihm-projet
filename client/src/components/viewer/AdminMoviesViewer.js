@@ -23,8 +23,8 @@ function AdminMoviesViewer({}) {
     const genCoActorBubbles = (coActors) => {
         return coActors.map((actor, index) => {
             let separator = "";
-            if(index != (coActors.length - 1)){
-                separator = index==(coActors.length - 2) ? " and " : ", ";
+            if(index !== (coActors.length - 1)){
+                separator = index===(coActors.length - 2) ? " and " : ", ";
             }
             return <b className="actorBubble">{actor}{separator}</b>
         })

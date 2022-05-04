@@ -1,20 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Routes, Route, BrowserRouter} from 'react-router-dom';
 import './index.css';
 
-import App from './App';
+import NavBar from './views/NavBar';
 import Admin from './views/Admin';
-import Index from './views/Index';
+import App from './views/App';
+import {ChakraProvider} from "@chakra-ui/react";
+import Footer from "./components/misc/Footer";
 
 ReactDOM.render(
-  <React.StrictMode>
-    
-    <App />
+    <ChakraProvider>
+        <BrowserRouter>
 
-    <Index />
+            <NavBar/>
 
-    <Admin />
+            <Routes>
+                <Route path="/" element={<App/>}/>
+                <Route path="/admin" element={<Admin/>}/>
+            </Routes>
 
-  </React.StrictMode>,
-  document.getElementById('root')
+            <Footer/>
+        </BrowserRouter>
+    </ChakraProvider>,
+    document.getElementById('root')
 );

@@ -50,7 +50,7 @@ function AdminAccountsViewer({}) {
     const transformAccountTypeKeyIntoAccountLabel = (key) => {
         for (let index = 0; index < accountTypes.length; index++) {
             const accountType = accountTypes[index];
-            if(accountType.key==key) {
+            if(accountType.key===key) {
                 return accountType.label
             }   
         }

@@ -15,7 +15,7 @@ export const getAccountDataByUsername = (req, res, next) => {
 
             const usersFound = results.rows;
 
-            if (usersFound.length==0){
+            if (usersFound.length===0){
                 res.send({ 
                     status: false,
                     message: "BAD_USERNAME"

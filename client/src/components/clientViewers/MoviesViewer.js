@@ -7,6 +7,7 @@ import "../../Constants/font.css";
 
 import "./MoviesViewer.css";
 import Loader from '../misc/Loader';
+import {Heading, Text} from "@chakra-ui/react";
 
 function MoviesViewer({
     maxNumberOfMovies=-1,
@@ -61,8 +62,8 @@ function MoviesViewer({
     const genCoActorBubbles = (coActors) => {
         return coActors.map((actor, index) => {
             let separator = "";
-            if(index != (coActors.length - 1)){
-                separator = index==(coActors.length - 2) ? ", and " : ", ";
+            if(index !== (coActors.length - 1)){
+                separator = index===(coActors.length - 2) ? ", and " : ", ";
             }
             return <b className="actorBubble">{actor}{separator}</b>
         })
@@ -82,7 +83,7 @@ function MoviesViewer({
 
 
             if(startRegisteringDot){
-                if(letter=="/"){
+                if(letter==="/"){
                     break;
                 }
             } else {
@@ -103,9 +104,7 @@ function MoviesViewer({
             height: height
         }}>
             <div className="MoviesCarrousel">
-                <div className="TitleContainer">
-                    <h1>Discover her best movies</h1>
-                </div> 
+                <Text fontSize={"xl"} color={"white"} textAlign={'center'} m={2}>Discover her best movies</Text>
                 { response!=="" ?
                 <div className="errorContainer">
                     <h3>{response}</h3>

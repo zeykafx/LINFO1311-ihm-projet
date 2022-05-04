@@ -2,11 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 
 import ScrollArea from 'react-scrollbar';
 
-import "../../../Constants/vars.css";
-import "../../../Constants/font.css";
+import "../../Constants/vars.css";
+import "../../Constants/font.css";
 
 import "./TVShowsViewer.css";
-import Loader from '../../misc/Loader';
+import Loader from '../misc/Loader';
+import {Heading, Text} from "@chakra-ui/react";
 
 function TVShowsViewer({
     maxNumberOfTVShows=-1,
@@ -61,8 +62,8 @@ function TVShowsViewer({
     const genCoActorBubbles = (coActors) => {
         return coActors.map((actor, index) => {
             let separator = "";
-            if(index != (coActors.length - 1)){
-                separator = index==(coActors.length - 2) ? " and " : ", ";
+            if(index !== (coActors.length - 1)){
+                separator = index===(coActors.length - 2) ? " and " : ", ";
             }
             return <b className="actorBubble">{actor}{separator}</b>
         })
@@ -109,9 +110,7 @@ function TVShowsViewer({
                 }
             </div>
             <div className="TVShowsCarrousel">
-                <div className="TitleContainer">
-                    <h1>Discover her best TV Shows</h1>
-                </div> 
+                <Text fontSize={"xl"} color={"white"} textAlign={'center'} m={2}>Discover her best TV Shows</Text>
                 { response!=="" ?
                 <div className="errorContainer">
                     <h3>{response}</h3>

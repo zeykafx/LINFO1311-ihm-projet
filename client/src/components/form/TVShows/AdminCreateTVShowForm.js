@@ -30,7 +30,7 @@ function AdminCreateTVShowForm({}) {
                 director !== "" &&
                 releaseDate !== null &&
                 description !== "" &&
-                actorRole !== "" && filename != "";
+                actorRole !== "" && filename !== "";
     }
 
     const handleSubmit = (e) => {
