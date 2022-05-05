@@ -25,12 +25,8 @@ function App() {
                         height={600}
                     />
                 </div>
-{/* 
-                <Center id="gallery">
-                    <Gallery/>
-                </Center>
 
-                <Center id={"contact-us"}>
+                {/* <Center id={"contact-us"}>
                     <Contact/>
                 </Center> */}
 

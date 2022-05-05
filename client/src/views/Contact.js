@@ -1,5 +1,3 @@
-// @flow
-
 import {Box, Button, Flex, FormControl, FormLabel, Heading, Input, InputGroup, InputLeftElement, Text, Textarea, useColorModeValue, VStack} from "@chakra-ui/react";
 import {BsPerson, AiOutlineMail} from "react-icons/all";
 import React from "react";
@@ -28,39 +26,7 @@ export const Contact = (props) => {
                         color={useColorModeValue('gray.700', 'whiteAlpha.900')}
                         shadow="base">
                         <VStack spacing={5}>
-                            {/* <Formik
-                                initialValue={{
 
-                                }}
-                                onSubmit={(values, actions) => {
-                                    setTimeout(() => {
-                                        alert(JSON.stringify(values, null, 2))
-                                        actions.setSubmitting(false)
-                                    }, 1000)
-                                }}
-                            >
-                                {(props) => (
-                                    <Form>
-                                        <Field name='name' validate={validateName}>
-                                            {({ field, form }) => (
-                                                <FormControl isInvalid={form.errors.name && form.touched.name}>
-                                                    <FormLabel htmlFor='name'>First name</FormLabel>
-                                                    <Input {...field} id='name' placeholder='name' />
-                                                    <FormErrorMessage>{form.errors.name}</FormErrorMessage>
-                                                </FormControl>
-                                            )}
-                                        </Field>
-                                        <Button
-                                            mt={4}
-                                            colorScheme='teal'
-                                            isLoading={props.isSubmitting}
-                                            type='submit'
-                                        >
-                                            Submit
-                                        </Button>
-                                    </Form>
-                                )}
-                            </Formik> */}
                             <FormControl isRequired>
                                 <FormLabel>Name</FormLabel>
 

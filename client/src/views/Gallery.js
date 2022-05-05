@@ -1,4 +1,3 @@
-// @flow
 import {Box, Heading, Text, VStack} from "@chakra-ui/react";
 import ImageGallery from 'react-image-gallery';
 import React from "react";
@@ -18,11 +17,8 @@ const images = [
     },
 ];
 
-type Props = {
 
-};
-
-export const Gallery = (props: Props) => {
+export const Gallery = (props) => {
     return (
         <VStack margin={3} marginBottom={10}>
             <Text fontSize={"xl"} color={"white"} textAlign={'center'} m={2}>Image Gallery</Text>
