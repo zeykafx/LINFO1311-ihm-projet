@@ -1,6 +1,32 @@
 @import "~react-image-gallery/styles/css/image-gallery.css";
 
-.gradientBackground{
-    background: rgb(62,49,71);
-    background: linear-gradient(114deg, rgba(62,49,71,1) 0%, rgb(46, 40, 61) 50%, rgba(43,27,3,1) 100%);
+.slide-bgContainer img{
+    height: 100%;
+    max-width: unset;
+}
+.slide-contentContainer{
+    position: relative;
+    height: 100%;
+    z-index: 5;
+}
+
+.socialLink{
+    opacity: .5;
+    cursor: pointer;
+}
+.socialLink:hover{
+    opacity: 1;
+}
+.socialIcon{
+    height: 25px;
+    width: 25px;
+}
+.textAction{
+    cursor: pointer;
+    font-weight: bold;
+    color: black;
+    opacity: .5;
+}
+.textAction:hover{
+    opacity: 1;
 }

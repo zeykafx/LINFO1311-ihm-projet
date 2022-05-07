@@ -7,17 +7,13 @@ import "../../Constants/font.css";
 
 import "./MoviesViewer.css";
 import Loader from '../misc/Loader';
-import {Heading, Text} from "@chakra-ui/react";
 
 function MoviesViewer({
     maxNumberOfMovies=-1,
-    height=1000,
     gradientBackground=false
 }) {
 
     const [moviesList, setMoviesList] = useState([]);
-
-    const scrollbar = useRef();
 
     const [selectedMovie, setSelectedMovie] = useState({});
 
@@ -100,80 +96,29 @@ function MoviesViewer({
     }
 
     return (
-        <div className={"MV-container " + (gradientBackground ? "gBg " : "")}  style={{
-            height: height
-        }}>
-            <div className="MoviesCarrousel">
-                <Text fontSize={"xl"} color={"white"} textAlign={'center'} m={2}>Discover her best movies</Text>
-                { response!=="" ?
-                <div className="errorContainer">
-                    <h3>{response}</h3>
-                </div>
-                :
-                <>
-                { loading 
-                ? <Loader color="rgb(94, 94, 94)" size={30} noAspectRatio={true} label="Fetching the movies..."/>
-                :
-                <div className="moviesContainer">
-                    {moviesList.map((movie) =>
-                        <div key={movie.id} className={"moviePreview " + (movie.id===selectedMovie.id ? "selected" : "")} onClick={() => {
-                            setSelectedMovie(movie);
-                            scrollbar.current.scrollArea.scrollTop();
-                            }}>
-                            <div className="moviePosterContainer">
-                                <div className="moviePosterContainerEffect">
-                                    <div className="clickToKnowMore">
-                                        <h3>Click to know more</h3>
-                                    </div>
-                                    <img src="https://images.immediate.co.uk/remote/m.media-amazon.com/images/M/MV5BNWE3Mzc2YzUtZDAyYS00MmQ4LWFhZmItYTA5MTYyYjgxMTQ4XkEyXkFqcGdeQXVyNDgxMDU4NTU@._V1_.jpg?quality=90&webp=true&resize=650,911"/>
-                                </div>
-                            </div>
-                            <div className="moviesTextContainer">
-                                <h1>{movie.name}</h1>
-                                <h3>Playing as {movie.actorRole}</h3>
-                            </div>
-                        </div>
-                    )}
-                </div>
-                }
-                </>    
-                }
+        <div className={"MV-container " + (gradientBackground ? "gBg " : "")}>
+            { response!=="" ?
+            <div className="errorContainer">
+                <h3>{response}</h3>
             </div>
-            <div className="MoviesDetailsContainer">
-                { selectedMovie.name &&
-                <ScrollArea
-                speed={0.7}
-                ref={scrollbar}
-                className="MovieInfoBox"
-                smoothScrolling={true}
-                stopScrollPropagation={true}
-                horizontal={false}
-                >
-                    <div className="MIB-TopBar">
-                        <h1>{selectedMovie.name}</h1>
-                        <h3>Directed by <b>{selectedMovie.director}</b> - Released on the <b>{getReadableDateFromMilliTime(selectedMovie.releaseDate)}</b></h3>
-                        <h3>With {genCoActorBubbles(selectedMovie.coActors)}</h3>
-                    </div>
-                    <div className="MIB-Desc">
-                        <b>DESCRIPTION</b>
-                        <p>{selectedMovie.description}</p>
-                    </div>
-                    <div className="MIB-Links">
-
-                        <h3>Available in { selectedMovie.languages.map((language) => {
-                                return <b className="languageBubble">{language}</b>
-                        })} on the following website(s) :</h3>
-
-                        <div className="ticketLinksContainer">
-                        { selectedMovie.ticketLinks.map((ticketLink) => {
-                            return <a href={ticketLink} className="ticketBubble">{extractWebsiteName(ticketLink)}</a>
-                        })}
+            :
+            <>
+            { loading 
+            ? <Loader color="rgb(94, 94, 94)" size={30} noAspectRatio={true} label="Fetching the movies..."/>
+            :
+            <div className="moviesContainer">
+                {moviesList.map((movie) =>
+                    <div key={movie.id} className={"moviePreview " + (movie.id===selectedMovie.id ? "selected" : "")}>
+                        <div className="clickToKnowMore">
+                            <h3>Click to know more</h3>
                         </div>
-
+                        <img src="https://images.immediate.co.uk/remote/m.media-amazon.com/images/M/MV5BNWE3Mzc2YzUtZDAyYS00MmQ4LWFhZmItYTA5MTYyYjgxMTQ4XkEyXkFqcGdeQXVyNDgxMDU4NTU@._V1_.jpg?quality=90&webp=true&resize=650,911"/>
                     </div>
-                </ScrollArea>
-                }
+                )}
             </div>
+            }
+            </>    
+            }
         </div>
     )
 

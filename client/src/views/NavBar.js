@@ -18,13 +18,15 @@ import {
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 
-export const Links = ["Movies", "TV Shows", "Gallery", "Contact us"]
+export const Links = ["About", "Gallery", "Contact"]
 
 const NavLink = ({ children }) => (
     <Link
         px={2}
         py={1}
         rounded={'md'}
+        fontWeight={'bold'}
+        color={'gray.600'}
         _hover={{
             textDecoration: 'none',
             bg: useColorModeValue('gray.200', 'gray.700'),
@@ -40,7 +42,7 @@ export default function NavBar() {
 
     return (
         <>
-            <Box bg={useColorModeValue('gray.100', 'gray.900')} paddingBottom={isOpen ? 2 : '60px'}> {/* don't add padding at the top of the navbar if the mobile menu is opened */}
+            <Box bg={useColorModeValue('gray.100', 'gray.900')} paddingBottom={isOpen ? 2 : '60px'} pos="fixed" zIndex={10}> {/* don't add padding at the top of the navbar if the mobile menu is opened */}
                 <Flex
                     px={2}
                     alignItems={'center'}
@@ -69,19 +71,6 @@ export default function NavBar() {
                         onClick={isOpen ? onClose : onOpen}
                     />
                     <HStack spacing={8} alignItems={'center'}>
-                        <Link
-                            px={2}
-                            py={1}
-                            rounded={'md'}
-                            _hover={{
-                                textDecoration: 'none',
-                                // bg: useColorModeValue('gray.200', 'gray.700'),
-                            }}
-                            href={'/'}>
-                            Logo
-                        </Link>
-
-                        {/* All the links */}
                         <HStack
                             as={'nav'}
                             spacing={4}
