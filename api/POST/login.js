@@ -1,4 +1,4 @@
-import { pool } from "../../database/queries.js";
+import { pool } from "../database/queries.js";
 import bcrypt from "bcrypt";
 
 import { saltRounds } from '../Constants/Constants.js';
@@ -21,29 +21,35 @@ export const Login = (req, res, next) => {
             if (usersFound.length===0){
                 res.send({ 
                     status: false,
-                    message: "BAD_CREDENTIALS"
+                    message: "Bad credentials",
+                    username: "",
+                    type: "",
                 });
                 return;
             }
 
             const userToVerify = usersFound[0];
 
-            bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
-                bcrypt.compare(userToVerify.password, hash, function(sameHashes) {
-                    if(!sameHashes){
-                        res.send({ 
-                            status: false,
-                            message: "BAD_CREDENTIALS"
-                        });
-                        return;
-                    }
-    
-                    res.send({ 
-                        status: true,
-                        message: "LOGIN_SUCCESSFUL"
-                    });
+
+            if (bcrypt.compareSync(req.body.password, userToVerify.password)) {
+
+                // on crée la session avec le nom d'utilisateur
+                req.session.username = userToVerify.username;
+
+                res.send({
+                    status: true,
+                    message: "LOGIN_SUCCESSFUL",
+                    username: req.session.username,
+                    type: userToVerify.type,
                 });
-            });
+            } else {
+                res.send({
+                    status: false,
+                    message: "Bad credentials",
+                    username: "",
+                    type: "",
+                });
+            }
 
         });
 
@@ -52,7 +58,6 @@ export const Login = (req, res, next) => {
             status: false,
             message: "BAD_REQUEST"
         });
-        return;
     }
 
 };

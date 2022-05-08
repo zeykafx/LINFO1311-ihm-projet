@@ -1,4 +1,4 @@
-import { pool } from "../../database/queries.js";
+import { pool } from "../database/queries.js";
 
 export const DeleteAccount = (req, res, next) => {
 

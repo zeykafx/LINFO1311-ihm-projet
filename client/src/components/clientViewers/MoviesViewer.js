@@ -7,7 +7,7 @@ import "../../Constants/font.css";
 
 import "./MoviesViewer.css";
 import Loader from '../misc/Loader';
-import {Heading, Text} from "@chakra-ui/react";
+import {Text} from "@chakra-ui/react";
 
 function MoviesViewer({
     maxNumberOfMovies=-1,

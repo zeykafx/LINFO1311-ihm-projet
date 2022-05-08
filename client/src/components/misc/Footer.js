@@ -4,12 +4,29 @@ import {
     Stack,
     Text,
     Link,
-    useColorModeValue,
+    useColorModeValue, Button, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter,
 } from '@chakra-ui/react';
-import { Links } from "../../views/NavBar.js";
+import { links } from "../../views/NavBar/NavBar.js";
 import React from "react";
+import AdminLoginForm from "../form/AdminLoginForm";
+import {Link as ReactRouterLink} from "react-router-dom"
 
-export default function Footer() {
+
+// interface IFooterProps {
+//     isUserAuthed: boolean;
+//     setIsUserAuthed: (boolean) => void;
+//     username: string;
+//     setUsername: (string) => void
+// }
+
+export default function Footer(props) {
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const {isUserAuthed, setIsUserAuthed, username, setUsername} = props;
+
+    let handleClose = () => {
+        onClose();
+    }
+
     let currentYear = new Date().getFullYear();
     return (
         <Box
@@ -24,11 +41,39 @@ export default function Footer() {
                 justify={{ base: 'center', md: 'space-between' }}
                 align={{ base: 'center', md: 'center' }}>
                 <Stack direction={'row'} spacing={6}>
-                    {Links.map((link) => (
-                        <Link href={'/#' + link.toString().replace(" ", "-").toLowerCase()}>{link}</Link>
+                    {/* NAV LINKS */}
+                    {Object.keys(links).map((item, i) => (
+                        <Link as={ReactRouterLink} key={links[item]} to={"/#" + links[item]}>{item}</Link>
                     ))}
+
                 </Stack>
-                <Text>© {currentYear} Projet LINFO1311 </Text>
+
+                <Stack direction={'row'} spacing={6}>
+                    {/* ADMIN PANEL SIGN IN BUTTON, only show that link/button if the user isn't connected */}
+                    {
+                        !isUserAuthed ?
+                            <>
+                                <Link onClick={onOpen}>Sign in</Link>
+                                <Modal isOpen={isOpen} onClose={onClose}>
+                                    <ModalOverlay/>
+                                    <ModalContent>
+                                        <ModalHeader>Sign In</ModalHeader>
+                                        <ModalCloseButton/>
+                                        <ModalBody>
+                                            <AdminLoginForm redirect={true} closeFunction={handleClose} setIsUserAuthed={setIsUserAuthed}  setUsername={setUsername}/>
+                                        </ModalBody>
+                                        <ModalFooter>
+                                            <Button mr={3} onClick={onClose}>Close</Button>
+                                        </ModalFooter>
+                                    </ModalContent>
+                                </Modal>
+                            </>
+                        : <></>
+                    }
+
+                    <Text>© {currentYear} Projet LINFO1311</Text>
+                </Stack>
+
             </Container>
         </Box>
     );

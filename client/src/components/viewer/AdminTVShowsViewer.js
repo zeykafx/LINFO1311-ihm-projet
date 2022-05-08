@@ -2,21 +2,24 @@ import React, { useState, useEffect } from "react";
 
 import CButton from "../form/buttons/CButton";
 
-import "./AdminMoviesViewer.css";
+import "./AdminTVShowsViewer.css";
 import Loader from "../misc/Loader";
-import AdminModifyMovieForm from "../form/Movies/AdminModifyMovieForm";
 import ModalWrapper from "../misc/ModalWrapper";
-import AdminDeleteMovieForm from "../form/Movies/AdminDeleteMovieForm";
+
+import AdminModifyTVShowForm from "../form/TVShows/AdminModifyTVShowForm";
+import AdminDeleteTVShowForm from "../form/TVShows/AdminDeleteTVShowForm";
+
 import { useToast } from "@chakra-ui/react";
 
-function AdminMoviesViewer({}) {
-  const [moviesList, setMoviesList] = useState([]);
+
+function AdminTVShowsViewer({}) {
+  const [TVShowsList, setTVShowsList] = useState([]);
 
   const [visibleModifyModal, setVisibleModifyModal] = useState(false);
   const [visibleDeleteModal, setVisibleDeleteModal] = useState(false);
 
-  const [movieToModify, setMovieToModify] = useState({});
-  const [movieToDelete, setMovieToDelete] = useState({});
+  const [TVShowToModify, setTVShowToModify] = useState({});
+  const [TVShowToDelete, setTVShowToDelete] = useState({});
 
   const [loading, setLoading] = useState(true);
 
@@ -52,16 +55,17 @@ function AdminMoviesViewer({}) {
     setLoading(true);
 
     setTimeout(() => {
-      fetch("/api/movies/get")
+      fetch("/api/tvshows/get")
         .then((res) => res.json())
         .then((response) => {
           if (response.status) {
-            setMoviesList(response["message"]);
+            setTVShowsList(response["message"]);
           } else {
-            setMoviesList([]);
+            
+            setTVShowsList([]);
 
             toast({
-                title: "Couldn't fetch the movies",
+                title: "Couldn't fetch the tv shows",
                 description: "Error message: " + response.message,
                 status: 'error',
                 position: 'bottom-left',
@@ -81,25 +85,25 @@ function AdminMoviesViewer({}) {
         <div className="modal-container">
           {visibleModifyModal && (
             <ModalWrapper
-              title={"Modify movie - " + movieToModify.name}
+              title={"Modify TV Show - " + TVShowToModify.name}
               onPressClose={() => {
                 setVisibleModifyModal(false);
-                setMovieToModify({});
+                setTVShowToModify({});
               }}
             >
-              <AdminModifyMovieForm movieData={movieToModify} />
+              <AdminModifyTVShowForm TVShowData={TVShowToModify} />
             </ModalWrapper>
           )}
 
           {visibleDeleteModal && (
             <ModalWrapper
-              title={"Delete movie - " + movieToDelete.name}
+              title={"Delete TV Show - " + TVShowToDelete.name}
               onPressClose={() => {
                 setVisibleDeleteModal(false);
-                setMovieToDelete({});
+                setTVShowToDelete({});
               }}
             >
-              <AdminDeleteMovieForm movieData={movieToDelete} />
+              <AdminDeleteTVShowForm TVShowData={TVShowToDelete} />
             </ModalWrapper>
           )}
         </div>
@@ -111,58 +115,71 @@ function AdminMoviesViewer({}) {
             color="rgb(94, 94, 94)"
             size={30}
             noAspectRatio={true}
-            label="Fetching the movies..."
+            label="Fetching the TV Shows..."
           />
         ) : (
           <>
-            {moviesList.map((movie) => (
-              <div className="movieSmallViewer">
-                <div className="movieInfosContainer">
-                  <div className="movieImageContainer">
-                    <div className="moviePoster">
+            {TVShowsList.map((tvshow) => (
+              <div className="TVShowSmallViewer">
+                <div className="TVShowInfosContainer">
+                  <div className="TVShowImageContainer">
+                    <div className="TVShowPoster">
                       <img src="https://images.immediate.co.uk/remote/m.media-amazon.com/images/M/MV5BNWE3Mzc2YzUtZDAyYS00MmQ4LWFhZmItYTA5MTYyYjgxMTQ4XkEyXkFqcGdeQXVyNDgxMDU4NTU@._V1_.jpg?quality=90&webp=true&resize=650,911" />
                     </div>
                   </div>
-                  <div className="movieTextContainer">
-                    <h1>{movie.name}</h1>
+                  <div className="TVShowTextContainer">
+                    <h1>{tvshow.name}</h1>
 
                     <h2>Informations:</h2>
                     <div className="twoInfosContainer">
-                      <h3>Playing {movie.actorRole}</h3>
-                      <h3>Directed by {movie.director}</h3>
+                      <h3>Playing {tvshow.actorRole}</h3>
+                      <h3>Directed by {tvshow.director}</h3>
                     </div>
                     <div className="twoInfosContainer">
-                      <h3>With {genCoActorBubbles(movie.coActors)}</h3>
+                      <h3>With {genCoActorBubbles(tvshow.coActors)}</h3>
                       <h3>
                         Released on the{" "}
-                        {getReadableDateFromMilliTime(movie.releaseDate)}
+                        {getReadableDateFromMilliTime(tvshow.releaseDate)}
                       </h3>
                     </div>
 
                     <h2>Languages:</h2>
                     <div className="languagesContainer">
-                      {movie.languages.map((language) => {
+                      {tvshow.languages.map((language) => {
                         return <div className="languageBubble">{language}</div>;
                       })}
                     </div>
 
-                    <h2>Ticket links:</h2>
-                    <div className="ticketLinksContainer">
-                      {movie.ticketLinks.map((ticketLink) => {
-                        return <div className="ticketBubble">{ticketLink}</div>;
+                    <h2>TV channels:</h2>
+                    <div className="tvChannelsContainer">
+                      {tvshow.tv_channels.map((tv_channel) => {
+                        return (
+                          <div className="tvChannelBubble">{tv_channel}</div>
+                        );
+                      })}
+                    </div>
+
+                    <h2>Steaming services:</h2>
+                    <div className="streamingServicesContainer">
+                      {tvshow.streaming_services.map((streaming_service) => {
+                        return (
+                          <div className="streamingServiceBubble">
+                            {streaming_service}
+                          </div>
+                        );
                       })}
                     </div>
 
                     <h2>Description:</h2>
-                    <p>{movie.description.slice(0, 300)}...</p>
+                    <p>{tvshow.description.slice(0, 300)}...</p>
                   </div>
                 </div>
-                <div className="movieButtonsContainer">
+                <div className="TVShowButtonsContainer">
                   <CButton
                     text="Modify"
                     type="positive"
                     onPress={() => {
-                      setMovieToModify(movie);
+                      setTVShowToModify(tvshow);
                       setVisibleModifyModal(true);
                     }}
                   />
@@ -170,7 +187,7 @@ function AdminMoviesViewer({}) {
                     text="Delete"
                     type="negative"
                     onPress={() => {
-                      setMovieToDelete(movie);
+                      setTVShowToDelete(tvshow);
                       setVisibleDeleteModal(true);
                     }}
                   />
@@ -183,4 +200,4 @@ function AdminMoviesViewer({}) {
     </>
   );
 }
-export default AdminMoviesViewer;
+export default AdminTVShowsViewer;

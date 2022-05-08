@@ -16,25 +16,26 @@
     background: black;
 }
 
-.CButton.negative{
-    background: #e84118;
+/* j'ai ajouté !important à la fin de chaque pour être sur que ces règles soit appliqué par dessus celle des Buttons du chakra UI */
+.negative {
+    background: #e84118 !important ;
 }
-.CButton.negative:hover{
-    background: #af3112;
-}
-
-.CButton.submit{
-    background: green;
-}
-.CButton.submit:hover{
-    background: rgb(0, 110, 0);
+.negative:hover{
+    background: #af3112 !important ;
 }
 
-.CButton.positive{
-    background: green;
+.submit{
+    background: green !important ;
 }
-.CButton.positive:hover{
-    background: rgb(0, 110, 0);
+.submit:hover{
+    background: rgb(0, 110, 0) !important ;
+}
+
+.positive{
+    background: green !important ;
+}
+.positive:hover{
+    background: rgb(0, 110, 0) !important ;
 }
 
 .CButton.disabled{
