@@ -5,7 +5,7 @@ import './index.css';
 
 import NavBar from './views/NavBar';
 import Admin from './views/Admin';
-import App from './views/App';
+import Index from './views/Index.js';
 import {ChakraProvider} from "@chakra-ui/react";
 import Footer from "./components/misc/Footer";
 
@@ -16,7 +16,11 @@ ReactDOM.render(
             <NavBar/>
 
             <Routes>
-                <Route path="/" element={<App/>}/>
+                <Route path="/" element={
+                    <div className="clientContainer">
+                        <Index/>
+                    </div>
+                }/>
                 <Route path="/admin" element={<Admin/>}/>
             </Routes>
 

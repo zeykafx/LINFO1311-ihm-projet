@@ -40,11 +40,9 @@ function TVShowsViewer({
         }).then(res => res.json().then((response) => {
             
             if (response.status){
-                // TVShow fetching successful
                 setTVShowsList(response.message);
                 setSelectedTVShow(response.message[0]);
             } else {
-                // Error while trying
                 setResponse(response.message);
             }
 
@@ -73,6 +71,7 @@ function TVShowsViewer({
             direction={'column'}
             height={{base:"100vh", lg:"90vh"}}
             overflow="hidden"
+            width={'100vw'}
         >
             <Text fontSize={"3xl"} color={"gray.500"} fontWeight={'bold'} textAlign={'center'} mt={'25px'} mb={'25px'}>Discover her best TV Shows</Text>
             <Box
@@ -148,7 +147,7 @@ function TVShowsViewer({
             <Center 
                 display={'flex'}
                 flex={1}
-                bg={"black"}
+                bg={"#eee"}
                 justifyContent={'center'}
                 alignItems={'center'}
                 height={0}
@@ -157,42 +156,54 @@ function TVShowsViewer({
             >
                 {(selectedTVShow !== undefined) &&
                 <>
-                <img className="posterBlurredTotal" src="https://images.immediate.co.uk/remote/m.media-amazon.com/images/M/MV5BNWE3Mzc2YzUtZDAyYS00MmQ4LWFhZmItYTA5MTYyYjgxMTQ4XkEyXkFqcGdeQXVyNDgxMDU4NTU@._V1_.jpg?quality=90&webp=true&resize=650,911"/>
                 <Flex
                     zIndex={5}
                     width={{base:"94%", lg:"40%"}}
                     maxH={{base:"94%", lg:"90%"}}
-                    bg={"white"}
-                    shadow={'lg'}
-                    padding={'8px'}
-                    borderRadius={'8px'}
                     direction={'column'}
-                    overflowY={"auto"}
                     >
-                        <Text color='gray.800' fontWeight='bold' fontSize="3xl" marginBottom='10px'>{selectedTVShow.name}</Text>
-                        <Text color='gray.600' fontWeight='500' fontSize="sm" marginBottom='2px'>Playing as <b>{selectedTVShow.actorRole}</b></Text>
-                        <Text color='gray.600' fontWeight='500' fontSize="sm" marginBottom='2px'>Directed by <b>{selectedTVShow.director}</b></Text>
-                        <Text color='gray.600' fontWeight='500' fontSize="sm" marginBottom='2px'>Released on the <b>{getReadableDateFromMilliTime(selectedTVShow.releaseDate)}</b></Text>
-                        <Text color='gray.600' fontWeight='500' fontSize="sm" marginBottom='8px'>With {/*genCoActorBubbles(selectedTVShow.coActors)*/}</Text>
-                        <Text color='gray.700' fontWeight='bold' fontSize="sm" marginBottom='2px'>DESCRIPTION</Text>
-                        <Text color='gray.500' fontWeight='500' fontSize="sm" marginBottom='8px'>{selectedTVShow.description}</Text>
-                        <Text color='gray.700' fontWeight='bold' fontSize="sm" marginBottom='2px'>LANGUAGES</Text>
-                        <Flex wrap={'wrap'} direction={'row'} mb={'8px'}>
-                            { selectedTVShow.languages.map((language) => {
-                                return <Text color='white' fontWeight='bold' fontSize="sm" bg={'black'} borderRadius={"5px"} mr={"5px"} padding={'3px 8px'}>{language}</Text>
-                            })}
+                        <Flex direction={'column'} bg='white' padding={5} shadow={'sm'} borderWidth={'1'} borderColor={'#eee'} overflowY={"auto"} maxH={'100%'}>
+                            <Text color='gray.800' fontWeight='bold' fontSize="3xl" marginBottom='10px'>{selectedTVShow.name}</Text>
+                            <Text color='gray.600' fontWeight='500' fontSize="sm" marginBottom='2px'>Playing as <b>{selectedTVShow.actorRole}</b></Text>
+                            <Text color='gray.600' fontWeight='500' fontSize="sm" marginBottom='2px'>Directed by <b>{selectedTVShow.director}</b></Text>
+                            <Text color='gray.600' fontWeight='500' fontSize="sm" marginBottom='2px'>Released on the <b>{getReadableDateFromMilliTime(selectedTVShow.releaseDate)}</b></Text>
+                            <Text color='gray.600' fontWeight='500' fontSize="sm" marginBottom='8px'>With {genCoActorBubbles(selectedTVShow.coActors)}</Text>
+                            <Text color='gray.700' fontWeight='bold' fontSize="sm" marginBottom='2px'>DESCRIPTION</Text>
+                            <Text color='gray.500' fontWeight='500' fontSize="sm" marginBottom='8px'>
+                                {selectedTVShow.description}
+                            </Text>
                         </Flex>
-                        <Text color='gray.700' fontWeight='bold' fontSize="sm" marginBottom='2px'>AVAILABLE ON</Text>
-                        <Flex wrap={'wrap'} direction={'row'} mb={'8px'}>
-                            { selectedTVShow.tv_channels.map((tv_channel) => {
-                                return <Text color='white' fontWeight='bold' fontSize="sm" bg={'black'} borderRadius={"5px"} mr={"5px"} padding={'3px 8px'}>{tv_channel}</Text>
-                            })}
-                        </Flex>
-                        <Text color='gray.700' fontWeight='bold' fontSize="sm" marginBottom='2px'>AVAILABLE ON</Text>
-                        <Flex wrap={'wrap'} direction={'row'} mb={'8px'}>
-                            { selectedTVShow.streaming_services.map((streaming_service) => {
-                                return <Text color='white' fontWeight='bold' fontSize="sm" bg={'black'} borderRadius={"5px"} mr={"5px"} padding={'3px 8px'}>{streaming_service}</Text>
-                            })}
+                        <Box bg={'#dedede'} width={'100%'} height={"1px"} margin={'10px 0'}></Box>
+                        <Flex
+                            direction={'row'}
+                            justifyContent={'space-evenly'}
+                        >
+                            <Flex direction={'column'} alignItems={'center'}>
+                                <Text color='gray.700' fontWeight='bold' fontSize="sm" marginBottom='2px'>LANGUAGES</Text>
+                                <Flex wrap={'wrap'} direction={'row'} mb={'8px'}>
+                                    { selectedTVShow.languages.map((language) => {
+                                        return <Text color='white' fontWeight='bold' fontSize="sm" bg={'black'} borderRadius={"5px"}  m={"5px"} padding={'3px 8px'}>{language}</Text>
+                                    })}
+                                </Flex>
+                            </Flex>
+                            <Box bg={'#dedede'} width={"1px"} margin={'10px 0'}></Box>
+                            <Flex direction={'column'} alignItems={'center'}>
+                                <Text color='gray.700' fontWeight='bold' fontSize="sm" marginBottom='2px'>AVAILABLE ON</Text>
+                                <Flex wrap={'wrap'} direction={'row'} mb={'8px'}>
+                                    { selectedTVShow.tv_channels.map((tv_channel) => {
+                                        return <Text color='white' fontWeight='bold' fontSize="sm" bg={'black'} borderRadius={"5px"}  m={"5px"} padding={'3px 8px'}>{tv_channel}</Text>
+                                    })}
+                                </Flex>
+                            </Flex>
+                            <Box bg={'#dedede'} width={"1px"} margin={'10px 0'}></Box>
+                            <Flex direction={'column'} alignItems={'center'}>
+                                <Text color='gray.700' fontWeight='bold' fontSize="sm" marginBottom='2px'>AVAILABLE ON</Text>
+                                <Flex wrap={'wrap'} direction={'row'} mb={'8px'}>
+                                    { selectedTVShow.streaming_services.map((streaming_service) => {
+                                        return <Text color='white' fontWeight='bold' fontSize="sm" bg={'black'} borderRadius={"5px"} m={"5px"} padding={'3px 8px'}>{streaming_service}</Text>
+                                    })}
+                                </Flex>
+                            </Flex>
                         </Flex>
                 </Flex>
                 </>
@@ -200,85 +211,5 @@ function TVShowsViewer({
             </Center>
         </Flex>
     );
-
-    /*
-    return (
-        <div>
-            <div className="TVShowsDetailsContainer">
-                { selectedTVShow.name &&
-                <ScrollArea
-                speed={0.7}
-                ref={scrollbar}
-                className="TVShowInfoBox"
-                smoothScrolling={true}
-                horizontal={false}
-                >
-                    <div className="MIB-TopBar">
-                        <h1>{selectedTVShow.name}</h1>
-                        <h3>Directed by <b>{selectedTVShow.director}</b> - Released on the <b>{getReadableDateFromMilliTime(selectedTVShow.releaseDate)}</b></h3>
-                        <h3>With {genCoActorBubbles(selectedTVShow.coActors)}</h3>
-                    </div>
-                    <div className="MIB-Desc">
-                        <b>DESCRIPTION</b>
-                        <p>{selectedTVShow.description}</p>
-                    </div>
-                    <div className="MIB-Links">
-
-                        <h3>Available in : { selectedTVShow.languages.map((language) => {
-                                return <b className="languageBubble">{language}</b>
-                        })}</h3>
-
-                        <h3>Available on the TV channels : { selectedTVShow.tv_channels.map((tv_channel) => {
-                                return <b className="languageBubble">{tv_channel}</b>
-                        })}</h3>
-
-                        <h3>Available on the streaming platforms : { selectedTVShow.streaming_services.map((streaming_service) => {
-                                return <b className="languageBubble">{streaming_service}</b>
-                        })}</h3>
-
-                    </div>
-                </ScrollArea>
-                }
-            </div>
-            <div className="TVShowsCarrousel">
-                <Text fontSize={"xl"} color={"white"} textAlign={'center'} m={2}>Discover her best TV Shows</Text>
-                { response!=="" ?
-                <div className="errorContainer">
-                    <h3>{response}</h3>
-                </div>
-                :
-                <>
-                { loading 
-                ? <Loader color="rgb(94, 94, 94)" size={30} noAspectRatio={true} label="Fetching the TVShows..."/>
-                :
-                <div className="TVShowsContainer">
-                    {TVShowsList.map((TVShow) =>
-                        <div key={TVShow.id} className={"TVShowPreview " + (TVShow.id===selectedTVShow.id ? "selected" : "")} onClick={() => {
-                            setSelectedTVShow(TVShow);
-                            scrollbar.current.scrollArea.scrollTop();
-                            }}>
-                            <div className="TVShowPosterContainer">
-                                <div className="TVShowPosterContainerEffect">
-                                    <div className="clickToKnowMore">
-                                        <h3>Know more</h3>
-                                    </div>
-                                    <img src="https://images.immediate.co.uk/remote/m.media-amazon.com/images/M/MV5BNWE3Mzc2YzUtZDAyYS00MmQ4LWFhZmItYTA5MTYyYjgxMTQ4XkEyXkFqcGdeQXVyNDgxMDU4NTU@._V1_.jpg?quality=90&webp=true&resize=650,911"/>
-                                </div>
-                            </div>
-                            <div className="TVShowsTextContainer">
-                                <h1>{TVShow.name}</h1>
-                                <h3>Playing as {TVShow.actorRole}</h3>
-                            </div>
-                        </div>
-                    )}
-                </div>
-                }
-                </>    
-                }
-            </div>
-        </div>
-    )
-    */
-
 }
 export default TVShowsViewer;

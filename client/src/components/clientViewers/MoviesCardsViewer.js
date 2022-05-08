@@ -150,7 +150,9 @@ function MoviesCardsViewer({
                         height="250px"
                         overflow={'hidden'}
                         borderRadius={5}
-                        boxShadow='base'
+                        boxShadow='xl'
+                        borderWidth={'1px'}
+                        borderColor={'#dedede'}
                         marginRight={5}
                     >
                         <Flex

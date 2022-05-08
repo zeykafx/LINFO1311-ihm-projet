@@ -10,3 +10,14 @@ body {
 html {
     scroll-behavior: smooth
 }
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.clientContainer{
+    position: absolute;
+    top: 0;
+    max-width: 100%;
+}

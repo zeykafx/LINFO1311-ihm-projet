@@ -1,18 +1,20 @@
 import React, {useState} from "react";
-import "./App.css";
+import "./Index.css";
 
+import MoviesViewer from "../components/clientViewers/MoviesViewer";
 import TVShowsViewer from "../components/clientViewers/TVShowsViewer";
-import Slide1 from "../components/AboutSlides/Slide1.js";
+import Slide1 from "../components/AboutSlides/Biography.js";
 
 import { Box, Flex, Spacer, Center, Text, Square, Button } from '@chakra-ui/react'
 
-import MoviesCardsViewer from "./../components/clientViewers/MoviesCardsViewer.js";
+import MoviesCardsViewer from "../components/clientViewers/MoviesCardsViewer.js";
 
 import icon_facebook from './../icons/facebook.png';
 import icon_instagram from './../icons/instagram.png';
 import icon_twitter from './../icons/twitter.png';
+import Biography from "../components/AboutSlides/Biography.js";
 
-function App({
+function Index({
     isSelected
 }) {
 
@@ -33,7 +35,7 @@ function App({
     }
 
     return (
-        <Box bg='#eee'>
+        <Box bg='white' pos={'absolute'} maxWidth='100vw' overflow={'hidden'}>
             <Box
                 width={{ base: '90vw', lg: '84vw' }}
                 height={{ base: '90vh', lg: '84vh' }}
@@ -44,7 +46,6 @@ function App({
                 
 
                 <Flex 
-                opacity={{ base: '.8', lg: '1' }}
                 position={'absolute'}
                 width='100%'
                 height='100%'
@@ -74,18 +75,21 @@ function App({
                         <Flex
                             direction='column'
                             maxW={{base: '100%', lg:'40%'}}
-                            bg='white'
-                            padding='15px'
-                            borderRadius='8px'
-                            shadow='md'
                             maxHeight={{base: "100%", lg:"50%"}}
                             overflowY="auto"
+                            bg={{base:"white", lg:"unset"}}
+                            borderRadius={{base:5, lg:"unset"}}
+                            boxShadow={{base:'xl', lg:"unset"}}
+                            border={{base:"1px", lg:"unset"}}
+                            borderWidth={{base:'1px', lg:"none"}}
+                            borderColor={{base:'#dedede', lg:"unset"}}
+                            padding={{base:"15px", lg:'0px'}}
                         >
                             <Text 
                             color='black' 
                             fontWeight='bold' 
                             fontSize={{ base: '5xl', lg: '6xl' }}
-                            >Alia Bhatt</Text>
+                            >Medeea Marinescu</Text>
                             <Flex
                                 direction='row'
                                 height='50px'
@@ -138,13 +142,18 @@ function App({
 
             </Box>
 
+            <MoviesViewer
+                maxNumberOfMovies={5}
+            />
+
+            <Biography />
+
             <TVShowsViewer
                 maxNumberOfTVShows={5}
-                height={600}
             />
 
         </Box>
     );
 }
 
-export default App;
+export default Index;
