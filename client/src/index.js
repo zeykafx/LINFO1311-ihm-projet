@@ -8,6 +8,7 @@ import Admin from './views/Admin';
 import Index from './views/Index.js';
 import {ChakraProvider} from "@chakra-ui/react";
 import Footer from "./components/misc/Footer";
+import { Gallery } from './views/Gallery';
 
 ReactDOM.render(
     <ChakraProvider>
@@ -19,6 +20,11 @@ ReactDOM.render(
                 <Route path="/" element={
                     <div className="clientContainer">
                         <Index/>
+                    </div>
+                }/>
+                <Route path="/gallery" element={
+                    <div className="clientContainer">
+                        <Gallery/>
                     </div>
                 }/>
                 <Route path="/admin" element={<Admin/>}/>
