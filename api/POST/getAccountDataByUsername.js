@@ -1,4 +1,4 @@
-import { pool } from "../../database/queries.js";
+import { pool } from "../database/queries.js";
 
 
 export const getAccountDataByUsername = (req, res, next) => {

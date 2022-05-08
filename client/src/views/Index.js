@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
 import "./Index.css";
 
 import MoviesViewer from "../components/clientViewers/MoviesViewer";

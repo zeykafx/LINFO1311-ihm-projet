@@ -1,4 +1,4 @@
-import { pool } from "../../database/queries.js";
+import { pool } from "../database/queries.js";
 import bcrypt from "bcrypt";
 
 import { saltRounds } from '../Constants/Constants.js';

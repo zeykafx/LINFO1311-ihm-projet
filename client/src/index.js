@@ -1,33 +1,101 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {Routes, Route, BrowserRouter} from 'react-router-dom';
-import './index.css';
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import "./index.css";
+
+import NavBar from "./views/NavBar/NavBar";
+import Admin from "./views/Admin/Admin.js";
+import PageNotFound from "./views/PageNotFound";
+import { ChakraProvider } from "@chakra-ui/react";
+import Footer from "./components/misc/Footer";
 
 import Index from './views/Index.js';
 import { Gallery } from './views/Gallery';
 import { Contact } from './views/Contact';
 
-import NavBar from './views/NavBar';
-import Admin from './views/Admin';
 
-import {ChakraProvider} from "@chakra-ui/react";
-import Footer from "./components/misc/Footer";
-ReactDOM.render(
+import AccountPage from "./views/Admin/AccountPage";
+import CreatePage from "./views/Admin/CreatePage";
+import EditPage from "./views/Admin/EditPage";
+import AdminSubPages from "./views/Admin/Components/AdminSubPages";
+
+function MainApp() {
+  const [isUserAuthed, setIsUserAuthed] = useState(false);
+  const [username, setUsername] = useState("");
+  const [accountType, setAccountType] = useState("");
+
+  let handleUserAuthChange = (bool) => {
+    setIsUserAuthed(bool);
+  };
+
+  let handleUsernameChange = (newUsername) => {
+    setUsername(newUsername);
+  };
+
+  let handleAccountTypeChange = (newType) => {
+    setAccountType(newType);
+  };
+
+  return (
     <ChakraProvider>
-        <BrowserRouter>
+      <BrowserRouter>
+        <NavBar
+          isUserAuthed={isUserAuthed}
+          setIsUserAuthed={handleUserAuthChange}
+          username={username}
+          setUsername={handleUsernameChange}
+          accountType={accountType}
+          setAccountType={handleAccountTypeChange}
+        />
 
-            <NavBar/>
+        <Routes>
+          <Route path="/gallery" element={<Gallery/>}/>
+          <Route path="/contact" element={<Contact/>}/>
+          <Route path="/admin" element={<Admin/>}/>
 
-            <Routes>
-                <Route path="/gallery" element={<Gallery/>}/>
-                <Route path="/contact" element={<Contact/>}/>
-                <Route path="/admin" element={<Admin/>}/>
+          <Route path="/" element={<Index/>}/>
 
-                <Route path="*" element={<Index/>}/>
-            </Routes>
+          <Route path="/admin" element={<Admin />} />
 
-            <Footer/>
-        </BrowserRouter>
-    </ChakraProvider>,
-    document.getElementById('root')
-);
+          <Route
+            path="/admin/edit-movies-shows"
+            element={
+              <AdminSubPages>
+                <EditPage />
+              </AdminSubPages>
+            }
+          />
+          <Route
+            path="/admin/create-movies-shows"
+            element={
+              <AdminSubPages>
+                <CreatePage />
+              </AdminSubPages>
+            }
+          />
+          <Route
+            path="/admin/accounts-settings"
+            element={
+              <AdminSubPages>
+                <AccountPage />
+              </AdminSubPages>
+            }
+          />
+
+          {/* Si on trouve pas, on redirige vers 404 */}
+
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+          
+        <Footer
+          isUserAuthed={isUserAuthed}
+          setIsUserAuthed={handleUserAuthChange}
+          username={username}
+          setUsername={handleUsernameChange}
+        />
+      </BrowserRouter>
+    </ChakraProvider>
+  );
+}
+
+ReactDOM.render(<MainApp />, document.getElementById("root"));

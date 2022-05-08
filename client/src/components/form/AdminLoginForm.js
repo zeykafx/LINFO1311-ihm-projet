@@ -1,17 +1,29 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
+import React, {useEffect} from 'react';
+import {useState} from 'react';
 
 import CButton from './buttons/CButton';
 import CTextInput from './inputs/CTextInput';
+import {useToast} from '@chakra-ui/react'
+import {useNavigate} from "react-router-dom";
 
 import "./commonStyle.css";
 
-function AdminLoginForm({
-    customHandler=false,
-    feedback=()=>{},
-    customResponse="",
-    submitButtonText="Login"
-}) {
+// interface IAdminLoginFormProps {
+//     setIsUserAuthed: (boolean) => void;
+//     setUsername: (string) => void;
+//     closeFunction: () => void;
+//     redirect: boolean;
+// }
+
+
+function AdminLoginForm(props, {
+            customHandler = false,
+            feedback = () => {},
+            customResponse = "",
+            submitButtonText = "Login",
+                        }) {
+    const toast = useToast()
+    let navigate = useNavigate();
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -30,7 +42,7 @@ function AdminLoginForm({
             password: password
         };
 
-        if (customHandler){
+        if (customHandler) {
             feedback(data);
             return;
         }
@@ -39,13 +51,34 @@ function AdminLoginForm({
 
         fetch("/api/account/login", {
             method: "POST",
-            headers: {'Content-Type': 'application/json'}, 
+            headers: {'Content-Type': 'application/json'},
+            credentials: "same-origin",
             body: JSON.stringify(data)
         }).then(res => res.json().then((response) => {
 
-            if (response.status){
+            if (response.status) {
                 // Login successful
-                console.log("Login successful");
+                toast({
+                    title: 'Successful login!',
+                    description: "You have been logged in.",
+                    status: 'success',
+                    position: 'bottom-left',
+                    duration: 15000,
+                    isClosable: true,
+                })
+
+                // close the modal
+                props.closeFunction();
+
+                // set the username and set that user is authenticated
+                props.setIsUserAuthed(true);
+                props.setUsername(response["username"]);
+
+                if (props.redirect) {
+                    // on redirige vers le panel admin
+                    navigate("/admin", {replace: true});
+                }
+
             } else {
                 // Error while trying
                 setResponse(response.message)
@@ -56,15 +89,17 @@ function AdminLoginForm({
     }
 
     return (
-        <form onSubmit={e => {handleSubmit(e)}}>
+        <form onSubmit={e => {
+            handleSubmit(e)
+        }}>
 
-            { response &&
+            {response &&
                 <div className="formResponse">
                     <h3>{response}</h3>
                 </div>
             }
 
-            <CTextInput 
+            <CTextInput
                 label="Username"
                 placeholder="Please enter your username"
                 value={username}
@@ -72,7 +107,7 @@ function AdminLoginForm({
                 maxSize={25}
             />
 
-            <CTextInput 
+            <CTextInput
                 label="Password"
                 hidden={true}
                 placeholder="Please enter your password"
@@ -81,8 +116,8 @@ function AdminLoginForm({
                 maxSize={256}
             />
 
-            <CButton 
-                disabled={!(username!=="" && password !=="")}
+            <CButton
+                disabled={!(username !== "" && password !== "")}
                 text={submitButtonText}
                 type="submit"
             />
@@ -91,4 +126,5 @@ function AdminLoginForm({
     )
 
 }
+
 export default AdminLoginForm;
