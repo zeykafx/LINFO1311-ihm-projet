@@ -1,6 +1,0 @@
-@import "~react-image-gallery/styles/css/image-gallery.css";
-
-.gradientBackground{
-    background: rgb(62,49,71);
-    background: linear-gradient(114deg, rgba(62,49,71,1) 0%, rgb(46, 40, 61) 50%, rgba(43,27,3,1) 100%);
-}

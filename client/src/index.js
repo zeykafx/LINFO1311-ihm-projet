@@ -4,11 +4,15 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import "./index.css";
 
 import NavBar from "./views/NavBar/NavBar";
-import Admin from "./views/Admin/Admin";
+import Admin from "./views/Admin/Admin.js";
 import PageNotFound from "./views/PageNotFound";
-import App from "./views/App";
 import { ChakraProvider } from "@chakra-ui/react";
 import Footer from "./components/misc/Footer";
+
+import Index from './views/Index.js';
+import { Gallery } from './views/Gallery';
+import { Contact } from './views/Contact';
+
 
 import AccountPage from "./views/Admin/AccountPage";
 import CreatePage from "./views/Admin/CreatePage";
@@ -45,7 +49,12 @@ function MainApp() {
         />
 
         <Routes>
-          <Route path="/" element={<App />} />
+          <Route path="/gallery" element={<Gallery/>}/>
+          <Route path="/contact" element={<Contact/>}/>
+          <Route path="/admin" element={<Admin/>}/>
+
+          <Route path="/" element={<Index/>}/>
+
           <Route path="/admin" element={<Admin />} />
 
           <Route
@@ -77,7 +86,7 @@ function MainApp() {
 
           <Route path="*" element={<PageNotFound />} />
         </Routes>
-
+          
         <Footer
           isUserAuthed={isUserAuthed}
           setIsUserAuthed={handleUserAuthChange}

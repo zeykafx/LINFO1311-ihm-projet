@@ -32,10 +32,9 @@ import { Link as ReactRouterLink } from "react-router-dom";
 import { NavLink, SubNavLink, MobileNavItem } from "./NavItems.js";
 
 export const links = {
-  Movies: "movies",
-  "TV Shows": "tv-shows",
-  Gallery: "gallery",
-  "Contact us": "contact-us",
+  "About": "",
+  "Gallery": "gallery",
+  "Contact": "contact"
 };
 export const adminLinks = [
   { name: "Admin Panel", link: "admin" },
@@ -156,18 +155,6 @@ export default function NavBar(props) {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={"center"}>
-            <Link
-              as={ReactRouterLink}
-              to={"/"}
-              px={2}
-              py={1}
-              rounded={"md"}
-              _hover={{
-                textDecoration: "none",
-              }}
-            >
-              Logo
-            </Link>
 
             {/* All the links */}
             <HStack

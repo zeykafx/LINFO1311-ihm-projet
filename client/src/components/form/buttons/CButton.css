@@ -11,6 +11,7 @@
     font-size: 15px;
     cursor: pointer;
     color: white;
+    text-align: center;
 }
 .CButton:hover{
     background: black;

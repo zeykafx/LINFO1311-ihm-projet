@@ -1,0 +1,32 @@
+@import "~react-image-gallery/styles/css/image-gallery.css";
+
+.slide-bgContainer img{
+    height: 100%;
+    max-width: unset;
+}
+.slide-contentContainer{
+    position: relative;
+    height: 100%;
+    z-index: 5;
+}
+
+.socialLink{
+    opacity: .5;
+    cursor: pointer;
+}
+.socialLink:hover{
+    opacity: 1;
+}
+.socialIcon{
+    height: 25px;
+    width: 25px;
+}
+.textAction{
+    cursor: pointer;
+    font-weight: bold;
+    color: black;
+    opacity: .5;
+}
+.textAction:hover{
+    opacity: 1;
+}

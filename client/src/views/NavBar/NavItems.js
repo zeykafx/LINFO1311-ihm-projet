@@ -18,11 +18,13 @@ export const NavLink = ({ name, link }) => (
     px={2}
     py={1}
     rounded={"md"}
+    fontWeight={"bold"}
+    color={'gray.500'}
     _hover={{
       textDecoration: "none",
       bg: useColorModeValue("gray.200", "gray.700"),
     }}
-    href={"/#" + link}
+    href={"/" + link}
   >
     {name}
   </Link>
