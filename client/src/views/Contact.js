@@ -15,6 +15,7 @@ export const Contact = (props) => {
             width={'100vw'}
             height={'100vh'}
             bg='#eee'
+            maxW={"100%"}
             >
             <Box
                 borderRadius={"lg"}

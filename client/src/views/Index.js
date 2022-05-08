@@ -35,7 +35,7 @@ function Index({
     }
 
     return (
-        <Box bg='white' pos={'absolute'} maxWidth='100vw' overflow={'hidden'}>
+        <Box bg='white' pos={'relative'} maxWidth='100vw' overflow={'hidden'}>
             <Box
                 width={{ base: '90vw', lg: '84vw' }}
                 height={{ base: '90vh', lg: '84vh' }}

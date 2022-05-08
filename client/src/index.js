@@ -19,22 +19,11 @@ ReactDOM.render(
             <NavBar/>
 
             <Routes>
-                <Route path="/gallery" element={
-                    <div className="clientContainer">
-                        <Gallery/>
-                    </div>
-                }/>
-                <Route path="/contact" element={
-                    <div className="clientContainer">
-                        <Contact/>
-                    </div>
-                }/>
+                <Route path="/gallery" element={<Gallery/>}/>
+                <Route path="/contact" element={<Contact/>}/>
                 <Route path="/admin" element={<Admin/>}/>
-                <Route path="*" element={
-                    <div className="clientContainer">
-                        <Index/>
-                    </div>
-                }/>
+
+                <Route path="*" element={<Index/>}/>
             </Routes>
 
             <Footer/>

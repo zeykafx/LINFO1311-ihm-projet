@@ -21,7 +21,7 @@ const images = [
 export const Gallery = (props) => {
     return (
         <VStack 
-        height={{base: "100vh", lg:"84vh"}}
+        height={{base: "100vh", lg:"auto"}}
         width={{base: "100vw", lg:"90vw"}}
         margin={{base: "0", lg:"8vh 5vw"}}
         >

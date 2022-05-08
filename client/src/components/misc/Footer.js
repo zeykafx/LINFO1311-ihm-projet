@@ -22,10 +22,13 @@ export default function Footer() {
                 direction={{ base: 'column', md: 'row' }}
                 spacing={4}
                 justify={{ base: 'center', md: 'space-between' }}
-                align={{ base: 'center', md: 'center' }}>
-                <Stack direction={'row'} spacing={6}>
+                align={{ base: 'center', md: 'center' }}
+                minH={'200px'}
+                >
+                <Stack direction={'column'} spacing={1}>
+                    <Text fontWeight={"bold"} color="black" fontSize={"xl"}>Medeea Marinescu</Text>
                     {Links.map((link) => (
-                        <Link href={'/#' + link.toString().replace(" ", "-").toLowerCase()}>{link}</Link>
+                        <Link fontWeight={"500"} color={"gray.500"} href={'/#' + link.toString().replace(" ", "-").toLowerCase()}>{link}</Link>
                     ))}
                 </Stack>
                 <Text>© {currentYear} Projet LINFO1311 </Text>
