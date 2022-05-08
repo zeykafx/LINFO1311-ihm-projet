@@ -32,7 +32,7 @@ const NavLink = ({ children }) => (
             bg: useColorModeValue('gray.200', 'gray.700'),
         }}
         // onClick={onClose}
-        href={'/#' + children.toString().replace(" ", "-").toLowerCase()}>
+        href={'/' + children.toString().replace(" ", "-").toLowerCase()}>
         {children}
     </Link>
 );

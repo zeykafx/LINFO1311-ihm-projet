@@ -11,13 +11,17 @@ export const Contact = (props) => {
     return (
         <Flex
             align="center"
-            justify="center">
+            justify="center"
+            width={'100vw'}
+            height={'100vh'}
+            bg='#eee'
+            >
             <Box
                 borderRadius={"lg"}
                 m={{base: 5, md: 16, lg: 10}}
                 p={{base: 5, lg: 16}}>
                 <VStack spacing={{base: 4, md: 8, lg: 20}}>
-                    <Text fontSize={"xl"} color={"white"} textAlign={'center'} m={2}>Get in touch</Text>
+                    <Text fontSize={"3xl"} color={"black"} fontWeight={'bold'} textAlign={'center'} m={2}>Get in touch</Text>
 
                     <Box
                         bg={useColorModeValue('white', 'gray.700')}
