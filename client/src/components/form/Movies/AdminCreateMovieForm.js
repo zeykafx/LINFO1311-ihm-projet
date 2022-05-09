@@ -1,14 +1,14 @@
 import React from 'react';
 import { useState } from 'react';
 
-import CButton from './buttons/CButton';
-import CTextInput from './inputs/CTextInput';
-import CDateInput from './inputs/CDateInput.js';
+import CButton from '../buttons/CButton';
+import CTextInput from '../inputs/CTextInput';
+import CDateInput from '../inputs/CDateInput.js';
 
-import "./commonStyle.css";
-import CArrayTextInput from './inputs/CArrayTextInput.js';
-import CLongTextInput from './inputs/CLongTextInput';
-import PhotoUploader from './inputs/PhotoUploader';
+import "../commonStyle.css";
+import CArrayTextInput from '../inputs/CArrayTextInput.js';
+import CLongTextInput from '../inputs/CLongTextInput';
+import PhotoUploader from '../inputs/PhotoUploader';
 
 function AdminCreateMovieForm({}) {
 

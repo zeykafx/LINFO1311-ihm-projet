@@ -3,14 +3,13 @@ import React, { useState, useEffect } from "react";
 import CButton from "../form/buttons/CButton";
 import CPressableIcon from "../form/buttons/CPressableIcon";
 
-import AdminModifyAccountForm from "../form/AdminModifyAccountForm";
-import AdminDeleteAccountForm from "../form/AdminDeleteAccountForm";
+import AdminModifyAccountForm from "../form/Accounts/AdminModifyAccountForm";
+import AdminDeleteAccountForm from "../form/Accounts/AdminDeleteAccountForm";
 
 import { accountTypes } from "../../Constants/account.js";
 
 import "./AdminAccountsViewer.css";
 import Loader from "../misc/Loader";
-import ModalWrapper from "../misc/ModalWrapper";
 
 import {
   Button,
@@ -22,6 +21,7 @@ import {
   ModalCloseButton,
   ModalBody,
   ModalFooter,
+  useToast,
 } from "@chakra-ui/react";
 
 function AdminAccountsViewer({}) {
@@ -33,6 +33,8 @@ function AdminAccountsViewer({}) {
   const [visibleDeleteModal, setVisibleDeleteModal] = useState(false);
 
   const [loading, setLoading] = useState(true);
+
+  const toast = useToast();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -46,8 +48,15 @@ function AdminAccountsViewer({}) {
           if (response.status) {
             setAccountList(response["message"]);
           } else {
-            // show error?
             setAccountList([]);
+            toast({
+              title: "Couldn't fetch the accounts",
+              description: "Error message: " + response.message,
+              status: "error",
+              position: "bottom-left",
+              duration: 15000,
+              isClosable: true,
+            });
           }
 
           setLoading(false);
@@ -69,15 +78,16 @@ function AdminAccountsViewer({}) {
     onClose();
     setVisibleDeleteModal(false);
     setVisibleModifyModal(false);
-    
-  }
+  };
 
   return (
     <>
       <Modal isOpen={isOpen} onClose={handleModalClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>{(visibleModifyModal ? "Modify " :  "Delete ") + usernameSelected}</ModalHeader>
+          <ModalHeader>
+            {(visibleModifyModal ? "Modify " : "Delete ") + usernameSelected}
+          </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             {visibleModifyModal ? (
@@ -119,16 +129,16 @@ function AdminAccountsViewer({}) {
                     onPress={() => {
                       onOpen();
                       setUsernameSelected(account.username);
-                      setVisibleModifyModal(true)
+                      setVisibleModifyModal(true);
                     }}
                   />
                   <CButton
                     text="Delete"
                     type="negative"
                     onPress={() => {
-                        onOpen();
-                        setUsernameSelected(account.username);
-                        setVisibleDeleteModal(true)
+                      onOpen();
+                      setUsernameSelected(account.username);
+                      setVisibleDeleteModal(true);
                     }}
                   />
                 </div>

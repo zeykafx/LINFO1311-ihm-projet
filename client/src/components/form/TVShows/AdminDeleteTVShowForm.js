@@ -1,85 +1,79 @@
-import React from 'react';
-import { useState } from 'react';
+import { useToast } from "@chakra-ui/react";
+import React from "react";
+import { useState } from "react";
 
-import CButton from '../buttons/CButton';
+import CButton from "../buttons/CButton";
 
 import "../commonStyle.css";
-import './AdminDeleteTVShowForm.css';
-import AdminAccountVerificator from '../../misc/AdminAccountVerificator.js';
+import "./AdminDeleteTVShowForm.css";
 
-function AdminDeleteTVShowForm({
-    TVShowData
-}) {
+function AdminDeleteTVShowForm({ TVShowData }) {
+  const [responseType, setResponseType] = useState("");
+  const [response, setResponse] = useState("");
+  const toast = useToast();
 
-    const [responseType, setResponseType] = useState("");
-    const [response, setResponse] = useState("");
+  const deleteTVShow = () => {
 
-    const [isAdminAccountVerified, setIsAdminAccountVerified] = useState(false);
+    setResponse("");
 
-    const deleteTVShow = () => {
+    const data = {
+      id: TVShowData.id,
+    };
 
-        if(!isAdminAccountVerified){
-            return;
+    fetch("/api/tvshows/delete", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    }).then((res) =>
+      res.json().then((response) => {
+        if (response.status) {
+          // TV Show deletion successful
+          setResponseType("success");
+          // setResponse("This TV show has succesfully been deleted");
+          toast({
+            title: "Success",
+            description: "This TV Show has succesfully been deleted",
+            status: "success",
+            position: "bottom-left",
+            duration: 15000,
+            isClosable: true,
+          });
+        } else {
+          // Error while trying
+          setResponseType("error");
+          setResponse(response.message);
         }
+      })
+    );
+  };
 
-        setResponse("");
+  return (
+    <>
+      <p className="description-text">
+        Once pressed, the TV Show with the name <b>"{TVShowData.name}"</b> will
+        be permanently deleted. It won't be recoverable nor accessible.
+      </p>
 
-        const data = {
-            id: TVShowData.id
-        };
+      <hr />
 
-        fetch("/api/tvshows/delete", {
-            method: "POST",
-            headers: {'Content-Type': 'application/json'}, 
-            body: JSON.stringify(data)
-        }).then(res => res.json().then((response) => {
-            
-            if (response.status){
-                // TV Show deletion successful
-                setResponseType("success");
-                setResponse("This TV show has succesfully been deleted")
-            } else {
-                // Error while trying
-                setResponseType("error");
-                setResponse(response.message)
-            }
+      {response && (
+        <div
+          className={
+            "formResponse " + (responseType === "success" ? "success" : "error")
+          }
+        >
+          <h3>{response}</h3>
+        </div>
+      )}
 
-        }));
-
-    }
-
-    return (
-        <>
-
-            <AdminAccountVerificator feedback={() => setIsAdminAccountVerified(true)}/>
-
-            { isAdminAccountVerified &&
-            <>
-                <hr />
-
-                <p className="description-text">Once pressed, the TV Show with the name <b>"{TVShowData.name}"</b> will be permanently deleted. It won't be recoverable nor accessible.</p>
-                
-                <hr />
-
-                { response &&
-                    <div className={"formResponse " + (responseType==="success" ? "success" : "error")}>
-                        <h3>{response}</h3>
-                    </div>
-                }
-
-                <div className="centerButton">
-                    <CButton 
-                        text="Delete this TV Show permanently"
-                        type="negative"
-                        onPress={() => deleteTVShow()}
-                    />
-                </div>
-
-            </>
-            }
-
-        </>
-    )
-
+      <div className="centerButton">
+        <CButton
+          text="Delete this TV Show permanently"
+          type="negative"
+          onPress={() => deleteTVShow()}
+        />
+      </div>
+    </>
+  );
 }
 export default AdminDeleteTVShowForm;

@@ -7,20 +7,32 @@ import Loader from "../misc/Loader";
 import AdminModifyMovieForm from "../form/Movies/AdminModifyMovieForm";
 import ModalWrapper from "../misc/ModalWrapper";
 import AdminDeleteMovieForm from "../form/Movies/AdminDeleteMovieForm";
-import { useToast } from "@chakra-ui/react";
-
+import {
+  Button,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
+  useToast,
+} from "@chakra-ui/react";
 function AdminMoviesViewer({}) {
   const [moviesList, setMoviesList] = useState([]);
 
   const [visibleModifyModal, setVisibleModifyModal] = useState(false);
   const [visibleDeleteModal, setVisibleDeleteModal] = useState(false);
 
-  const [movieToModify, setMovieToModify] = useState({});
-  const [movieToDelete, setMovieToDelete] = useState({});
+  const [selectedMovie, setSelectedMovie] = useState({});
+  // const [movieToDelete, setMovieToDelete] = useState({});
 
   const [loading, setLoading] = useState(true);
 
   const toast = useToast();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
 
   const genCoActorBubbles = (coActors) => {
     return coActors.map((actor, index) => {
@@ -75,19 +87,25 @@ function AdminMoviesViewer({}) {
     }, 0); // Le timeout est pas obligatoire, c'est juste plus beau qu'un flash sur la page
   }, []);
 
+  let handleModalClose = () => {
+    onClose();
+    setVisibleDeleteModal(false);
+    setVisibleModifyModal(false);
+  }
+
   return (
     <>
-      {(visibleModifyModal || visibleDeleteModal) && (
+      {/* {(visibleModifyModal || visibleDeleteModal) && (
         <div className="modal-container">
           {visibleModifyModal && (
             <ModalWrapper
-              title={"Modify movie - " + movieToModify.name}
+              title={"Modify movie - " + selectedMovie.name}
               onPressClose={() => {
                 setVisibleModifyModal(false);
                 setMovieToModify({});
               }}
             >
-              <AdminModifyMovieForm movieData={movieToModify} />
+              <AdminModifyMovieForm movieData={selectedMovie} />
             </ModalWrapper>
           )}
 
@@ -103,7 +121,27 @@ function AdminMoviesViewer({}) {
             </ModalWrapper>
           )}
         </div>
-      )}
+      )} */}
+
+      <Modal isOpen={isOpen} onClose={handleModalClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>{(visibleModifyModal ? "Modify " :  "Delete ") + selectedMovie.name}</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            {visibleModifyModal ? (
+              <AdminModifyMovieForm movieData={selectedMovie} />
+            ) : (
+              <AdminDeleteMovieForm movieData={selectedMovie} />
+            )}
+          </ModalBody>
+          <ModalFooter>
+            <Button mr={3} onClick={handleModalClose}>
+              Close
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
 
       <div className="AMV-container">
         {loading ? (
@@ -162,7 +200,8 @@ function AdminMoviesViewer({}) {
                     text="Modify"
                     type="positive"
                     onPress={() => {
-                      setMovieToModify(movie);
+                      onOpen();
+                      setSelectedMovie(movie);
                       setVisibleModifyModal(true);
                     }}
                   />
@@ -170,7 +209,8 @@ function AdminMoviesViewer({}) {
                     text="Delete"
                     type="negative"
                     onPress={() => {
-                      setMovieToDelete(movie);
+                      onOpen();
+                      setSelectedMovie(movie);
                       setVisibleDeleteModal(true);
                     }}
                   />

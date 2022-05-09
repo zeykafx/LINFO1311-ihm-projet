@@ -2,9 +2,9 @@ import React from "react";
 import { useState } from "react";
 
 
-import CButton from "./buttons/CButton";
+import CButton from "../buttons/CButton";
 
-import "./commonStyle.css";
+import "../commonStyle.css";
 import "./AdminDeleteAccountForm.css";
 
 function AdminDeleteAccountForm({ accountUsername }) {

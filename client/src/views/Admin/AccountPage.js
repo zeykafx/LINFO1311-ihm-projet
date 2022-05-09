@@ -11,7 +11,7 @@ import {
 import React from "react";
 
 import AdminAccountsViewer from "../../components/viewer/AdminAccountsViewer";
-import AdminCreateAccountForm from "../../components/form/AdminCreateAccountForm";
+import AdminCreateAccountForm from "../../components/form/Accounts/AdminCreateAccountForm";
 
 export default function AccountPage({ accountType }) {
   return (

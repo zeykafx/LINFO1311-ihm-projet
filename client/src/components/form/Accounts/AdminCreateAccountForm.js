@@ -1,13 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
 
-import { accountTypes } from '../../Constants/account.js';
+import { accountTypes } from '../../../Constants/account';
 
-import CButton from './buttons/CButton';
-import CTextInput from './inputs/CTextInput';
-import CSelectList from './inputs/CSelectList';
+import CButton from '../buttons/CButton';
+import CTextInput from '../inputs/CTextInput';
+import CSelectList from '../inputs/CSelectList';
 
-import "./commonStyle.css";
+import "../commonStyle.css";
 import { useToast } from '@chakra-ui/react';
 
 function AdminCreateAccountForm({}) {

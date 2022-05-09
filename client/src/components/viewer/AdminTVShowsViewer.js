@@ -9,8 +9,18 @@ import ModalWrapper from "../misc/ModalWrapper";
 import AdminModifyTVShowForm from "../form/TVShows/AdminModifyTVShowForm";
 import AdminDeleteTVShowForm from "../form/TVShows/AdminDeleteTVShowForm";
 
-import { useToast } from "@chakra-ui/react";
-
+import {
+  Button,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
+  useToast,
+} from "@chakra-ui/react";
 
 function AdminTVShowsViewer({}) {
   const [TVShowsList, setTVShowsList] = useState([]);
@@ -18,12 +28,14 @@ function AdminTVShowsViewer({}) {
   const [visibleModifyModal, setVisibleModifyModal] = useState(false);
   const [visibleDeleteModal, setVisibleDeleteModal] = useState(false);
 
-  const [TVShowToModify, setTVShowToModify] = useState({});
-  const [TVShowToDelete, setTVShowToDelete] = useState({});
+  const [selectedTVShow, setSelectedTVShow] = useState({});
+  // const [TVShowToDelete, setTVShowToDelete] = useState({});
 
   const [loading, setLoading] = useState(true);
 
   const toast = useToast();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
 
   const genCoActorBubbles = (coActors) => {
     return coActors.map((actor, index) => {
@@ -60,6 +72,7 @@ function AdminTVShowsViewer({}) {
         .then((response) => {
           if (response.status) {
             setTVShowsList(response["message"]);
+
           } else {
             
             setTVShowsList([]);
@@ -79,35 +92,34 @@ function AdminTVShowsViewer({}) {
     }, 0); // Le timeout est pas obligatoire, c'est juste plus beau qu'un flash sur la page
   }, []);
 
+  let handleModalClose = () => {
+    onClose();
+    setVisibleDeleteModal(false);
+    setVisibleModifyModal(false);
+  }
+
   return (
     <>
-      {(visibleModifyModal || visibleDeleteModal) && (
-        <div className="modal-container">
-          {visibleModifyModal && (
-            <ModalWrapper
-              title={"Modify TV Show - " + TVShowToModify.name}
-              onPressClose={() => {
-                setVisibleModifyModal(false);
-                setTVShowToModify({});
-              }}
-            >
-              <AdminModifyTVShowForm TVShowData={TVShowToModify} />
-            </ModalWrapper>
-          )}
 
-          {visibleDeleteModal && (
-            <ModalWrapper
-              title={"Delete TV Show - " + TVShowToDelete.name}
-              onPressClose={() => {
-                setVisibleDeleteModal(false);
-                setTVShowToDelete({});
-              }}
-            >
-              <AdminDeleteTVShowForm TVShowData={TVShowToDelete} />
-            </ModalWrapper>
-          )}
-        </div>
-      )}
+      <Modal isOpen={isOpen} onClose={handleModalClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>{(visibleModifyModal ? "Modify " :  "Delete ") + selectedTVShow.name}</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            {visibleModifyModal ? (
+              <AdminModifyTVShowForm TVShowData={selectedTVShow} />
+            ) : (
+              <AdminDeleteTVShowForm TVShowData={selectedTVShow} />
+            )}
+          </ModalBody>
+          <ModalFooter>
+            <Button mr={3} onClick={handleModalClose}>
+              Close
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
 
       <div className="AMV-container">
         {loading ? (
@@ -179,7 +191,8 @@ function AdminTVShowsViewer({}) {
                     text="Modify"
                     type="positive"
                     onPress={() => {
-                      setTVShowToModify(tvshow);
+                      onOpen();
+                      setSelectedTVShow(tvshow);
                       setVisibleModifyModal(true);
                     }}
                   />
@@ -187,7 +200,8 @@ function AdminTVShowsViewer({}) {
                     text="Delete"
                     type="negative"
                     onPress={() => {
-                      setTVShowToDelete(tvshow);
+                      onOpen();
+                      setSelectedTVShow(tvshow);
                       setVisibleDeleteModal(true);
                     }}
                   />

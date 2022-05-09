@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 
-import { accountTypes } from "../../Constants/account.js";
+import { accountTypes } from "../../../Constants/account.js";
 
-import CButton from "./buttons/CButton";
-import CTextInput from "./inputs/CTextInput";
-import CSelectList from "./inputs/CSelectList";
-import CCheckBox from "./inputs/CCheckBox";
+import CButton from "../buttons/CButton";
+import CTextInput from "../inputs/CTextInput";
+import CSelectList from "../inputs/CSelectList";
+import CCheckBox from "../inputs/CCheckBox";
 
-import "./commonStyle.css";
+import "../commonStyle.css";
 import "./AdminModifyAccountForm.css";
 
 function AdminModifyAccountForm({ accountUsername }) {

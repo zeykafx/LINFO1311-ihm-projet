@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 
-import AdminCreateMovieForm from "../../components/form/AdminCreateMovieForm";
+import AdminCreateMovieForm from "../../components/form/Movies/AdminCreateMovieForm";
 import AdminCreateTVShowForm from "../../components/form/TVShows/AdminCreateTVShowForm";
 
 export default function CreatePage() {
