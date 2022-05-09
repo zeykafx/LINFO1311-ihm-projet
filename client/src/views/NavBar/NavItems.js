@@ -72,6 +72,7 @@ export const MobileNavItem = ({ label, children, href }) => {
     <Stack spacing={4} onClick={children && onToggle}>
       <Flex
         py={2}
+        px={2}
         as={Link}
         justify={"space-between"}
         align={"center"}

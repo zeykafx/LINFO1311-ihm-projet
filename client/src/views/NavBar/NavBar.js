@@ -32,16 +32,16 @@ import { Link as ReactRouterLink } from "react-router-dom";
 import { NavLink, SubNavLink, MobileNavItem } from "./NavItems.js";
 
 export const links = {
-  "About": "",
-  "Gallery": "gallery",
-  "Contact": "contact"
+  About: "",
+  Gallery: "gallery",
+  Contact: "contact",
 };
 export const adminLinks = [
   { name: "Admin Panel", link: "admin" },
   { name: "Edit Movies & TV Shows", link: "admin/edit-movies-shows" },
   { name: "Create Movie & TV Shows", link: "admin/create-movies-shows" },
   { name: "Accounts Settings", link: "admin/accounts-settings" },
-  {name: "Biography Editor", link: "admin/bio-editor"}
+  { name: "Biography Editor", link: "admin/bio-editor" },
 ];
 
 // interface INavBarProps {
@@ -66,9 +66,9 @@ export default function NavBar(props) {
   const { isOpen, onOpen, onClose } = useDisclosure(); // used for the mobile nav menu
 
   // used to control the popover (for the admin links)
-  const [isPopoverOpen, setisPopoverOpen] = React.useState(false)
-  const openPopover = () => setisPopoverOpen(!isPopoverOpen)
-  const closePopover = () => setisPopoverOpen(false)
+  const [isPopoverOpen, setisPopoverOpen] = React.useState(false);
+  const openPopover = () => setisPopoverOpen(!isPopoverOpen);
+  const closePopover = () => setisPopoverOpen(false);
 
   const toast = useToast();
   let navigate = useNavigate();
@@ -156,7 +156,6 @@ export default function NavBar(props) {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={"center"}>
-
             {/* All the links */}
             <HStack
               as={"nav"}
@@ -168,10 +167,7 @@ export default function NavBar(props) {
               ))}
 
               {isUserAuthed ? (
-                <Popover
-                  isOpen={isPopoverOpen}
-                  onClose={closePopover}
-                >
+                <Popover isOpen={isPopoverOpen} onClose={closePopover}>
                   <PopoverTrigger>
                     <Button
                       color="blackAlpha.700"
@@ -286,11 +282,15 @@ export default function NavBar(props) {
               ))}
 
               {/* And then we have the admin tools with a sub menu */}
-              <MobileNavItem
-                label={"Admin Tools"}
-                children={adminLinks}
-                href={"/admin"}
-              />
+              {isUserAuthed ? (
+                <MobileNavItem
+                  label={"Admin Tools"}
+                  children={adminLinks}
+                  href={"/admin"}
+                />
+              ) : (
+                <></>
+              )}
             </Stack>
           </Box>
         ) : null}
