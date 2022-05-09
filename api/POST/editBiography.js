@@ -1,12 +1,9 @@
 import { pool } from "../database/queries.js";
 
 export function editBiography(req, res, next) {
-  console.log("Got the req to modifiy bio");
-
   if (req.session.username && (req.session.isAdmin || req.session.isEditor)) {
     // if the user is an admin or an editor
 
-    console.log("Going to modify the bio");
 
     if (req.body && req.body.hasOwnProperty("new_content")) {
       let now_timestamp = new Date().getTime();

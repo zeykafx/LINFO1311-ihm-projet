@@ -9,10 +9,9 @@ import PageNotFound from "./views/PageNotFound";
 import { ChakraProvider } from "@chakra-ui/react";
 import Footer from "./components/misc/Footer";
 
-import Index from './views/Index.js';
-import { Gallery } from './views/Gallery';
-import { Contact } from './views/Contact';
-
+import Index from "./views/Index.js";
+import { Gallery } from "./views/Gallery";
+import { Contact } from "./views/Contact";
 
 import AccountPage from "./views/Admin/AccountPage";
 import CreatePage from "./views/Admin/CreatePage";
@@ -50,18 +49,20 @@ function MainApp() {
         />
 
         <Routes>
-          <Route path="/gallery" element={<Gallery/>}/>
-          <Route path="/contact" element={<Contact/>}/>
-          <Route path="/admin" element={<Admin/>}/>
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/contact" element={<Contact />} />
 
-          <Route path="/" element={<Index/>}/>
+          <Route path="/" element={<Index />} />
 
-          <Route path="/admin" element={<Admin />} />
+          <Route
+            path="/admin"
+            element={isUserAuthed ? <Admin /> : <PageNotFound />}
+          />
 
           <Route
             path="/admin/edit-movies-shows"
             element={
-              <AdminSubPages>
+              <AdminSubPages isUserAuthed={isUserAuthed}>
                 <EditPage />
               </AdminSubPages>
             }
@@ -69,7 +70,7 @@ function MainApp() {
           <Route
             path="/admin/create-movies-shows"
             element={
-              <AdminSubPages>
+              <AdminSubPages isUserAuthed={isUserAuthed}>
                 <CreatePage />
               </AdminSubPages>
             }
@@ -77,7 +78,7 @@ function MainApp() {
           <Route
             path="/admin/accounts-settings"
             element={
-              <AdminSubPages>
+              <AdminSubPages isUserAuthed={isUserAuthed}>
                 <AccountPage />
               </AdminSubPages>
             }
@@ -85,7 +86,7 @@ function MainApp() {
           <Route
             path={"/admin/bio-editor"}
             element={
-              <AdminSubPages>
+              <AdminSubPages isUserAuthed={isUserAuthed}>
                 <BioTextEditor />
               </AdminSubPages>
             }

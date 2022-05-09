@@ -7,12 +7,12 @@ export function getBiography(req, res, next) {
             return;
         }
 
-        if (results.length === 0) {
+        if (results.rows.length === 0) {
             res.send({status: false, message: "No biography found in the database"});
             return;
         }
 
-        let biographyRes = results.rows.at(-1);
+        let biographyRes = results.rows[results.rows.length-1];
         res.send({status: true, message: "", biography: biographyRes});
     });
 }

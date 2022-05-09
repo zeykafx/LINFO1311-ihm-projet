@@ -9,6 +9,7 @@ import { useLocation } from "react-router-dom";
 import { adminLinks } from "../../NavBar/NavBar";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { Link as ReactRouterLink } from "react-router-dom";
+import PageNotFound from "../../PageNotFound";
 
 export default function AdminSubPages(props) {
   const location = useLocation();
@@ -43,7 +44,7 @@ export default function AdminSubPages(props) {
         </BreadcrumbItem>
       </Breadcrumb>
 
-      {props.children}
+      {props.isUserAuthed ? props.children : <PageNotFound />}
     </Box>
   );
 }
