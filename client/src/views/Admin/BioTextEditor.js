@@ -10,8 +10,8 @@ import ReactMarkdown from 'react-markdown'
 
 import { draftToMarkdown, markdownToDraft } from "markdown-draft-js";
 
-import CButton from "../../../components/form/buttons/CButton";
-import { Card } from "../Admin";
+import CButton from "../../components/form/buttons/CButton";
+import { Card } from "./Admin";
 
 export default function BioTextEditor() {
   const [editorState, setEditorState] = useState(() =>

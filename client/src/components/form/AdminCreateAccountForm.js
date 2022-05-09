@@ -8,6 +8,7 @@ import CTextInput from './inputs/CTextInput';
 import CSelectList from './inputs/CSelectList';
 
 import "./commonStyle.css";
+import { useToast } from '@chakra-ui/react';
 
 function AdminCreateAccountForm({}) {
 
@@ -17,6 +18,7 @@ function AdminCreateAccountForm({}) {
     const [accountType, setAccountType] = useState("editor");
 
     const [response, setResponse] = useState("");
+    const toast = useToast();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -37,9 +39,18 @@ function AdminCreateAccountForm({}) {
             
             if (response.status){
                 // Account creation successful
+                toast({
+                    title: "Successfully created new account",
+                    description: "You can now log in with that account.",
+                    status: "success",
+                    position: "bottom-left",
+                    duration: 15000,
+                    isClosable: true,
+                  });
             } else {
                 // Error while trying
-                setResponse(response.message)
+                setResponse(response.message);
+                
             }
 
         }));

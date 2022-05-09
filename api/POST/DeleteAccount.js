@@ -1,6 +1,7 @@
 import { pool } from "../database/queries.js";
 
 export const DeleteAccount = (req, res, next) => {
+    if (req.session.username && req.session.isAdmin) {
 
     if(req && req.body && req.body.username){
 
@@ -27,5 +28,10 @@ export const DeleteAccount = (req, res, next) => {
         });
         return;
     }
-
+    } else {
+        res.send({
+            status: false,
+            message: "You can't do that, you are not admin."
+        })
+    }
 };

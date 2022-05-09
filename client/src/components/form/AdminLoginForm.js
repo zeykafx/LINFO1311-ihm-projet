@@ -73,6 +73,7 @@ function AdminLoginForm(props, {
                 // set the username and set that user is authenticated
                 props.setIsUserAuthed(true);
                 props.setUsername(response["username"]);
+                props.setAccountType(response["type"]);
 
                 if (props.redirect) {
                     // on redirige vers le panel admin

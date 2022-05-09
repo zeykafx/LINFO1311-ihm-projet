@@ -112,8 +112,8 @@ export default function NavBar(props) {
       if (res.status === 200) {
         setIsUserAuthed(true);
         res.json().then((json_res) => {
-          setUsername(json_res["username"]);
           setAccountType(json_res["type"]);
+          setUsername(json_res["username"]);
         });
       } else {
         setIsUserAuthed(false);

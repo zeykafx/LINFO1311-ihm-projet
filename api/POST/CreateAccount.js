@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 import { saltRounds } from '../Constants/Constants.js';
 
 export const CreateAccount = (req, res, next) => {
-
+    if (req.session.username && req.session.isAdmin) {
     if( req &&
         req.body &&
         req.body.username && 
@@ -78,5 +78,10 @@ export const CreateAccount = (req, res, next) => {
         });
         return;
     }
-
+    } else {
+        res.send({
+            status: false,
+            message: "You can't do that, you are not admin."
+        })
+    }
 };

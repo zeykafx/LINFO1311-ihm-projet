@@ -16,8 +16,9 @@ import { Contact } from "./views/Contact";
 import AccountPage from "./views/Admin/AccountPage";
 import CreatePage from "./views/Admin/CreatePage";
 import EditPage from "./views/Admin/EditPage";
+import BioTextEditor from "./views/Admin/BioTextEditor";
+
 import AdminSubPages from "./views/Admin/Components/AdminSubPages";
-import BioTextEditor from "./views/Admin/Components/BioTextEditor";
 
 function MainApp() {
   const [isUserAuthed, setIsUserAuthed] = useState(false);
@@ -79,7 +80,7 @@ function MainApp() {
             path="/admin/accounts-settings"
             element={
               <AdminSubPages isUserAuthed={isUserAuthed}>
-                <AccountPage />
+                <AccountPage accountType={accountType}/>
               </AdminSubPages>
             }
           />
@@ -102,6 +103,7 @@ function MainApp() {
           setIsUserAuthed={handleUserAuthChange}
           username={username}
           setUsername={handleUsernameChange}
+          setAccountType={setAccountType}
         />
       </BrowserRouter>
     </ChakraProvider>
