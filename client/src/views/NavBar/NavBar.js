@@ -41,6 +41,7 @@ export const adminLinks = [
   { name: "Edit Movies & TV Shows", link: "admin/edit-movies-shows" },
   { name: "Create Movie & TV Shows", link: "admin/create-movies-shows" },
   { name: "Accounts Settings", link: "admin/accounts-settings" },
+  {name: "Biography Editor", link: "admin/bio-editor"}
 ];
 
 // interface INavBarProps {

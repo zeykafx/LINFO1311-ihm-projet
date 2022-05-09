@@ -18,6 +18,7 @@ import AccountPage from "./views/Admin/AccountPage";
 import CreatePage from "./views/Admin/CreatePage";
 import EditPage from "./views/Admin/EditPage";
 import AdminSubPages from "./views/Admin/Components/AdminSubPages";
+import BioTextEditor from "./views/Admin/Components/BioTextEditor";
 
 function MainApp() {
   const [isUserAuthed, setIsUserAuthed] = useState(false);
@@ -81,12 +82,20 @@ function MainApp() {
               </AdminSubPages>
             }
           />
+          <Route
+            path={"/admin/bio-editor"}
+            element={
+              <AdminSubPages>
+                <BioTextEditor />
+              </AdminSubPages>
+            }
+          />
 
           {/* Si on trouve pas, on redirige vers 404 */}
 
           <Route path="*" element={<PageNotFound />} />
         </Routes>
-          
+
         <Footer
           isUserAuthed={isUserAuthed}
           setIsUserAuthed={handleUserAuthChange}

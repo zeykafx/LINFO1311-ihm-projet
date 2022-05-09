@@ -28,6 +28,9 @@ import {client_getTVShows} from "./POST/TVShows/Client/client_getTVShows.js";
 import {getTVShows} from "./GET/TVShows/getTVShows.js";
 import {UploadImage} from "./POST/upload.js"
 import {isLoggedIn, logOut} from "./GET/accountInfo.js";
+import { getBiography } from "./GET/getBiography.js";
+import { editBiography } from "./POST/editBiography.js";
+
 
 export const apiRouter = express.Router();
 
@@ -47,6 +50,10 @@ export const upload = multer({
 
 // API ROUTES
 apiRouter.post("/upload", upload.single("image"), UploadImage);
+
+// biography routes
+apiRouter.get("/biography", getBiography)
+apiRouter.post("/biography/modify", editBiography)
 
 // Account system
 apiRouter.post("/account/login", Login);

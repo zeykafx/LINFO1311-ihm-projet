@@ -16,7 +16,7 @@ import { possibleStates, Card } from "../Admin";
 
 export default function StatsCard({ setStatus }) {
   const [statusData, setStatusData] = useState(null);
-  const [dataInterval, setDataInterval] = useState();
+  const [dataInterval, setDataInterval] = useState(null);
 
   let fetchStatusData = () => {
     fetch("/status", {
@@ -46,8 +46,10 @@ export default function StatsCard({ setStatus }) {
   useEffect(() => {
     fetchStatusData();
     // the interval is in a loop to make it easy to clean up once we unmount the component
-    setDataInterval(setInterval(fetchStatusData, 10000)); // fetch the status data every 10 seconds.
+    let intervalVal = setInterval(fetchStatusData, 10000)
+    setDataInterval(intervalVal); // fetch the status data every 10 seconds.
     return () => {
+      console.log("unmounted stats card");
       clearInterval(dataInterval);
     };
   }, []);

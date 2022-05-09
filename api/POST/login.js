@@ -35,6 +35,8 @@ export const Login = (req, res, next) => {
 
                 // on crée la session avec le nom d'utilisateur
                 req.session.username = userToVerify.username;
+                req.session.isAdmin = userToVerify.type === "admin";
+                req.session.isEditor = userToVerify.type === "editor";
 
                 res.send({
                     status: true,

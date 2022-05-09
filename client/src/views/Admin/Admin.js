@@ -76,7 +76,7 @@ function Admin() {
 export function Card(props) {
   return (
     <Box
-      w="xs"
+      // w="xs"
       bg={useColorModeValue("white", "gray.800")}
       shadow="lg"
       rounded="lg"

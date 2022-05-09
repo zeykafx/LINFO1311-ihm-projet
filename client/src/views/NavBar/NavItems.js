@@ -15,6 +15,7 @@ import { Link as ReactRouterLink } from "react-router-dom";
 
 export const NavLink = ({ name, link }) => (
   <Link
+    as={ReactRouterLink}
     px={2}
     py={1}
     rounded={"md"}
@@ -24,7 +25,7 @@ export const NavLink = ({ name, link }) => (
       textDecoration: "none",
       bg: useColorModeValue("gray.200", "gray.700"),
     }}
-    href={"/" + link}
+    to={"/" + link}
   >
     {name}
   </Link>
