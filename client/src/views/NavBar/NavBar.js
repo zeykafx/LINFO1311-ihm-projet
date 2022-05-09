@@ -243,7 +243,7 @@ export default function NavBar(props) {
                       >
                         <Text fontSize="sm">Hello, {username}!</Text>
                         <Text fontSize="xs" color="gray.600">
-                          {accountType !== "" ? accountType : "invalid"}
+                          {accountType}
                         </Text>
                       </VStack>
                       <Box display={{ base: "none", md: "flex" }}>

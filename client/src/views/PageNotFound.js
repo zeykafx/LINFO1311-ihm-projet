@@ -1,7 +1,5 @@
 import React from "react";
 import {
-  Container,
-  Icon,
   Stack,
   Flex,
   Heading,

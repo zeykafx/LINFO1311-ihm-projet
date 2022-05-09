@@ -107,14 +107,16 @@ function Biography({}) {
           >
             My biography
           </Text>
-          <Box
+          {/* <Box
             bg={"#dedede"}
             width={"100%"}
             height={"1px"}
             margin={"10px 0"}
             opacity={0.5}
-          ></Box>
-          <Skeleton isLoaded={BiographyText !== null} noOfLines={4}>
+          >
+
+          </Box> */}
+          <Skeleton isLoaded={BiographyText !== null}>
             {/* <Text color="gray.500" fontWeight="500" fontSize="sm" m="8px">
                 {BiographyText}
             </Text> */}
