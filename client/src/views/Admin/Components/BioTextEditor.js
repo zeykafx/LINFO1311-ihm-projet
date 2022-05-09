@@ -6,7 +6,7 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { Box, Heading, Text, useToast, Divider, HStack } from "@chakra-ui/react";
 
 import ChakraUIRenderer from "chakra-ui-markdown-renderer";
-import ReactMarkdown from "https://esm.sh/react-markdown@7";
+import ReactMarkdown from 'react-markdown'
 
 import { draftToMarkdown, markdownToDraft } from "markdown-draft-js";
 

@@ -54,7 +54,7 @@ function Index({
                 zIndex={1}
                 >
                     <div className="slide-bgContainer">
-                        <img src="http://localhost:3000/images/slide1.png"/>
+                        <img src="/images/slide1.png"/>
                     </div>
                 </Flex>
 

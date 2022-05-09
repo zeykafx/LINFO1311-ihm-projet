@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 
 import ChakraUIRenderer from "chakra-ui-markdown-renderer";
-import ReactMarkdown from "https://esm.sh/react-markdown@7";
+import ReactMarkdown from 'react-markdown'
 
 
 function Biography({}) {
@@ -85,7 +85,7 @@ function Biography({}) {
         >
           <img
             className="image"
-            src="http://localhost:3000/images/slide1.png"
+            src="/images/slide1.png"
           />
         </Square>
         <Box
