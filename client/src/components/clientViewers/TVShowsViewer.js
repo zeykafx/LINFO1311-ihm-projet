@@ -122,7 +122,7 @@ function TVShowsViewer({
                                         } : {}
                                     }
                                 >
-                                    <img className="posterImg" src="https://images.immediate.co.uk/remote/m.media-amazon.com/images/M/MV5BNWE3Mzc2YzUtZDAyYS00MmQ4LWFhZmItYTA5MTYyYjgxMTQ4XkEyXkFqcGdeQXVyNDgxMDU4NTU@._V1_.jpg?quality=90&webp=true&resize=650,911"/>
+                                    <img className="posterImg" src={"/photos/"+TVShow.filename}/>
                                 </Flex>
                                 <Text 
                                 color={

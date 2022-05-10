@@ -134,7 +134,7 @@ function AdminMoviesViewer({}) {
                 <div className="movieInfosContainer">
                   <div className="movieImageContainer">
                     <div className="moviePoster">
-                      <img src="https://images.immediate.co.uk/remote/m.media-amazon.com/images/M/MV5BNWE3Mzc2YzUtZDAyYS00MmQ4LWFhZmItYTA5MTYyYjgxMTQ4XkEyXkFqcGdeQXVyNDgxMDU4NTU@._V1_.jpg?quality=90&webp=true&resize=650,911" />
+                      <img src={"/photos/"+movie.filename} />
                     </div>
                   </div>
                   <div className="movieTextContainer">

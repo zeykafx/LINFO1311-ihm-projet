@@ -279,7 +279,7 @@ function MoviesCardsViewer({ maxNumberOfMovies = -1 }) {
                     <Flex height="250px" width="170px" overflow={"hidden"}>
                       <img
                         className="posterImg"
-                        src="https://images.immediate.co.uk/remote/m.media-amazon.com/images/M/MV5BNWE3Mzc2YzUtZDAyYS00MmQ4LWFhZmItYTA5MTYyYjgxMTQ4XkEyXkFqcGdeQXVyNDgxMDU4NTU@._V1_.jpg?quality=90&webp=true&resize=650,911"
+                        src={"/photos/"+movie.filename}
                       />
                     </Flex>
                     <Square size="250px">

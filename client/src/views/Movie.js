@@ -129,7 +129,7 @@ export const Movie = (props) => {
                         borderRadius={"5px"}
                         shadow={"md"}
                     >
-                    <img src="https://images.immediate.co.uk/remote/m.media-amazon.com/images/M/MV5BNWE3Mzc2YzUtZDAyYS00MmQ4LWFhZmItYTA5MTYyYjgxMTQ4XkEyXkFqcGdeQXVyNDgxMDU4NTU@._V1_.jpg?quality=90&webp=true&resize=650,911"/>
+                    <img src={"/photos/"+selectedMovie.filename}/>
                     </Box>
                     <Box height={"50px"}/>
                 </Flex>
