@@ -30,7 +30,7 @@ import { client_getTVShowFromID } from "./POST/TVShows/Client/client_getTVShowFr
 import {getTVShows} from "./GET/TVShows/getTVShows.js";
 
 // Others
-import {UploadImage} from "./POST/upload.js"
+import {AddImageToGallery, UploadImage} from "./POST/upload.js"
 import {isLoggedIn, logOut} from "./GET/accountInfo.js";
 import { getBiography } from "./GET/getBiography.js";
 import { editBiography } from "./POST/editBiography.js";
@@ -60,6 +60,7 @@ export const upload = multer({
 
 // API ROUTES
 apiRouter.post("/upload", upload.single("image"), UploadImage);
+apiRouter.post("/image/upload", AddImageToGallery);
 
 // biography routes
 apiRouter.get("/biography", getBiography)

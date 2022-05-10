@@ -16,9 +16,11 @@ export const getTVShows = (req, res, next) => {
         return a.releaseDate - b.releaseDate;
     })
 
+    let reversed = results.rows.reverse();
+
     res.send({ 
         status: true,
-        message: results.rows
+        message: reversed
     });
   });
 };
