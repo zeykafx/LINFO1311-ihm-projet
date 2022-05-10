@@ -53,6 +53,8 @@ function MainApp() {
         />
 
         <Routes>
+          <Route path="/" element={<Index />} />
+
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/contact" element={<Contact />} />
 
@@ -60,7 +62,6 @@ function MainApp() {
 
           <Route path="/tvShow/:id" element={<TVShow/>} />
 
-          <Route path="/" element={<Index />} />
 
           <Route
             path="/admin"
@@ -101,7 +102,6 @@ function MainApp() {
           />
 
           {/* Si on trouve pas, on redirige vers 404 */}
-
           <Route path="*" element={<PageNotFound />} />
         </Routes>
 

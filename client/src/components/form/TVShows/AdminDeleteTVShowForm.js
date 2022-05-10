@@ -7,7 +7,7 @@ import CButton from "../buttons/CButton";
 import "../commonStyle.css";
 import "./AdminDeleteTVShowForm.css";
 
-function AdminDeleteTVShowForm({ TVShowData }) {
+function AdminDeleteTVShowForm({ TVShowData, fetchTVShows, handleModalClose }) {
   const [responseType, setResponseType] = useState("");
   const [response, setResponse] = useState("");
   const toast = useToast();
@@ -38,6 +38,8 @@ function AdminDeleteTVShowForm({ TVShowData }) {
             duration: 15000,
             isClosable: true,
           });
+          fetchTVShows();
+          handleModalClose();
         } else {
           // Error while trying
           setResponseType("error");

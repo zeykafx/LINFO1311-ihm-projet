@@ -14,7 +14,7 @@ export const Contact = (props) => {
             justify="center"
             width={'100vw'}
             height={'100vh'}
-            bg='#eee'
+            // bg='#eee'
             maxW={"100%"}
             >
             <Box

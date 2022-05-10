@@ -4,7 +4,6 @@ import CButton from "../form/buttons/CButton";
 
 import "./AdminTVShowsViewer.css";
 import Loader from "../misc/Loader";
-import ModalWrapper from "../misc/ModalWrapper";
 
 import AdminModifyTVShowForm from "../form/TVShows/AdminModifyTVShowForm";
 import AdminDeleteTVShowForm from "../form/TVShows/AdminDeleteTVShowForm";
@@ -63,32 +62,36 @@ function AdminTVShowsViewer({}) {
     );
   };
 
+  let fetchTVShows = () => {
+    fetch("/api/tvshows/get")
+    .then((res) => res.json())
+    .then((response) => {
+      if (response.status) {
+        setTVShowsList(response["message"]);
+
+      } else {
+        
+        setTVShowsList([]);
+
+        toast({
+            title: "Couldn't fetch the tv shows",
+            description: "Error message: " + response.message,
+            status: 'error',
+            position: 'bottom-left',
+            duration: 15000,
+            isClosable: true,
+        })
+      }
+
+      setLoading(false);
+    });
+  }
+
   useEffect(() => {
     setLoading(true);
 
     setTimeout(() => {
-      fetch("/api/tvshows/get")
-        .then((res) => res.json())
-        .then((response) => {
-          if (response.status) {
-            setTVShowsList(response["message"]);
-
-          } else {
-            
-            setTVShowsList([]);
-
-            toast({
-                title: "Couldn't fetch the tv shows",
-                description: "Error message: " + response.message,
-                status: 'error',
-                position: 'bottom-left',
-                duration: 15000,
-                isClosable: true,
-            })
-          }
-
-          setLoading(false);
-        });
+      fetchTVShows();
     }, 0); // Le timeout est pas obligatoire, c'est juste plus beau qu'un flash sur la page
   }, []);
 
@@ -108,9 +111,9 @@ function AdminTVShowsViewer({}) {
           <ModalCloseButton />
           <ModalBody>
             {visibleModifyModal ? (
-              <AdminModifyTVShowForm TVShowData={selectedTVShow} />
+              <AdminModifyTVShowForm TVShowData={selectedTVShow} fetchTVShows={fetchTVShows} handleModalClose={handleModalClose}/>
             ) : (
-              <AdminDeleteTVShowForm TVShowData={selectedTVShow} />
+              <AdminDeleteTVShowForm TVShowData={selectedTVShow} fetchTVShows={fetchTVShows} handleModalClose={handleModalClose}/>
             )}
           </ModalBody>
           <ModalFooter>

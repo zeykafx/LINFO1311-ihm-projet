@@ -5,7 +5,6 @@ import CButton from "../form/buttons/CButton";
 import "./AdminMoviesViewer.css";
 import Loader from "../misc/Loader";
 import AdminModifyMovieForm from "../form/Movies/AdminModifyMovieForm";
-import ModalWrapper from "../misc/ModalWrapper";
 import AdminDeleteMovieForm from "../form/Movies/AdminDeleteMovieForm";
 import {
   Button,
@@ -60,30 +59,34 @@ function AdminMoviesViewer({}) {
     );
   };
 
+  let fetchMovies = () => {
+    fetch("/api/movies/get")
+    .then((res) => res.json())
+    .then((response) => {
+      if (response.status) {
+        setMoviesList(response["message"]);
+      } else {
+        setMoviesList([]);
+
+        toast({
+            title: "Couldn't fetch the movies",
+            description: "Error message: " + response.message,
+            status: 'error',
+            position: 'bottom-left',
+            duration: 15000,
+            isClosable: true,
+        })
+      }
+
+      setLoading(false);
+    });
+  }
+
   useEffect(() => {
     setLoading(true);
 
     setTimeout(() => {
-      fetch("/api/movies/get")
-        .then((res) => res.json())
-        .then((response) => {
-          if (response.status) {
-            setMoviesList(response["message"]);
-          } else {
-            setMoviesList([]);
-
-            toast({
-                title: "Couldn't fetch the movies",
-                description: "Error message: " + response.message,
-                status: 'error',
-                position: 'bottom-left',
-                duration: 15000,
-                isClosable: true,
-            })
-          }
-
-          setLoading(false);
-        });
+      fetchMovies();
     }, 0); // Le timeout est pas obligatoire, c'est juste plus beau qu'un flash sur la page
   }, []);
 
@@ -95,33 +98,6 @@ function AdminMoviesViewer({}) {
 
   return (
     <>
-      {/* {(visibleModifyModal || visibleDeleteModal) && (
-        <div className="modal-container">
-          {visibleModifyModal && (
-            <ModalWrapper
-              title={"Modify movie - " + selectedMovie.name}
-              onPressClose={() => {
-                setVisibleModifyModal(false);
-                setMovieToModify({});
-              }}
-            >
-              <AdminModifyMovieForm movieData={selectedMovie} />
-            </ModalWrapper>
-          )}
-
-          {visibleDeleteModal && (
-            <ModalWrapper
-              title={"Delete movie - " + movieToDelete.name}
-              onPressClose={() => {
-                setVisibleDeleteModal(false);
-                setMovieToDelete({});
-              }}
-            >
-              <AdminDeleteMovieForm movieData={movieToDelete} />
-            </ModalWrapper>
-          )}
-        </div>
-      )} */}
 
       <Modal isOpen={isOpen} onClose={handleModalClose}>
         <ModalOverlay />
@@ -130,9 +106,9 @@ function AdminMoviesViewer({}) {
           <ModalCloseButton />
           <ModalBody>
             {visibleModifyModal ? (
-              <AdminModifyMovieForm movieData={selectedMovie} />
+              <AdminModifyMovieForm movieData={selectedMovie} fetchMovies={fetchMovies} handleModalClose={handleModalClose}/>
             ) : (
-              <AdminDeleteMovieForm movieData={selectedMovie} />
+              <AdminDeleteMovieForm movieData={selectedMovie} fetchMovies={fetchMovies} handleModalClose={handleModalClose}/>
             )}
           </ModalBody>
           <ModalFooter>

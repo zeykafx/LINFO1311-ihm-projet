@@ -12,6 +12,7 @@ import {
   MenuList,
   MenuItem,
   MenuDivider,
+  Divider,
   useDisclosure,
   useColorModeValue,
   Stack,
@@ -30,7 +31,7 @@ import {
   ModalFooter,
   Center,
   Input,
-  ModalHeader
+  ModalHeader,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, SearchIcon } from "@chakra-ui/icons";
 import { FiChevronDown } from "react-icons/fi";
@@ -38,7 +39,12 @@ import { FaSignOutAlt, IoIosArrowDown } from "react-icons/all";
 import { useNavigate } from "react-router-dom";
 import { Link as ReactRouterLink } from "react-router-dom";
 
-import { NavLink, SubNavLink, MobileNavItem, SearchButton } from "./NavItems.js";
+import {
+  NavLink,
+  SubNavLink,
+  MobileNavItem,
+  SearchButton,
+} from "./NavItems.js";
 import Loader from "../../components/misc/Loader.js";
 
 export const links = {
@@ -73,43 +79,41 @@ export default function NavBar(props) {
     setAccountType,
   } = props;
 
-  const [search, setSearch] = React.useState('')
-  const handleChange = (event) => setSearch(event.target.value)
+  const [search, setSearch] = React.useState("");
+  const handleChange = (event) => setSearch(event.target.value);
   const [loading, setLoading] = useState(true);
 
   const { isOpen, onOpen, onClose } = useDisclosure(); // used for the mobile nav menu
-  const { 
-    isOpen: isOpen_search, 
-    onOpen: onOpen_search, 
-    onClose: onClose_search 
+  const {
+    isOpen: isOpen_search,
+    onOpen: onOpen_search,
+    onClose: onClose_search,
   } = useDisclosure();
 
-  const [searchResults, setSearchResults] = useState([])
+  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
-
-    if (search=="") return;
+    if (search == "") return;
 
     setLoading(true);
 
     const data = {
-        q: search
+      q: search,
     };
 
     fetch("/api/search/", {
-        method: "POST",
-        headers: {'Content-Type': 'application/json'}, 
-        body: JSON.stringify(data)
-    }).then(res => res.json().then((response) => {
-        
-        if (response.status){
-            setSearchResults(response.message);
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    }).then((res) =>
+      res.json().then((response) => {
+        if (response.status) {
+          setSearchResults(response.message);
         }
 
         setLoading(false);
-
-    }));
-
+      })
+    );
   }, [search]);
 
   // used to control the popover (for the admin links)
@@ -170,7 +174,6 @@ export default function NavBar(props) {
 
   return (
     <>
-
       <Modal
         isOpen={isOpen_search}
         onClose={onClose_search}
@@ -180,27 +183,20 @@ export default function NavBar(props) {
       >
         <ModalOverlay />
         <ModalContent>
-
           <ModalBody>
-
-            <Box height={'20px'}></Box>
-
-            <Center>
-              <Flex
-                flexDirection={'row'}
-                width={"100%"}
-              >
-                <Input 
-                placeholder='Search' 
-                size='md' 
-                flex={1}
-                value={search}
-                onChange={handleChange}
+            <Center paddingTop={"20px"}>
+              <Flex flexDirection={"row"} width={"100%"}>
+                <Input
+                  placeholder="Search"
+                  size="md"
+                  flex={1}
+                  value={search}
+                  onChange={handleChange}
                 />
                 <Box width={"8px"}></Box>
                 <IconButton
                   size={"md"}
-                  colorScheme='blue'
+                  colorScheme="blue"
                   icon={<SearchIcon />}
                   aria-label={"Search"}
                   onClick={() => {}}
@@ -208,75 +204,66 @@ export default function NavBar(props) {
               </Flex>
             </Center>
 
-            <Box height={'20px'}></Box>
-            <Box height={'1px'} width='100%' bg={'#eee'}></Box>
-            <Box height={'20px'}></Box>
+            <Divider paddingY={"10px"} />
 
-            {search==="" ?
-            <Center mb={'10px'} mt={'10px'}>
-              <Text fontWeight={"500"} color={'gray.600'}>Enter a search term in the input above to launch a search</Text>
-            </Center>
-            :
-            <>
-              {loading ? (
-              <Loader
-                color="rgb(94, 94, 94)"
-                size={30}
-                noAspectRatio={true}
-                label="Searching..."
-              />
-              ) : (
-                <>
-                { searchResults.length===0 ?
-                <Center mb={'10px'} mt={'10px'}>
-                  <Text fontWeight={"500"} color={'gray.600'}>No result found for the term "{search}"</Text>
-                </Center>
-                :
-                <>
-                { searchResults.map((result) => (
+            {search === "" ? (
+              <Center mb={"10px"} mt={"10px"}>
+                <Text fontWeight={"500"} color={"gray.600"}>
+                  Enter a search term in the input above to launch a search
+                </Text>
+              </Center>
+            ) : (
+              <>
+                {loading ? (
+                  <Loader
+                    color="rgb(94, 94, 94)"
+                    size={30}
+                    noAspectRatio={true}
+                    label="Searching..."
+                  />
+                ) : (
                   <>
-                    <Box
-                      m={"10px"}
-                      key={result.id}
-                    >
-                      <Flex
-                        flexDirection={'row'}
-                      >
-                        <Flex flexDirection={'column'} flex={1}>
-                          <Text
-                          fontWeight='bold' 
-                          fontSize="lg"
-                          >{result.name}</Text>
-                          <Text
-                            fontWeight='500' 
-                            fontSize="sm"
-                          >{result.type[0].toUpperCase() + result.type.slice(1)}</Text>
-                        </Flex>
+                    {searchResults.length === 0 ? (
+                      <Center mb={"10px"} mt={"10px"}>
+                        <Text fontWeight={"500"} color={"gray.600"}>
+                          No result found for the term "{search}"
+                        </Text>
+                      </Center>
+                    ) : (
+                      <>
+                        {searchResults.map((result) => (
+                          <>
+                            <Box m={"10px"} key={result.id}>
+                              <Flex flexDirection={"row"}>
+                                <Flex flexDirection={"column"} flex={1}>
+                                  <Text fontWeight="bold" fontSize="lg">
+                                    {result.name}
+                                  </Text>
+                                  <Text fontWeight="500" fontSize="sm">
+                                    {result.type[0].toUpperCase() +
+                                      result.type.slice(1)}
+                                  </Text>
+                                </Flex>
 
-                        <Link
-                          as={ReactRouterLink}
-                          to={"/"+result.type+"/"+result.id}
-                          style={{ textDecoration: "none" }}
-                        >
-                          <Button
-                          variant={"outline"}
-                          onClick
-                          >
-                            See more
-                          </Button>
-                        </Link>
-
-                      </Flex>
-                    </Box>
+                                <Link
+                                  as={ReactRouterLink}
+                                  to={"/" + result.type + "/" + result.id}
+                                  style={{ textDecoration: "none" }}
+                                >
+                                  <Button variant={"outline"} onClick>
+                                    See more
+                                  </Button>
+                                </Link>
+                              </Flex>
+                            </Box>
+                          </>
+                        ))}
+                      </>
+                    )}
                   </>
-                ))}
-                </>
-                }
-                </>
-              )}
-            </>
-            }
-
+                )}
+              </>
+            )}
           </ModalBody>
 
           <ModalFooter>

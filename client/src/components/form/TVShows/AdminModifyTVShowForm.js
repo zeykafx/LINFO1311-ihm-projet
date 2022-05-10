@@ -10,7 +10,7 @@ import CDateInput from "../inputs/CDateInput.js";
 import CLongTextInput from "../inputs/CLongTextInput.js";
 import { useToast } from "@chakra-ui/react";
 
-function AdminModifyTVShowForm({ TVShowData }) {
+function AdminModifyTVShowForm({ TVShowData, fetchTVShows, handleModalClose }) {
   const [name, setName] = useState(TVShowData.name);
   const [director, setDirector] = useState(TVShowData.director);
   const [coActors, setCoActors] = useState(TVShowData.coActors);
@@ -66,6 +66,8 @@ function AdminModifyTVShowForm({ TVShowData }) {
             duration: 15000,
             isClosable: true,
           });
+          fetchTVShows();
+          handleModalClose();
         } else {
           // Error while trying
           setResponseType("error");

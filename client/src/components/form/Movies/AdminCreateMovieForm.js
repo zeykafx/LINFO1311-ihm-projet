@@ -1,5 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
+import { useToast } from "@chakra-ui/react";
+
 
 import CButton from '../buttons/CButton';
 import CTextInput from '../inputs/CTextInput';
@@ -23,6 +25,7 @@ function AdminCreateMovieForm({}) {
     const [filename, setFilename] = useState("");
 
     const [response, setResponse] = useState("");
+    const toast = useToast();
 
     const isFormComplete = () => {
         return  name!=="" &&
@@ -58,6 +61,14 @@ function AdminCreateMovieForm({}) {
             
             if (response.status){
                 // Movue creation successful
+                toast({
+                    title: "Success",
+                    description: "This movie has succesfully been created ",
+                    status: "success",
+                    position: "bottom-left",
+                    duration: 15000,
+                    isClosable: true,
+                  });
             } else {
                 // Error while trying
                 setResponse(response.message)

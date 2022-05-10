@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
 import "./Index.css";
 
 import MoviesViewer from "../components/clientViewers/MoviesViewer";
@@ -10,10 +9,8 @@ import {
   Box,
   Flex,
   Spacer,
-  Center,
   Text,
   Square,
-  Button,
 } from "@chakra-ui/react";
 
 import MoviesCardsViewer from "../components/clientViewers/MoviesCardsViewer.js";
@@ -102,7 +99,7 @@ function Index({ isSelected }) {
                   Actress
                 </Text>
 
-                <a href="facebook.com" className="socialLink">
+                <a href="https://facebook.com" className="socialLink">
                   <Square
                     size={{ base: "35px", lg: "50px" }}
                     display="flex"
@@ -112,7 +109,7 @@ function Index({ isSelected }) {
                     <img className="socialIcon" src={icon_facebook}></img>
                   </Square>
                 </a>
-                <a href="twitter.com" className="socialLink">
+                <a href="https://twitter.com" className="socialLink">
                   <Square
                     size={{ base: "35px", lg: "50px" }}
                     display="flex"
@@ -122,7 +119,7 @@ function Index({ isSelected }) {
                     <img className="socialIcon" src={icon_twitter}></img>
                   </Square>
                 </a>
-                <a href="instagram.com" className="socialLink">
+                <a href="https://instagram.com" className="socialLink">
                   <Square
                     size={{ base: "35px", lg: "50px" }}
                     display="flex"

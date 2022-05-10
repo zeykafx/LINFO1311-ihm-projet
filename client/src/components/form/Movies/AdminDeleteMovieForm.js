@@ -7,7 +7,7 @@ import CButton from "../buttons/CButton";
 import "../commonStyle.css";
 import "./AdminDeleteMovieForm.css";
 
-function AdminDeleteMovieForm({ movieData }) {
+function AdminDeleteMovieForm({ movieData, fetchMovies, handleModalClose }) {
   const [responseType, setResponseType] = useState("");
   const [response, setResponse] = useState("");
 
@@ -38,6 +38,8 @@ function AdminDeleteMovieForm({ movieData }) {
             duration: 15000,
             isClosable: true,
           });
+          fetchMovies();
+          handleModalClose();
         } else {
           // Error while trying
           setResponseType("error");

@@ -17,12 +17,12 @@ export default function PhotoUploader({
     new Compressor(image, {
       quality: 0.8,
       success: (result) => {
-        uploadToServer(result, `${result.name}-${Date.now()}`);
+        uploadToServer(result, `${result.name}-${Date.now()}`, result.type.split("/")[1]);
       },
     });
   };
 
-  let uploadToServer = (image, name) => {
+  let uploadToServer = (image, name, ext) => {
     let formData = new FormData();
     formData.append("image", image, name); // append the file and the filename to the form data, the form data is required if we want multer to parse the file correctly
     fetch("/api/upload", {
@@ -36,7 +36,7 @@ export default function PhotoUploader({
         setErrorMessage("Couldn't updload the image, please try again...");
       } else {
         // send the name of the file back up to the form so that we can link the name of the file to the movie/tv series in the database
-        filenameFunction(name);
+        filenameFunction(name+"." + ext);
       }
     });
   };

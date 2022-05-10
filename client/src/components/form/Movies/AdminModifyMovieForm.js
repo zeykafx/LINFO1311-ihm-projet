@@ -10,7 +10,7 @@ import CDateInput from "../inputs/CDateInput.js";
 import CLongTextInput from "../inputs/CLongTextInput.js";
 import { useToast } from "@chakra-ui/react";
 
-function AdminModifyMovieForm({ movieData }) {
+function AdminModifyMovieForm({ movieData, fetchMovies, handleModalClose }) {
   const [name, setName] = useState(movieData.name);
   const [director, setDirector] = useState(movieData.director);
   const [coActors, setCoActors] = useState(movieData.coActors);
@@ -62,6 +62,9 @@ function AdminModifyMovieForm({ movieData }) {
             duration: 15000,
             isClosable: true,
           });
+
+          fetchMovies();
+          handleModalClose();
         } else {
           // Error while trying
           setResponseType("error");
