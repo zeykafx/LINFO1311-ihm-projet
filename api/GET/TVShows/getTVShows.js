@@ -12,6 +12,10 @@ export const getTVShows = (req, res, next) => {
         return;
     }
 
+    results.rows.sort((a, b) => {
+        return a.releaseDate - b.releaseDate;
+    })
+
     res.send({ 
         status: true,
         message: results.rows
