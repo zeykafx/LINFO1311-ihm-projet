@@ -17,6 +17,7 @@ import {ModifyMovie} from "./POST/Movies/ModifyMovie.js";
 import {DeleteMovie} from "./POST/Movies/DeleteMovie.js";
 
 import {client_getMovies} from "./POST/Movies/Client/client_getMovies.js";
+import {client_getMovieFromID} from "./POST/Movies/Client/client_getMovieFromID.js";
 import {getMovies} from "./GET/Movies/getMovies.js";
 
 // TV Shows imports
@@ -25,7 +26,10 @@ import {ModifyTVShow} from "./POST/TVShows/ModifyTVShow.js";
 import {DeleteTVShow} from "./POST/TVShows/DeleteTVShow.js";
 
 import {client_getTVShows} from "./POST/TVShows/Client/client_getTVShows.js";
+import { client_getTVShowFromID } from "./POST/TVShows/Client/client_getTVShowFromID.js";
 import {getTVShows} from "./GET/TVShows/getTVShows.js";
+
+// Others
 import {UploadImage} from "./POST/upload.js"
 import {isLoggedIn, logOut} from "./GET/accountInfo.js";
 import { getBiography } from "./GET/getBiography.js";
@@ -75,6 +79,7 @@ apiRouter.post("/movies/modify", ModifyMovie);
 apiRouter.post("/movies/delete", DeleteMovie);
 
 apiRouter.post("/movies/client/get", client_getMovies);
+apiRouter.post("/movies/client/getFromID", client_getMovieFromID);
 apiRouter.get("/movies/get", getMovies);
 
 // TV Show system
@@ -83,6 +88,7 @@ apiRouter.post("/tvshows/modify", ModifyTVShow);
 apiRouter.post("/tvshows/delete", DeleteTVShow);
 
 apiRouter.post("/tvshows/client/get", client_getTVShows);
+apiRouter.post("/tvshows/client/getFromID", client_getTVShowFromID);
 apiRouter.get("/tvshows/get", getTVShows);
 
 // Search

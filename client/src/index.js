@@ -13,6 +13,9 @@ import Index from "./views/Index.js";
 import { Gallery } from "./views/Gallery";
 import { Contact } from "./views/Contact";
 
+import { Movie } from "./views/Movie";
+import { TVShow } from "./views/TVShow";
+
 import AccountPage from "./views/Admin/AccountPage";
 import CreatePage from "./views/Admin/CreatePage";
 import EditPage from "./views/Admin/EditPage";
@@ -52,6 +55,10 @@ function MainApp() {
         <Routes>
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/contact" element={<Contact />} />
+
+          <Route path="/movie/:id" element={<Movie/>} />
+
+          <Route path="/tvShow/:id" element={<TVShow/>} />
 
           <Route path="/" element={<Index />} />
 
