@@ -43,7 +43,7 @@ export default function PhotoUploader({
 
   return (
     <div className={"PhotoUploaderContainer" + (disabled ? " disabled" : "")}>
-        <label className="PhotoUploader-label" for="PhotoUploaderInput">{labelText}</label>
+        <label className="PhotoUploader-label" htmlFor="PhotoUploaderInput">{labelText}</label>
         {inheritedErrorMessageExistence && inheritedErrorMessage !== "" && (
           <h3 className="InputErrorMessage">{inheritedErrorMessage}</h3>
         )}

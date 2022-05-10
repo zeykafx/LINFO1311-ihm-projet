@@ -30,16 +30,22 @@ import { client_getTVShowFromID } from "./POST/TVShows/Client/client_getTVShowFr
 import {getTVShows} from "./GET/TVShows/getTVShows.js";
 
 // Others
-import {AddImageToGallery, UploadImage} from "./POST/upload.js"
 import {isLoggedIn, logOut} from "./GET/accountInfo.js";
 import { getBiography } from "./GET/getBiography.js";
 import { editBiography } from "./POST/editBiography.js";
+
+// images
+import {AddImageToGallery, UploadImage} from "./POST/Images/upload.js"
+import {ModifyImage} from "./POST/Images/ModifyImages.js";
+import { getImages } from "./GET/getImages.js";
+import { DeleteImage } from "./POST/Images/DeleteImages.js";
 
 // Search imports
 import { Search } from "./POST/Search/Search.js";
 
 // Contact imports
 import { ReceiveContactMessage } from "./POST/Contact/ReceiveContactMessage.js";
+
 
 
 export const apiRouter = express.Router();
@@ -60,11 +66,16 @@ export const upload = multer({
 
 // API ROUTES
 apiRouter.post("/upload", upload.single("image"), UploadImage);
+
+// IMAGES
 apiRouter.post("/image/upload", AddImageToGallery);
+apiRouter.get("/images/get", getImages);
+apiRouter.post("/images/modify", ModifyImage);
+apiRouter.post("/images/delete", DeleteImage);
 
 // biography routes
-apiRouter.get("/biography", getBiography)
-apiRouter.post("/biography/modify", editBiography)
+apiRouter.get("/biography", getBiography);
+apiRouter.post("/biography/modify", editBiography);
 
 // Account system
 apiRouter.post("/account/login", Login);

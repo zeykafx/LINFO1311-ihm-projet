@@ -9,10 +9,10 @@ import {
   HStack,
 } from "@chakra-ui/react";
 import { Link as ReactRouterLink } from "react-router-dom";
-import PhotoUploader from "../../components/form/inputs/PhotoUploader";
-import CButton from "../../components/form/buttons/CButton";
-import CTextInput from "../../components/form/inputs/CTextInput";
-import CLongTextInput from "../../components/form/inputs/CLongTextInput";
+import PhotoUploader from "../../../components/form/inputs/PhotoUploader";
+import CButton from "../../../components/form/buttons/CButton";
+import CTextInput from "../../../components/form/inputs/CTextInput";
+import CLongTextInput from "../../../components/form/inputs/CLongTextInput";
 
 
 export default function ImageUploadPage() {
@@ -69,7 +69,7 @@ export default function ImageUploadPage() {
 
 
   return (
-    <Box p={3}>
+    <Box>
       <Heading>Upload Images</Heading>
       <Text>
         You can upload images to the{" "}

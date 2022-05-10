@@ -98,7 +98,6 @@ function AdminMoviesViewer({}) {
 
   return (
     <>
-
       <Modal isOpen={isOpen} onClose={handleModalClose}>
         <ModalOverlay />
         <ModalContent>

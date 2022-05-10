@@ -170,11 +170,11 @@ function Index({ isSelected }) {
         </Flex>
       </Box>
 
-      <MoviesViewer maxNumberOfMovies={10} />
+      <MoviesViewer maxNumberOfMovies={100} />
 
       <Biography />
 
-      <TVShowsViewer maxNumberOfTVShows={10} />
+      <TVShowsViewer maxNumberOfTVShows={100} />
     </Box>
   );
 }

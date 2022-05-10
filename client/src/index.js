@@ -22,7 +22,7 @@ import EditPage from "./views/Admin/EditPage";
 import BioTextEditor from "./views/Admin/BioTextEditor";
 
 import AdminSubPages from "./views/Admin/Components/AdminSubPages";
-import ImageUploadPage from "./views/Admin/ImageUploadPage";
+import AdminGalleryPage from "./views/Admin/AdminGalleryPage";
 
 function MainApp() {
   const [isUserAuthed, setIsUserAuthed] = useState(false);
@@ -103,10 +103,10 @@ function MainApp() {
           />
 
         <Route
-            path={"/admin/image-upload"}
+            path={"/admin/gallery-editor"}
             element={
               <AdminSubPages isUserAuthed={isUserAuthed}>
-                <ImageUploadPage />
+                <AdminGalleryPage />
               </AdminSubPages>
             }
           />
