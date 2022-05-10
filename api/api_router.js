@@ -31,6 +31,9 @@ import {isLoggedIn, logOut} from "./GET/accountInfo.js";
 import { getBiography } from "./GET/getBiography.js";
 import { editBiography } from "./POST/editBiography.js";
 
+// Search imports
+import { Search } from "./POST/Search/Search.js";
+
 
 export const apiRouter = express.Router();
 
@@ -66,7 +69,6 @@ apiRouter.post("/account/getAccountDataByUsername", getAccountDataByUsername);
 apiRouter.get("/account/isLoggedIn", isLoggedIn);
 apiRouter.get("/account/logOut", logOut);
 
-
 // Movies system
 apiRouter.post("/movies/create", CreateMovie);
 apiRouter.post("/movies/modify", ModifyMovie);
@@ -82,3 +84,6 @@ apiRouter.post("/tvshows/delete", DeleteTVShow);
 
 apiRouter.post("/tvshows/client/get", client_getTVShows);
 apiRouter.get("/tvshows/get", getTVShows);
+
+// Search
+apiRouter.post("/search/", Search);
