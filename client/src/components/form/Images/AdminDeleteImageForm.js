@@ -22,6 +22,7 @@ function AdminDeleteImageForm({
 
     const data = {
       name: imageData.name,
+      filename: imageData.filename
     };
 
     fetch("/api/images/delete", {

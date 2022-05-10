@@ -1,8 +1,15 @@
-import { pool } from "../../database/queries.js"
+import { pool } from "../../database/queries.js";
 
 export const UploadImage = (req, res, next) => {
-  console.log(req.file);
-  res.send(JSON.stringify({ status: "accepted", error: null }));
+  if (req.session.username && (req.session.isAdmin || req.session.isEditor)) {
+    console.log(req.file);
+    res.send(JSON.stringify({ status: "accepted", error: null }));
+  } else {
+    res.send({
+      status: false,
+      message: "You can't do that.",
+    });
+  }
 };
 
 export const AddImageToGallery = (req, res, next) => {

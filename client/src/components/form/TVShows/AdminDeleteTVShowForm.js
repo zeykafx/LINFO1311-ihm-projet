@@ -18,6 +18,7 @@ function AdminDeleteTVShowForm({ TVShowData, fetchTVShows, handleModalClose }) {
 
     const data = {
       id: TVShowData.id,
+      filename: TVShowData.filename
     };
 
     fetch("/api/tvshows/delete", {

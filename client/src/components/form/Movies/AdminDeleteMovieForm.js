@@ -18,6 +18,7 @@ function AdminDeleteMovieForm({ movieData, fetchMovies, handleModalClose }) {
 
     const data = {
       id: movieData.id,
+      filename: movieData.filename
     };
 
     fetch("/api/movies/delete", {
@@ -29,7 +30,6 @@ function AdminDeleteMovieForm({ movieData, fetchMovies, handleModalClose }) {
         if (response.status) {
           // Movie deletion successful
           setResponseType("success");
-          // setResponse("This movie has succesfully been deleted");
           toast({
             title: "Success",
             description: "This movie has succesfully been deleted ",
