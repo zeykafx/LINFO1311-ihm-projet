@@ -19,16 +19,19 @@ export const Gallery = (props) => {
 
     const [images, setImages] = useState([
         {
-            title: "Title 1",
+            name: "Title 1",
             filename: 'https://picsum.photos/id/1018/1000/1500/',
+            description: "Yoyo yo"
         },
         {
-            title: "Title 2",
+            name: "Title 2",
             filename: 'https://picsum.photos/id/1015/1000/600/',
+            description: "Yoyo yo"
         },
         {
-            title: "Long title fahiapfhafa 6 7a46a8f4 a64f6a46a 4fa6f",
+            name: "Long title fahiapfhafa 6 7a46a8f4 a64f6a46a 4fa6f",
             filename: 'https://picsum.photos/id/1019/1000/600/',
+            description: "Yoyo yo"
         },
     ]);
 
@@ -62,9 +65,12 @@ export const Gallery = (props) => {
             >
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>{selectedImage.title}</ModalHeader>
+                    <ModalHeader>{selectedImage.name}</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
+                        <Text fontWeight={"500"} fontSize="sm" color="black" mb="8px">
+                            {selectedImage.description}
+                        </Text>
                         <Box
                             w={"100%"}
                             h={"100%"}
@@ -151,7 +157,7 @@ export const Gallery = (props) => {
                                     shadow="md"
                                     textAlign={"center"}
                                 >
-                                <Text fontWeight={"500"} color="black" fontSize={"sm"}>{image.title}</Text>
+                                <Text fontWeight={"500"} color="black" fontSize={"sm"}>{image.name}</Text>
                             </Box>
                         </GridItem>
                         ))}

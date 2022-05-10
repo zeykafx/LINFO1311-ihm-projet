@@ -38,6 +38,9 @@ import { editBiography } from "./POST/editBiography.js";
 // Search imports
 import { Search } from "./POST/Search/Search.js";
 
+// Contact imports
+import { ReceiveContactMessage } from "./POST/Contact/ReceiveContactMessage.js";
+
 
 export const apiRouter = express.Router();
 
@@ -93,3 +96,6 @@ apiRouter.get("/tvshows/get", getTVShows);
 
 // Search
 apiRouter.post("/search/", Search);
+
+// Contact
+apiRouter.post("/contact/send", ReceiveContactMessage);

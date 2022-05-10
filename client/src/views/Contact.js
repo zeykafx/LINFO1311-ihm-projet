@@ -1,20 +1,83 @@
-import {Box, Button, Flex, FormControl, FormLabel, Heading, Input, InputGroup, InputLeftElement, Text, Textarea, useColorModeValue, VStack} from "@chakra-ui/react";
+import {Box, Button, Flex, FormControl, FormLabel, useToast, Input, InputGroup, InputLeftElement, Text, Textarea, useColorModeValue, VStack} from "@chakra-ui/react";
 import {BsPerson, AiOutlineMail} from "react-icons/all";
-import React from "react";
-
-
-let validateForm = () => {
-
-}
+import React, { useState } from "react";
 
 export const Contact = (props) => {
+
+    const [name, setName] = useState("");
+    const [mail, setMail] = useState("");
+    const [message, setMessage] = useState("");
+
+    const [isSending, setIsSending] = useState(false);
+    const toast = useToast();
+
+    const isFormValid = () => {
+        return name && mail && message &&
+               name!=="" && mail !== "" && message != "" &&
+               mail.includes("@")
+    }
+
+    const sendMessage = () => {
+        setIsSending(true);
+
+        if (!isFormValid()){
+            toast({
+                title: "Please fill all the inputs",
+                description: "",
+                status: "error",
+                position: "bottom-left",
+                duration: 15000,
+                isClosable: true,
+            });
+            setIsSending(false);
+            return;
+        }
+
+        const data = {
+            name: name,
+            mail: mail,
+            message: message,
+        };
+
+        fetch("/api/contact/send", {
+            method: "POST",
+            headers: {'Content-Type': 'application/json'}, 
+            body: JSON.stringify(data)
+        }).then(res => res.json().then((response) => {
+            
+            if (response.status){
+                toast({
+                    title: "The message has been sent successfully",
+                    description: "",
+                    status: "success",
+                    position: "bottom-left",
+                    duration: 15000,
+                    isClosable: true,
+                  });
+            } else {
+                toast({
+                    title: "Error, the message has not been sent",
+                    description: "Error message: " + response.message,
+                    status: "error",
+                    position: "bottom-left",
+                    duration: 15000,
+                    isClosable: true,
+                  });
+            }
+
+            setIsSending(false);
+
+        }));
+
+    }
+
     return (
         <Flex
             align="center"
             justify="center"
             width={'100vw'}
             height={'100vh'}
-            // bg='#eee'
+            bg='#eee'
             maxW={"100%"}
             >
             <Box
@@ -37,7 +100,10 @@ export const Contact = (props) => {
 
                                 <InputGroup>
                                     <InputLeftElement children={<BsPerson/>}/>
-                                    <Input type="text" name="name" placeholder="Your Name"/>
+                                    <Input type="text" name="name" placeholder="Your Name"
+                                    value={name}
+                                    onChange={(event) => setName(event.target.value)}
+                                    />
                                 </InputGroup>
                             </FormControl>
 
@@ -50,6 +116,8 @@ export const Contact = (props) => {
                                         type="email"
                                         name="email"
                                         placeholder="Your Email"
+                                        value={mail}
+                                        onChange={(event) => setMail(event.target.value)}
                                     />
                                 </InputGroup>
                             </FormControl>
@@ -62,6 +130,8 @@ export const Contact = (props) => {
                                     placeholder="Your Message"
                                     rows={6}
                                     resize="none"
+                                    value={message}
+                                    onChange={(event) => setMessage(event.target.value)}
                                 />
                             </FormControl>
 
@@ -72,7 +142,11 @@ export const Contact = (props) => {
                                 _hover={{
                                     bg: 'blue.500',
                                 }}
-                                isFullWidth>
+                                isLoading={isSending}
+                                loadingText='Sending...'
+                                isFullWidth
+                                onClick={() => sendMessage()}
+                                >
                                 Send Message
                             </Button>
                         </VStack>
