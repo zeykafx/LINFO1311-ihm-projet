@@ -3,10 +3,10 @@ import { unlinkSync } from "fs";
 
 export const DeleteImage = (req, res, next) => {
   if (req.session.username && (req.session.isAdmin || req.session.isEditor)) {
-    if (req && req.body && req.body.name && req.body.filename) {
+    if (req && req.body && req.body.id && req.body.filename) {
       pool.query(
-        "DELETE FROM public.imagegallery WHERE name=$1",
-        [req.body.name],
+        "DELETE FROM public.imagegallery WHERE id=$1",
+        [req.body.id],
         (error, results) => {
           if (error) {
             res.send({

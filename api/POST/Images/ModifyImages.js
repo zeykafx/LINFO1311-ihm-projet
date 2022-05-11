@@ -5,13 +5,13 @@ export const ModifyImage = (req, res, next) => {
     if (
       req &&
       req.body &&
-      req.body.hasOwnProperty("old_name") &&
+      req.body.hasOwnProperty("id") &&
       req.body.hasOwnProperty("name") &&
       req.body.hasOwnProperty("description")
     ) {
       pool.query(
-        "SELECT * FROM public.imagegallery WHERE name=$1",
-        [req.body.old_name],
+        "SELECT * FROM public.imagegallery WHERE id=$1",
+        [req.body.id],
         (error, results) => {
           if (error) {
             res.send({
@@ -32,11 +32,11 @@ export const ModifyImage = (req, res, next) => {
           }
 
           pool.query(
-            'UPDATE public.imagegallery SET name=$1, description=$2 WHERE name=$3',
+            'UPDATE public.imagegallery SET name=$1, description=$2 WHERE id=$3',
             [
               req.body.name,
               req.body.description,
-              req.body.old_name
+              req.body.id,
             ],
             (error, results) => {
               if (error) {

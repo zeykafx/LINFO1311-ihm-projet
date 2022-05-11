@@ -29,7 +29,7 @@ export default function AdminModifyImageForm({
     setResponse("");
 
     const data = {
-      old_name: imageData.name,
+      id: imageData.id,
       name: name,
       description: description,
     };

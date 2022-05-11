@@ -26,6 +26,7 @@ export const AddImageToGallery = (req, res, next) => {
         [req.body.name, req.body.description, req.body.filename],
         (error, results) => {
           if (error) {
+            console.log(error);
             res.send({
               status: false,
               message: "DATABASE_PROBLEM",

@@ -21,6 +21,7 @@ function AdminDeleteImageForm({
     setResponse("");
 
     const data = {
+      id: imageData.id,
       name: imageData.name,
       filename: imageData.filename
     };
