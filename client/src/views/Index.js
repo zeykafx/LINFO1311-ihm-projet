@@ -17,7 +17,6 @@ import MoviesCardsViewer from "../components/clientViewers/MoviesCardsViewer.js"
 
 import icon_facebook from "./../icons/facebook.png";
 import icon_instagram from "./../icons/instagram.png";
-import icon_twitter from "./../icons/twitter.png";
 import Biography from "../components/AboutSlides/Biography.js";
 
 function Index({ isSelected }) {
@@ -96,10 +95,9 @@ function Index({ isSelected }) {
                   fontWeight="semibold"
                   fontSize={{ base: "xl", lg: "2xl" }}
                 >
-                  Actress
                 </Text>
 
-                <a href="https://facebook.com" className="socialLink">
+                <a href="https://www.facebook.com/medeea.marinescu" className="socialLink">
                   <Square
                     size={{ base: "35px", lg: "50px" }}
                     display="flex"
@@ -109,17 +107,7 @@ function Index({ isSelected }) {
                     <img className="socialIcon" src={icon_facebook}></img>
                   </Square>
                 </a>
-                <a href="https://twitter.com" className="socialLink">
-                  <Square
-                    size={{ base: "35px", lg: "50px" }}
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <img className="socialIcon" src={icon_twitter}></img>
-                  </Square>
-                </a>
-                <a href="https://instagram.com" className="socialLink">
+                <a href="https://www.instagram.com/medeeamarinescu/?hl=fr" className="socialLink">
                   <Square
                     size={{ base: "35px", lg: "50px" }}
                     display="flex"
