@@ -32,10 +32,11 @@ export const ModifyImage = (req, res, next) => {
           }
 
           pool.query(
-            'UPDATE public.imagegallery SET name=$1, description=$2',
+            'UPDATE public.imagegallery SET name=$1, description=$2 WHERE name=$3',
             [
               req.body.name,
               req.body.description,
+              req.body.old_name
             ],
             (error, results) => {
               if (error) {
