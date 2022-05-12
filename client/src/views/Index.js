@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Index.css";
 
 import MoviesViewer from "../components/clientViewers/MoviesViewer";
@@ -11,6 +11,7 @@ import {
   Spacer,
   Text,
   Square,
+  useToast,
 } from "@chakra-ui/react";
 
 import MoviesCardsViewer from "../components/clientViewers/MoviesCardsViewer.js";
@@ -21,10 +22,41 @@ import Biography from "../components/AboutSlides/Biography.js";
 
 function Index({ isSelected }) {
   const [contentIndex, setContentIndex] = useState(0);
+  const toast = useToast();
 
-  const text =
-    "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam";
+  const [biography, setBiographyText] = useState("");
   const [isFullTextVisible, setIsFullTextVisible] = useState(false);
+
+
+  let getBiography = () => {
+    fetch("/api/biography", {
+      method: "GET",
+      headers: {
+        headers: {'Content-Type': 'application/json'}, 
+      },
+      credentials: "same-origin",
+    })
+      .then((res) => res.json())
+      .then((json_res) => {
+        if (!json_res.status) {
+          toast({
+            title: "Error, couldn't get the biography",
+            description: "Error message: " + json_res.message,
+            status: "error",
+            position: "bottom-left",
+            duration: 15000,
+            isClosable: true,
+          });
+        } else {
+          setBiographyText(json_res.biography.content_md)
+        }
+      });
+  };
+
+  useEffect(() => {
+    getBiography();
+  }, [])
+
 
   const getContent = () => {
     switch (contentIndex) {
@@ -125,7 +157,7 @@ function Index({ isSelected }) {
               >
                 {isFullTextVisible ? (
                   <>
-                    {text + " "}
+                    {biography + " "}
                     <span
                       className="textAction"
                       onClick={() => setIsFullTextVisible(false)}
@@ -135,7 +167,7 @@ function Index({ isSelected }) {
                   </>
                 ) : (
                   <>
-                    {text.slice(0, 175) + "... "}
+                    {biography.slice(0, 175) + "... "}
                     <span
                       className="textAction"
                       onClick={() => setIsFullTextVisible(true)}
@@ -160,7 +192,7 @@ function Index({ isSelected }) {
 
       <MoviesViewer maxNumberOfMovies={100} />
 
-      <Biography />
+      <Biography biography={biography}/>
 
       <TVShowsViewer maxNumberOfTVShows={100} />
     </Box>

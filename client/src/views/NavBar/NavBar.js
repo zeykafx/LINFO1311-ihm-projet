@@ -52,7 +52,7 @@ export const links = {
   Movies: "movies",
   Television: "television",
   Gallery: "gallery",
-  Contact: "contact"
+  Contact: "contact",
 };
 export const adminLinks = [
   { name: "Admin Panel", link: "admin" },
@@ -242,10 +242,24 @@ export default function NavBar(props) {
                                   <Text fontWeight="bold" fontSize="lg">
                                     {result.name}
                                   </Text>
-                                  <Text fontWeight="500" fontSize="sm">
-                                    {result.type[0].toUpperCase() +
-                                      result.type.slice(1)}
-                                  </Text>
+                                  <VStack align="start" spacing={0}>
+                                    <Text fontWeight="500" fontSize="sm">
+                                      {result.type[0].toUpperCase() +
+                                        result.type.slice(1)}
+                                    </Text>
+                                    <Text fontWeight="500" fontSize="sm">
+                                      Directed by: {result.director}
+                                    </Text>
+                                    <Text fontWeight="500" fontSize="sm">
+                                      Playing as: {result.actorRole}
+                                    </Text>
+                                    <Text fontWeight="500" fontSize="sm">
+                                      Release date:{" "}
+                                      {new Date(
+                                        parseInt(result.releaseDate)
+                                      ).toDateString()}
+                                    </Text>
+                                  </VStack>
                                 </Flex>
 
                                 <Link
@@ -313,8 +327,10 @@ export default function NavBar(props) {
             display={{ md: "none" }} // shows and hides the button based on the 'md' breakpoint
             onClick={isOpen ? onClose : onOpen}
           />
-        
-          <Text textAlign={"center"} display={{md:"none"}} flex={1}><b>Medeea Marinescu</b></Text>
+
+          <Text textAlign={"center"} display={{ md: "none" }} flex={1}>
+            <b>Medeea Marinescu</b>
+          </Text>
 
           <HStack spacing={8} alignItems={"center"}>
             {/* All the links */}
@@ -331,8 +347,15 @@ export default function NavBar(props) {
               spacing={4}
               display={{ base: "none", md: "flex" }}
             >
-
-              <Text><b>Medeea Marinescu</b></Text>
+              <Link
+                as={ReactRouterLink}
+                to={"/"}
+                style={{ textDecoration: "none" }}
+              >
+                <Text>
+                  <b>Medeea Marinescu</b>
+                </Text>
+              </Link>
 
               {Object.keys(links).map((item, index) => (
                 <NavLink key={links[item]} name={item} link={links[item]} />
@@ -342,11 +365,12 @@ export default function NavBar(props) {
                 <Popover isOpen={isPopoverOpen} onClose={closePopover}>
                   <PopoverTrigger>
                     <Button
-                      color="blackAlpha.700"
                       display="inline-flex"
                       alignItems="center"
                       background={"white"}
                       _hover={{ bg: "gray.200" }}
+                      fontWeight={"bold"}
+                      color={'gray.500'}
                       _focus={{ boxShadow: "none" }}
                       rightIcon={<IoIosArrowDown />}
                       onClick={openPopover}

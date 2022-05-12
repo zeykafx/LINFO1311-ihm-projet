@@ -5,16 +5,15 @@ import path from "path";
 import url from "url";
 import session from "cookie-session";
 import hpp from "hpp"; // This protects against HTTP Parameter Pollution attacks
-import helmet from "helmet";
 import serverStatus from "./serverStats.cjs";
-import cors from "cors"
 
 
 import { apiRouter } from "./api/api_router.js";
-import * as dotenv from "dotenv";
+import env from './.env.cjs';
+const {COOKIE_SECRET} = env; // pas un fichier normal mais un fichier .env.js pour que ce soit + simple
 
 let __dirname = path.dirname(url.fileURLToPath(import.meta.url));
-dotenv.config({ path: path.resolve(__dirname, ".env") });
+
 
 // setup
 const app = express();
@@ -25,21 +24,11 @@ app.use(logger("dev"));
 
 // Security Configs
 app.use(hpp());
-// app.use(
-//   helmet({
-//     contentSecurityPolicy: false,
-//   })
-// );
-// app.use(
-//   cors({
-//       origin: 'http://localhost',
-//       credentials: true,
-//   })
-// );
+
 app.use(
   session({
     name: "session",
-    secret: process.env.COOKIE_SECRET,
+    secret: COOKIE_SECRET,
     expires: new Date(Date.now() + 24 * 60 * 60 * 1000), // 24 hours
   })
 );

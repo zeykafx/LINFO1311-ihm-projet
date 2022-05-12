@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./Biography.css";
 
 import {
@@ -8,48 +8,13 @@ import {
   Text,
   Square,
   Skeleton,
-  useToast,
 } from "@chakra-ui/react";
 
 import ChakraUIRenderer from "chakra-ui-markdown-renderer";
 import ReactMarkdown from 'react-markdown'
 
 
-function Biography({}) {
-  const [BiographyText, setBiographyText] = useState(
-    null
-  );
-  const toast = useToast();
-
-  let getBiography = () => {
-    fetch("/api/biography", {
-      method: "GET",
-      headers: {
-        headers: {'Content-Type': 'application/json'}, 
-      },
-      credentials: "same-origin",
-    })
-      .then((res) => res.json())
-      .then((json_res) => {
-        if (!json_res.status) {
-          toast({
-            title: "Error, couldn't get the biography",
-            description: "Error message: " + json_res.message,
-            status: "error",
-            position: "bottom-left",
-            duration: 15000,
-            isClosable: true,
-          });
-        } else {
-            setBiographyText(json_res.biography.content_md)
-        }
-      });
-  };
-
-  useEffect(() => {
-    getBiography();
-  }, []) // fetch the biography when the component is mounted
-  
+function Biography({biography}) {
 
   return (
     <Center
@@ -76,7 +41,7 @@ function Biography({}) {
           justifyContent={"center"}
           alignItems={"center"}
           overflow={"hidden"}
-          size={{ base: "100%", lg: "48%" }}
+          size={{ base: "100%", lg: "30%" }}
           height={{ base: "40%", lg: "auto" }}
           m={{ base: "0%", lg: "1%" }}
           bg="#eee"
@@ -90,7 +55,7 @@ function Biography({}) {
         </Square>
         <Box
           overflow={"hidden"}
-          width={{ base: "98%", lg: "48%" }}
+          width={{ base: "98%", lg: "auto" }}
           height={{ base: "60%", lg: "auto" }}
           m={"1%"}
           borderRadius={5}
@@ -107,23 +72,12 @@ function Biography({}) {
           >
             My biography
           </Text>
-          {/* <Box
-            bg={"#dedede"}
-            width={"100%"}
-            height={"1px"}
-            margin={"10px 0"}
-            opacity={0.5}
-          >
-
-          </Box> */}
-          <Skeleton isLoaded={BiographyText !== null}>
-            {/* <Text color="gray.500" fontWeight="500" fontSize="sm" m="8px">
-                {BiographyText}
-            </Text> */}
+          
+          <Skeleton isLoaded={biography !== null}>
             
             <ReactMarkdown
                 components={ChakraUIRenderer()}
-                children={BiographyText}
+                children={biography}
                 skipHtml
             />
           </Skeleton>

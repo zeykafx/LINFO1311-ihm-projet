@@ -48,9 +48,9 @@ function Admin() {
       </Heading>
 
       <Grid
-        templateColumns={{ md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)", "2xl": "repeat(5, 1fr)"}}
+        templateColumns={{ md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)", "2xl": "repeat(3, 1fr)"}}
         templateRows="1fr "
-        gap={2}
+        gap={{base: 2, "2xl": 7}}
         p={3}
       >
         
@@ -75,12 +75,14 @@ function Admin() {
 export function Card(props) {
   return (
     <Box
-      // w="xs"
       bg={useColorModeValue("white", "gray.800")}
       shadow="lg"
       rounded="lg"
       p={2}
       borderWidth={1}
+      maxHeight={"40vh"}
+      overflow={"hidden"}
+      overflowY={"auto"}
     >
       {props.children}
     </Box>
