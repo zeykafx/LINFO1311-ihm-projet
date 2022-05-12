@@ -49,8 +49,10 @@ import Loader from "../../components/misc/Loader.js";
 
 export const links = {
   About: "",
+  Movies: "movies",
+  Television: "television",
   Gallery: "gallery",
-  Contact: "contact",
+  Contact: "contact"
 };
 export const adminLinks = [
   { name: "Admin Panel", link: "admin" },

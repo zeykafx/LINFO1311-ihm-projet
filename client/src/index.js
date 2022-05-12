@@ -16,6 +16,9 @@ import { Contact } from "./views/Contact";
 import { Movie } from "./views/Movie";
 import { TVShow } from "./views/TVShow";
 
+import { MoviesTab } from "./views/MoviesTab";
+import { TvTab } from "./views/TvTab";
+
 import AccountPage from "./views/Admin/AccountPage";
 import CreatePage from "./views/Admin/CreatePage";
 import EditPage from "./views/Admin/EditPage";
@@ -59,10 +62,12 @@ function MainApp() {
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/contact" element={<Contact />} />
 
+          <Route path="/movies" element={<MoviesTab/>} />
+          <Route path="/television" element={<TvTab/>} />
+
           <Route path="/movie/:id" element={<Movie/>} />
 
           <Route path="/tvShow/:id" element={<TVShow/>} />
-
 
           <Route
             path="/admin"
