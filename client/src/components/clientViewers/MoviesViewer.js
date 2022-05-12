@@ -104,17 +104,16 @@ function MoviesViewer({
         >
             <Text fontSize={"3xl"} color={"gray.500"} fontWeight={'bold'} textAlign={'center'} mt={'25px'} mb={'25px'}>Discover her best movies</Text>
             <Box
-                height={'26vh'}
+                height={'30vh'}
                 width={'100%'}
                 bg={'gray.200'}
                 overflowY={"hidden"}
                 overflowX={"auto"}
                 style={{flexShrink: 0}}
-                justifyContent="center"
-                display="flex"
+                flexShrink={0}
             >
                 <div className="horizontalScroller"
-                style={{width: 172*getNumberOfMovies()}}
+                style={{width: 172*getNumberOfMovies()+50+"px"}}
                 >
                 { response!=="" ?
                     <div itemId={0} className="errorContainer">
@@ -126,6 +125,7 @@ function MoviesViewer({
                     ? <Loader itemId={0} color="rgb(94, 94, 94)" size={30} noAspectRatio={true} label="Fetching the movies..."/>
                     :
                     <>
+                        <Box flex={1}></Box>
                         {MoviesList.map((movie) =>
                             <Flex
                             itemId={movie.id}
@@ -167,6 +167,7 @@ function MoviesViewer({
                                 </Text>
                             </Flex>
                         )}
+                        <Box flex={1}></Box>
                     </>
                     }
                     </>    

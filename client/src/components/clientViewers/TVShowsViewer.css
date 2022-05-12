@@ -8,6 +8,7 @@
     flex-direction: row;
     max-width: unset;
     justify-content: center;
+    min-width: 100%;
 }
 .posterBlurredTotal{
     position: absolute;

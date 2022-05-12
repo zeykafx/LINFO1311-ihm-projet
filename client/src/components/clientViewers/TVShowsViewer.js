@@ -75,17 +75,16 @@ function TVShowsViewer({
         >
             <Text fontSize={"3xl"} color={"gray.500"} fontWeight={'bold'} textAlign={'center'} mt={'25px'} mb={'25px'}>Discover her best TV Shows</Text>
             <Box
-                height={'26vh'}
+                height={'30vh'}
                 width={'100%'}
                 bg={'gray.200'}
                 overflowY={"hidden"}
                 overflowX={"auto"}
                 style={{flexShrink: 0}}
-                justifyContent="center"
-                display="flex"
+                flexShrink={0}
             >
                 <div className="horizontalScroller"
-                style={{width: 172*getNumberOfTvShows()}}
+                style={{width: 172*getNumberOfTvShows()+50+"px"}}
                 >
                 { response!=="" ?
                     <div itemId={0} className="errorContainer">
@@ -97,6 +96,7 @@ function TVShowsViewer({
                     ? <Loader itemId={0} color="rgb(94, 94, 94)" size={30} noAspectRatio={true} label="Fetching the TVShows..."/>
                     :
                     <>
+                        <Box flex={1}></Box>           
                         {TVShowsList.map((TVShow) =>
                             <Flex
                             itemId={TVShow.id}
@@ -138,6 +138,7 @@ function TVShowsViewer({
                                 </Text>
                             </Flex>
                         )}
+                        <Box flex={1}></Box>     
                     </>
                     }
                     </>    
