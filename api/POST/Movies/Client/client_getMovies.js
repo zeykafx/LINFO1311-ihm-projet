@@ -11,8 +11,9 @@ export const client_getMovies = (req, res, next) => {
         // hard limit of 100 movies
         const maxNumberOFMovies = (req.body.maxNumberOfMovies<=0) ? 100 : parseInt(req.body.maxNumberOfMovies);
 
-        pool.query('SELECT * FROM public.movies LIMIT $1', [maxNumberOFMovies], (error, results) => {
+        pool.query('SELECT * FROM public.movies ORDER BY "releaseDate" DESC LIMIT $1', [maxNumberOFMovies], (error, results) => {
             if (error) {
+                console.log(error);
                 res.send({ 
                     status: false,
                     message: "DATABASE_PROBLEM"

@@ -289,7 +289,9 @@ function MoviesCardsViewer({ maxNumberOfMovies = -1 }) {
                         height={"100%"}
                         width={"100%"}
                       >
-                        <Text color="black" fontWeight="bold" fontSize="lg">
+                        <Text color="black" fontWeight="bold" fontSize={
+                          movie.name.length > 30 ? "sm" : "lg"
+                        }>
                           {movie.name}
                         </Text>
                         <Text
@@ -306,7 +308,7 @@ function MoviesCardsViewer({ maxNumberOfMovies = -1 }) {
                           fontSize="sm"
                           marginBottom="8px"
                         >
-                          {movie.description.slice(0, 125) + "..."}
+                          {movie.description.slice(0, 100) + "..."}
                         </Text>
                         <Spacer />
                         <Button
