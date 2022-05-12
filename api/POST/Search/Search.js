@@ -11,7 +11,7 @@ export const Search = (req, res, next) => {
         const term = "%" + req.body.q + "%";
 
         // Movies
-        pool.query('SELECT * FROM public.movies WHERE name iLIKE $1', [term], (errorMovie, resultsMovies) => {
+        pool.query('SELECT * FROM public.movies WHERE name iLIKE $1 OR description iLIKE $1 OR director iLIKE $1', [term], (errorMovie, resultsMovies) => {
             if (errorMovie) {
                 res.send({ 
                     status: false,
@@ -21,7 +21,7 @@ export const Search = (req, res, next) => {
             }
         
             // Tv Shows
-            pool.query('SELECT * FROM public.tvshows WHERE name iLIKE $1', [term], (errorTvShows, resultsTvShows) => {
+            pool.query('SELECT * FROM public.tvshows WHERE name iLIKE $1 OR description iLIKE $1 OR director iLIKE $1', [term], (errorTvShows, resultsTvShows) => {
                 if (errorTvShows) {
                     res.send({ 
                         status: false,
