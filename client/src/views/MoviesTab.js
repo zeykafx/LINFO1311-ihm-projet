@@ -104,7 +104,7 @@ import { useNavigate } from "react-router-dom";
                     style={{
                       width: "100%",
                     }}
-                    src={"/photos/" + movie.posterImage}
+                    src={"/photos/" + movie.filename}
                   />
                 </AspectRatio>
                 <Box
