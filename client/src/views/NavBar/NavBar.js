@@ -313,6 +313,9 @@ export default function NavBar(props) {
             display={{ md: "none" }} // shows and hides the button based on the 'md' breakpoint
             onClick={isOpen ? onClose : onOpen}
           />
+        
+          <Text textAlign={"center"} display={{md:"none"}} flex={1}><b>Medeea Marinescu</b></Text>
+
           <HStack spacing={8} alignItems={"center"}>
             {/* All the links */}
 
@@ -328,6 +331,9 @@ export default function NavBar(props) {
               spacing={4}
               display={{ base: "none", md: "flex" }}
             >
+
+              <Text><b>Medeea Marinescu</b></Text>
+
               {Object.keys(links).map((item, index) => (
                 <NavLink key={links[item]} name={item} link={links[item]} />
               ))}
