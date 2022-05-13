@@ -43,7 +43,7 @@ export default function FeaturedTVShows() {
       <Heading size="md">Featured TV Shows:</Heading>
         {shows !== null ? (
           shows.map((show) => (
-            <>
+            <div key={show.id}>
               <Grid templateColumns={"0.2fr 3fr"}>
                 <GridItem colSpan={1}>
                   <Badge variant="subtle" colorScheme="green">
@@ -67,7 +67,7 @@ export default function FeaturedTVShows() {
                 </GridItem>
               </Grid>
               <Divider />
-            </>
+            </div>
           ))
         ) : (
           <Text>Loading...</Text>

@@ -2,14 +2,12 @@ import React, { useEffect, useState } from "react";
 import {
   Heading,
   Text,
-  HStack,
   Skeleton,
   Stat,
   StatLabel,
   StatNumber,
   StatHelpText,
   StatArrow,
-  StatGroup,
   GridItem,
 } from "@chakra-ui/react";
 import { possibleStates, Card } from "../Admin";
@@ -49,7 +47,6 @@ export default function StatsCard({ setStatus }) {
     let intervalVal = setInterval(fetchStatusData, 10000)
     setDataInterval(intervalVal); // fetch the status data every 10 seconds.
     return () => {
-      console.log("unmounted stats card");
       clearInterval(dataInterval);
     };
   }, []);

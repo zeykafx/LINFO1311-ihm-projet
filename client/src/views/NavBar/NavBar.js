@@ -26,12 +26,10 @@ import {
   Modal,
   ModalOverlay,
   ModalContent,
-  ModalCloseButton,
   ModalBody,
   ModalFooter,
   Center,
   Input,
-  ModalHeader,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, SearchIcon } from "@chakra-ui/icons";
 import { FiChevronDown } from "react-icons/fi";
@@ -43,7 +41,6 @@ import {
   NavLink,
   SubNavLink,
   MobileNavItem,
-  SearchButton,
 } from "./NavItems.js";
 import Loader from "../../components/misc/Loader.js";
 
@@ -96,7 +93,7 @@ export default function NavBar(props) {
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
-    if (search == "") return;
+    if (search === "") return;
 
     setLoading(true);
 
@@ -220,14 +217,14 @@ export default function NavBar(props) {
                 {loading ? (
                   <Loader
                     color="rgb(94, 94, 94)"
-                    size={30}
+                    size={20}
                     noAspectRatio={true}
                     label="Searching..."
                   />
                 ) : (
                   <>
                     {searchResults.length === 0 ? (
-                      <Center mb={"10px"} mt={"10px"}>
+                      <Center>
                         <Text fontWeight={"500"} color={"gray.600"}>
                           No result found for the term "{search}"
                         </Text>
@@ -235,45 +232,43 @@ export default function NavBar(props) {
                     ) : (
                       <>
                         {searchResults.map((result) => (
-                          <>
-                            <Box m={"10px"} key={result.id}>
-                              <Flex flexDirection={"row"}>
-                                <Flex flexDirection={"column"} flex={1}>
-                                  <Text fontWeight="bold" fontSize="lg">
-                                    {result.name}
+                          <Box m={"10px"} key={result.id}>
+                            <Flex flexDirection={"row"}>
+                              <Flex flexDirection={"column"} flex={1}>
+                                <Text fontWeight="bold" fontSize="lg">
+                                  {result.name}
+                                </Text>
+                                <VStack align="start" spacing={0}>
+                                  <Text fontWeight="500" fontSize="sm">
+                                    {result.type[0].toUpperCase() +
+                                      result.type.slice(1)}
                                   </Text>
-                                  <VStack align="start" spacing={0}>
-                                    <Text fontWeight="500" fontSize="sm">
-                                      {result.type[0].toUpperCase() +
-                                        result.type.slice(1)}
-                                    </Text>
-                                    <Text fontWeight="500" fontSize="sm">
-                                      Directed by: {result.director}
-                                    </Text>
-                                    <Text fontWeight="500" fontSize="sm">
-                                      Playing as: {result.actorRole}
-                                    </Text>
-                                    <Text fontWeight="500" fontSize="sm">
-                                      Release date:{" "}
-                                      {new Date(
-                                        parseInt(result.releaseDate)
-                                      ).toDateString()}
-                                    </Text>
-                                  </VStack>
-                                </Flex>
-
-                                <Link
-                                  as={ReactRouterLink}
-                                  to={"/" + result.type + "/" + result.id}
-                                  style={{ textDecoration: "none" }}
-                                >
-                                  <Button variant={"outline"} onClick>
-                                    See more
-                                  </Button>
-                                </Link>
+                                  <Text fontWeight="500" fontSize="sm">
+                                    Directed by: {result.director}
+                                  </Text>
+                                  <Text fontWeight="500" fontSize="sm">
+                                    Playing as: {result.actorRole}
+                                  </Text>
+                                  <Text fontWeight="500" fontSize="sm">
+                                    Release date:{" "}
+                                    {new Date(
+                                      parseInt(result.releaseDate)
+                                    ).toDateString()}
+                                  </Text>
+                                </VStack>
                               </Flex>
-                            </Box>
-                          </>
+
+                              <Link
+                                as={ReactRouterLink}
+                                to={"/" + result.type + "/" + result.id}
+                                style={{ textDecoration: "none" }}
+                              >
+                                <Button variant={"outline"} onClick={onClose_search}>
+                                  See more
+                                </Button>
+                              </Link>
+                            </Flex>
+                          </Box>
                         ))}
                       </>
                     )}
@@ -325,7 +320,7 @@ export default function NavBar(props) {
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
             aria-label={"Open Menu"}
             display={{ md: "none" }} // shows and hides the button based on the 'md' breakpoint
-            onClick={isOpen ? onClose : onOpen}
+            onClick={onOpen}
           />
 
           <Text textAlign={"center"} display={{ md: "none" }} flex={1}>
@@ -370,7 +365,7 @@ export default function NavBar(props) {
                       background={"white"}
                       _hover={{ bg: "gray.200" }}
                       fontWeight={"bold"}
-                      color={'gray.500'}
+                      color={"gray.500"}
                       _focus={{ boxShadow: "none" }}
                       rightIcon={<IoIosArrowDown />}
                       onClick={openPopover}
@@ -428,7 +423,7 @@ export default function NavBar(props) {
                       <Avatar size={"sm"} />
 
                       <VStack
-                        display={{ base: "none", md: "flex" }}
+                        display={{ base: "none", lg: "none", xl: "flex" }}
                         alignItems="flex-start"
                         spacing="1px"
                         ml="2"

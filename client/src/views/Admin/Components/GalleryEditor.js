@@ -1,10 +1,4 @@
 import {
-  Flex,
-  Box,
-  Grid,
-  GridItem,
-  Text,
-  AspectRatio,
   useDisclosure,
   Modal,
   ModalOverlay,
@@ -116,11 +110,11 @@ export default function GalleryEditor() {
           <>
               {/* Flemme de changer les noms des classes */}
             {images.map((image) => (
-              <div className="movieSmallViewer">
+              <div className="movieSmallViewer" key={image.id}>
                 <div className="movieInfosContainer">
                   <div className="movieImageContainer">
                     <div className="moviePoster">
-                      <img src={"/photos/" + image.filename} />
+                      <img src={"/photos/" + image.filename} alt={image.name}/>
                     </div>
                   </div>
                   <div className="movieTextContainer">

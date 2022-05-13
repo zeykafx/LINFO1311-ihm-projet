@@ -40,7 +40,7 @@ function AdminMoviesViewer({}) {
         separator = index === coActors.length - 2 ? " and " : ", ";
       }
       return (
-        <b className="actorBubble">
+        <b className="actorBubble" key={index}>
           {actor}
           {separator}
         </b>
@@ -129,11 +129,11 @@ function AdminMoviesViewer({}) {
         ) : (
           <>
             {moviesList.map((movie) => (
-              <div className="movieSmallViewer">
+              <div className="movieSmallViewer" key={movie.id}>
                 <div className="movieInfosContainer">
                   <div className="movieImageContainer">
                     <div className="moviePoster">
-                      <img src={"/photos/"+movie.filename} />
+                      <img src={"/photos/"+movie.filename} alt={movie.name}/>
                     </div>
                   </div>
                   <div className="movieTextContainer">
@@ -155,14 +155,14 @@ function AdminMoviesViewer({}) {
                     <h2>Languages:</h2>
                     <div className="languagesContainer">
                       {movie.languages.map((language) => {
-                        return <div className="languageBubble">{language}</div>;
+                        return <div className="languageBubble" key={language}>{language}</div>;
                       })}
                     </div>
 
                     <h2>Ticket links:</h2>
                     <div className="ticketLinksContainer">
                       {movie.ticketLinks.map((ticketLink) => {
-                        return <div className="ticketBubble">{ticketLink}</div>;
+                        return <div className="ticketBubble" key={ticketLink}>{ticketLink}</div>;
                       })}
                     </div>
 

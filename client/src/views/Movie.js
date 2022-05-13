@@ -2,8 +2,6 @@ import {
     Box, 
     Text,
     Flex,
-    Center,
-    Spacer
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -20,7 +18,7 @@ export const Movie = (props) => {
 
         setLoading(true);
 
-        if (id==undefined) return;
+        if (id===undefined) return;
 
         const data = {
             id: id
@@ -81,7 +79,7 @@ export const Movie = (props) => {
             if(index !== (coActors.length - 1)){
                 separator = index===(coActors.length - 2) ? " and " : ", ";
             }
-            return <b className="actorBubble">{actor}{separator}</b>
+            return <b className="actorBubble" key={index}>{actor}{separator}</b>
         })
     }
 
@@ -129,7 +127,7 @@ export const Movie = (props) => {
                         borderRadius={"5px"}
                         shadow={"md"}
                     >
-                    <img src={"/photos/"+selectedMovie.filename}/>
+                    <img src={"/photos/"+selectedMovie.filename} alt={selectedMovie.name}/>
                     </Box>
                     <Box height={"50px"}/>
                 </Flex>
@@ -163,7 +161,7 @@ export const Movie = (props) => {
                             <Text color='gray.700' fontWeight='bold' fontSize="sm" marginBottom='2px'>LANGUAGES</Text>
                             <Flex wrap={'wrap'} direction={'row'} mb={'8px'}>
                                 { selectedMovie.languages.map((language) => {
-                                    return <Text color='white' fontWeight='bold' fontSize="sm" bg={'black'} borderRadius={"5px"}  m={"5px"} padding={'3px 8px'}>{language}</Text>
+                                    return <Text key={language} color='white' fontWeight='bold' fontSize="sm" bg={'black'} borderRadius={"5px"}  m={"5px"} padding={'3px 8px'}>{language}</Text>
                                 })}
                             </Flex>
                         </Flex>
@@ -172,7 +170,7 @@ export const Movie = (props) => {
                             <Text color='gray.700' fontWeight='bold' fontSize="sm" marginBottom='2px'>TICKET AT</Text>
                             <Flex wrap={'wrap'} direction={'row'} mb={'8px'}>
                                 { selectedMovie.ticketLinks.map((link) => {
-                                    return <Text color='white' fontWeight='bold' fontSize="sm" bg={'black'} borderRadius={"5px"}  m={"5px"} padding={'3px 8px'}>{extractWebsiteName(link)}</Text>
+                                    return <Text key={link} color='white' fontWeight='bold' fontSize="sm" bg={'black'} borderRadius={"5px"}  m={"5px"} padding={'3px 8px'}>{extractWebsiteName(link)}</Text>
                                 })}
                             </Flex>
                         </Flex>

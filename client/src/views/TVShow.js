@@ -2,8 +2,6 @@ import {
     Box, 
     Text,
     Flex,
-    Center,
-    Spacer
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -20,7 +18,7 @@ export const TVShow = (props) => {
 
         setLoading(true);
 
-        if (id==undefined) return;
+        if (id===undefined) return;
 
         const data = {
             id: id
@@ -81,7 +79,7 @@ export const TVShow = (props) => {
             if(index !== (coActors.length - 1)){
                 separator = index===(coActors.length - 2) ? " and " : ", ";
             }
-            return <b className="actorBubble">{actor}{separator}</b>
+            return <b className="actorBubble" key={index}>{actor}{separator}</b>
         })
     }
 
@@ -129,7 +127,7 @@ export const TVShow = (props) => {
                         borderRadius={"5px"}
                         shadow={"md"}
                     >
-                    <img src={"/photos/"+selectedTVShow.filename}/>
+                    <img src={"/photos/"+selectedTVShow.filename} alt={selectedTVShow.name}/>
                     </Box>
                     <Box height={"50px"}/>
                 </Flex>
@@ -163,7 +161,7 @@ export const TVShow = (props) => {
                                 <Text color='gray.700' fontWeight='bold' fontSize="sm" marginBottom='2px'>LANGUAGES</Text>
                                 <Flex wrap={'wrap'} direction={'row'} mb={'8px'}>
                                     { selectedTVShow.languages.map((language) => {
-                                        return <Text color='white' fontWeight='bold' fontSize="sm" bg={'black'} borderRadius={"5px"}  m={"5px"} padding={'3px 8px'}>{language}</Text>
+                                        return <Text key={language} color='white' fontWeight='bold' fontSize="sm" bg={'black'} borderRadius={"5px"}  m={"5px"} padding={'3px 8px'}>{language}</Text>
                                     })}
                                 </Flex>
                             </Flex>
@@ -172,7 +170,7 @@ export const TVShow = (props) => {
                                 <Text color='gray.700' fontWeight='bold' fontSize="sm" marginBottom='2px'>AVAILABLE ON</Text>
                                 <Flex wrap={'wrap'} direction={'row'} mb={'8px'}>
                                     { selectedTVShow.tv_channels.map((tv_channel) => {
-                                        return <Text color='white' fontWeight='bold' fontSize="sm" bg={'black'} borderRadius={"5px"}  m={"5px"} padding={'3px 8px'}>{tv_channel}</Text>
+                                        return <Text key={tv_channel} color='white' fontWeight='bold' fontSize="sm" bg={'black'} borderRadius={"5px"}  m={"5px"} padding={'3px 8px'}>{tv_channel}</Text>
                                     })}
                                 </Flex>
                             </Flex>
@@ -181,7 +179,7 @@ export const TVShow = (props) => {
                                 <Text color='gray.700' fontWeight='bold' fontSize="sm" marginBottom='2px'>AVAILABLE ON</Text>
                                 <Flex wrap={'wrap'} direction={'row'} mb={'8px'}>
                                     { selectedTVShow.streaming_services.map((streaming_service) => {
-                                        return <Text color='white' fontWeight='bold' fontSize="sm" bg={'black'} borderRadius={"5px"} m={"5px"} padding={'3px 8px'}>{streaming_service}</Text>
+                                        return <Text key={streaming_service} color='white' fontWeight='bold' fontSize="sm" bg={'black'} borderRadius={"5px"} m={"5px"} padding={'3px 8px'}>{streaming_service}</Text>
                                     })}
                                 </Flex>
                             </Flex>

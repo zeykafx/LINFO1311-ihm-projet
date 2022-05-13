@@ -56,7 +56,7 @@ export default function Footer(props) {
             <Link
               as={ReactRouterLink}
               key={links[item]}
-              to={"/#" + links[item]}
+              to={"/" + links[item]}
             >
               {item}
             </Link>

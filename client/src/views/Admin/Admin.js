@@ -6,7 +6,12 @@ import {
   Heading,
   GridItem,
   useColorModeValue,
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
 } from "@chakra-ui/react";
+import { ChevronRightIcon } from "@chakra-ui/icons";
+import { Link as ReactRouterLink } from "react-router-dom";
 import StatsCard from "./Components/StatsCard";
 import QuickLinks from "./Components/QuickLinks";
 import FeaturedMovies from "./Components/FeaturedMovies";
@@ -27,17 +32,29 @@ function Admin() {
 
   return (
     <>
-      <Heading
-        px={3}
-      >
+      <Breadcrumb separator={<ChevronRightIcon color="gray.500" />} padding={2}>
+        <BreadcrumbItem>
+          <BreadcrumbLink as={ReactRouterLink} to="/">
+            Home
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+
+        <BreadcrumbItem isCurrentPage>
+          <BreadcrumbLink as={ReactRouterLink} to={"/admin"}>
+            Admin Panel
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+      </Breadcrumb>
+
+      <Heading px={3}>
         Everything is{" "}
         <Text
           as={"span"}
           bgClip="text"
           bgGradient={
-            status == possibleStates.smooth
+            status === possibleStates.smooth
               ? "linear(to-r, green.300,green.500)"
-              : status == possibleStates.mild
+              : status === possibleStates.mild
               ? "linear(to-r, orange.300,orange.500)"
               : "linear(to-r, red.300,red.500)"
           }
@@ -48,12 +65,15 @@ function Admin() {
       </Heading>
 
       <Grid
-        templateColumns={{ md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)", "2xl": "repeat(3, 1fr)"}}
+        templateColumns={{
+          md: "repeat(2, 1fr)",
+          lg: "repeat(3, 1fr)",
+          "2xl": "repeat(3, 1fr)",
+        }}
         templateRows="1fr "
-        gap={{base: 2, "2xl": 7}}
+        gap={{ base: 2, "2xl": 7 }}
         p={3}
       >
-        
         <StatsCard setStatus={handleStatusChange} />
 
         <GridItem colSpan={1} rowSpan={3}>

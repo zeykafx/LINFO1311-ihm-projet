@@ -80,6 +80,7 @@ import { useNavigate } from "react-router-dom";
           >
             {tvShows.map((tvShow) => (
               <GridItem
+                key={tvShow.id}
                 w="100%"
                 height="fit-content"
                 pos={"relative"}
@@ -105,6 +106,7 @@ import { useNavigate } from "react-router-dom";
                       width: "100%",
                     }}
                     src={"/photos/" + tvShow.filename}
+                    alt={tvShow.name}
                   />
                 </AspectRatio>
                 <Box

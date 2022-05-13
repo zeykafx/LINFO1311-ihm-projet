@@ -80,6 +80,7 @@ import { useNavigate } from "react-router-dom";
           >
             {movies.map((movie) => (
               <GridItem
+                key={movie.id}
                 w="100%"
                 height="fit-content"
                 pos={"relative"}
@@ -104,6 +105,7 @@ import { useNavigate } from "react-router-dom";
                     style={{
                       width: "100%",
                     }}
+                    alt={movie.name}
                     src={"/photos/" + movie.filename}
                   />
                 </AspectRatio>

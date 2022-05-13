@@ -43,7 +43,7 @@ function AdminTVShowsViewer({}) {
         separator = index === coActors.length - 2 ? " and " : ", ";
       }
       return (
-        <b className="actorBubble">
+        <b className="actorBubble" key={index}>
           {actor}
           {separator}
         </b>
@@ -135,11 +135,11 @@ function AdminTVShowsViewer({}) {
         ) : (
           <>
             {TVShowsList.map((tvshow) => (
-              <div className="TVShowSmallViewer">
+              <div className="TVShowSmallViewer" key={tvshow.id}>
                 <div className="TVShowInfosContainer">
                   <div className="TVShowImageContainer">
                     <div className="TVShowPoster">
-                      <img src={"/photos/"+tvshow.filename} />
+                      <img src={"/photos/"+tvshow.filename} alt={tvshow.name}/>
                     </div>
                   </div>
                   <div className="TVShowTextContainer">
@@ -161,7 +161,7 @@ function AdminTVShowsViewer({}) {
                     <h2>Languages:</h2>
                     <div className="languagesContainer">
                       {tvshow.languages.map((language) => {
-                        return <div className="languageBubble">{language}</div>;
+                        return <div className="languageBubble" key={language}>{language}</div>;
                       })}
                     </div>
 
@@ -169,7 +169,7 @@ function AdminTVShowsViewer({}) {
                     <div className="tvChannelsContainer">
                       {tvshow.tv_channels.map((tv_channel) => {
                         return (
-                          <div className="tvChannelBubble">{tv_channel}</div>
+                          <div className="tvChannelBubble" key={tv_channel}>{tv_channel}</div>
                         );
                       })}
                     </div>
@@ -178,7 +178,7 @@ function AdminTVShowsViewer({}) {
                     <div className="streamingServicesContainer">
                       {tvshow.streaming_services.map((streaming_service) => {
                         return (
-                          <div className="streamingServiceBubble">
+                          <div className="streamingServiceBubble" key={streaming_service}>
                             {streaming_service}
                           </div>
                         );

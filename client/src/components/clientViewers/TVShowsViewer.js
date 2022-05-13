@@ -62,7 +62,7 @@ function TVShowsViewer({
             if(index !== (coActors.length - 1)){
                 separator = index===(coActors.length - 2) ? " and " : ", ";
             }
-            return <b className="actorBubble">{actor}{separator}</b>
+            return <b className="actorBubble" key={index}>{actor}{separator}</b>
         })
     }
 
@@ -87,19 +87,19 @@ function TVShowsViewer({
                 style={{width: 172*getNumberOfTvShows()+50+"px"}}
                 >
                 { response!=="" ?
-                    <div itemId={0} className="errorContainer">
+                    <div itemID={0} className="errorContainer">
                         <h3>{response}</h3>
                     </div>
                     :
                     <>
                     { loading 
-                    ? <Loader itemId={0} color="rgb(94, 94, 94)" size={30} noAspectRatio={true} label="Fetching the TVShows..."/>
+                    ? <Loader itemID={0} color="rgb(94, 94, 94)" size={30} noAspectRatio={true} label="Fetching the TVShows..."/>
                     :
                     <>
                         <Box flex={1}></Box>           
                         {TVShowsList.map((TVShow) =>
                             <Flex
-                            itemId={TVShow.id}
+                            itemID={TVShow.id}
                             key={TVShow.id}
                             direction={'column'}
                             height='25vh'
@@ -114,19 +114,19 @@ function TVShowsViewer({
                                     overflow={"hidden"}
                                     borderRadius={"8px"}
                                     mb={"5px"}
-                                    opacity={selectedTVShow.id==TVShow.id ? "1" : ".8"}
-                                    shadow={selectedTVShow.id==TVShow.id ? "xl" : "md"}
+                                    opacity={selectedTVShow.id===TVShow.id ? "1" : ".8"}
+                                    shadow={selectedTVShow.id===TVShow.id ? "xl" : "md"}
                                     style={
-                                        selectedTVShow.id==TVShow.id ? {
+                                        selectedTVShow.id===TVShow.id ? {
                                             border: "solid 2px gray"
                                         } : {}
                                     }
                                 >
-                                    <img className="posterImg" src={"/photos/"+TVShow.filename}/>
+                                    <img className="posterImg" src={"/photos/"+TVShow.filename} alt={TVShow.name}/>
                                 </Flex>
                                 <Text 
                                 color={
-                                    selectedTVShow.id==TVShow.id ? "black" : "gray.500"
+                                    selectedTVShow.id===TVShow.id ? "black" : "gray.500"
                                 }
                                 fontWeight='500' 
                                 fontSize="sm"
@@ -183,7 +183,7 @@ function TVShowsViewer({
                                 <Text color='gray.700' fontWeight='bold' fontSize="sm" marginBottom='2px'>LANGUAGES</Text>
                                 <Flex wrap={'wrap'} direction={'row'} mb={'8px'}>
                                     { selectedTVShow.languages.map((language) => {
-                                        return <Text color='white' fontWeight='bold' fontSize="sm" bg={'black'} borderRadius={"5px"}  m={"5px"} padding={'3px 8px'}>{language}</Text>
+                                        return <Text key={language} color='white' fontWeight='bold' fontSize="sm" bg={'black'} borderRadius={"5px"}  m={"5px"} padding={'3px 8px'}>{language}</Text>
                                     })}
                                 </Flex>
                             </Flex>
@@ -192,7 +192,7 @@ function TVShowsViewer({
                                 <Text color='gray.700' fontWeight='bold' fontSize="sm" marginBottom='2px'>AVAILABLE ON</Text>
                                 <Flex wrap={'wrap'} direction={'row'} mb={'8px'}>
                                     { selectedTVShow.tv_channels.map((tv_channel) => {
-                                        return <Text color='white' fontWeight='bold' fontSize="sm" bg={'black'} borderRadius={"5px"}  m={"5px"} padding={'3px 8px'}>{tv_channel}</Text>
+                                        return <Text  key={tv_channel} color='white' fontWeight='bold' fontSize="sm" bg={'black'} borderRadius={"5px"}  m={"5px"} padding={'3px 8px'}>{tv_channel}</Text>
                                     })}
                                 </Flex>
                             </Flex>
@@ -201,7 +201,7 @@ function TVShowsViewer({
                                 <Text color='gray.700' fontWeight='bold' fontSize="sm" marginBottom='2px'>AVAILABLE ON</Text>
                                 <Flex wrap={'wrap'} direction={'row'} mb={'8px'}>
                                     { selectedTVShow.streaming_services.map((streaming_service) => {
-                                        return <Text color='white' fontWeight='bold' fontSize="sm" bg={'black'} borderRadius={"5px"} m={"5px"} padding={'3px 8px'}>{streaming_service}</Text>
+                                        return <Text key={streaming_service} color='white' fontWeight='bold' fontSize="sm" bg={'black'} borderRadius={"5px"} m={"5px"} padding={'3px 8px'}>{streaming_service}</Text>
                                     })}
                                 </Flex>
                             </Flex>

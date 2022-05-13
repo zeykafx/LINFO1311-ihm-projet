@@ -51,6 +51,7 @@ function Biography({biography}) {
           <img
             className="image"
             src="/images/slide1.png"
+            alt={"image of medeea marinescu"}
           />
         </Square>
         <Box

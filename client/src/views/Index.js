@@ -86,7 +86,7 @@ function Index({ isSelected }) {
           zIndex={1}
         >
           <div className="slide-bgContainer">
-            <img src="/images/slide1.png" />
+            <img src="/images/slide1.png" alt={"portrait"}/>
           </div>
         </Flex>
 
@@ -129,24 +129,24 @@ function Index({ isSelected }) {
                 >
                 </Text>
 
-                <a href="https://www.facebook.com/medeea.marinescu" className="socialLink">
+                <a href="https://www.facebook.com/medeea.marinescu" target="_blank" className="socialLink"> {/* le target="_blank" permet d'ouvrir le lien dans une autre page */}
                   <Square
                     size={{ base: "35px", lg: "50px" }}
                     display="flex"
                     justifyContent="center"
                     alignItems="center"
                   >
-                    <img className="socialIcon" src={icon_facebook}></img>
+                    <img className="socialIcon" src={icon_facebook} alt={'facebook icon'}></img>
                   </Square>
                 </a>
-                <a href="https://www.instagram.com/medeeamarinescu/?hl=fr" className="socialLink">
+                <a href="https://www.instagram.com/medeeamarinescu/?hl=fr" target="_blank" className="socialLink">
                   <Square
                     size={{ base: "35px", lg: "50px" }}
                     display="flex"
                     justifyContent="center"
                     alignItems="center"
                   >
-                    <img className="socialIcon" src={icon_instagram}></img>
+                    <img className="socialIcon" src={icon_instagram} alt={"instagram icon"}></img>
                   </Square>
                 </a>
               </Flex>

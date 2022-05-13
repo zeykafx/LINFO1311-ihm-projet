@@ -13,7 +13,6 @@ import {
   ModalCloseButton,
   ModalHeader,
   useToast,
-  Skeleton,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 
@@ -87,6 +86,7 @@ export const Gallery = (props) => {
                   style={{
                     width: "100%",
                   }}
+                  alt={selectedImage.name}
                   src={"/photos/" + selectedImage.filename}
                 />
               </Box>
@@ -127,6 +127,7 @@ export const Gallery = (props) => {
         >
           {images.map((image) => (
             <GridItem
+              key={image.id}
               w="100%"
               height="fit-content"
               pos={"relative"}
@@ -145,7 +146,6 @@ export const Gallery = (props) => {
             >
               <AspectRatio
                 ratio={1}
-                ratio={1}
                 bg="#dedede"
                 display={"flex"}
                 justifyContent={"center"}
@@ -156,6 +156,7 @@ export const Gallery = (props) => {
                     width: "100%",
                   }}
                   src={"/photos/" + image.filename}
+                  alt={image.name}
                 />
               </AspectRatio>
               <Box

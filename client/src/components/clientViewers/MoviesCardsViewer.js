@@ -81,7 +81,7 @@ function MoviesCardsViewer({ maxNumberOfMovies = -1 }) {
         separator = index === coActors.length - 2 ? ", and " : ", ";
       }
       return (
-        <b className="actorBubble">
+        <b className="actorBubble" key={index}>
           {actor}
           {separator}
         </b>
@@ -212,6 +212,7 @@ function MoviesCardsViewer({ maxNumberOfMovies = -1 }) {
                       {selectedMovie.languages.map((language) => {
                         return (
                           <Text
+                            key={language}
                             color="white"
                             fontWeight="bold"
                             fontSize="sm"
@@ -237,6 +238,7 @@ function MoviesCardsViewer({ maxNumberOfMovies = -1 }) {
                       {selectedMovie.ticketLinks.map((ticketLink) => {
                         return (
                           <Text
+                            key={ticketLink}
                             color="white"
                             fontWeight="bold"
                             fontSize="sm"
@@ -274,12 +276,14 @@ function MoviesCardsViewer({ maxNumberOfMovies = -1 }) {
                   borderWidth={"1px"}
                   borderColor={"#dedede"}
                   marginRight={5}
+                  key={movie.id}
                 >
-                  <Flex key={movie.id} direction={"row"}>
+                  <Flex direction={"row"}>
                     <Flex height="250px" width="170px" overflow={"hidden"}>
                       <img
                         className="posterImg"
                         src={"/photos/"+movie.filename}
+                        alt={movie.name}
                       />
                     </Flex>
                     <Square size="250px">

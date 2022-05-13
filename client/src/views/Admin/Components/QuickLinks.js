@@ -44,7 +44,7 @@ export default function QuickLinks() {
           <ListLinkItem link="/admin/create-movies-shows">Create Movies and TV Shows page</ListLinkItem>
           <ListLinkItem link="/admin/accounts-settings">Account Management Page</ListLinkItem>
           <ListLinkItem link="/admin/bio-editor">Edit the biography found on the home page</ListLinkItem>
-          <ListLinkItem link="admin/gallery-editor">Edit the Image Gallery</ListLinkItem>
+          <ListLinkItem link="/admin/gallery-editor">Edit the Image Gallery</ListLinkItem>
         </UnorderedList>
       </VStack>
     </Card>
